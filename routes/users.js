@@ -187,9 +187,11 @@ router.post('/uploadIG', function (req, res) {
             var caption = req.body.caption
             var source = req.body.source
             var rs = req.body.rs
-            var Client = require('instagram-private-api').V1;
-            var device = new Client.Device(instaUser);
-            var storage = new Client.CookieFileStorage(__dirname + '/cookies/' + instaUser + '.json');
+            
+  var Client = require('instagram-private-api').V1;
+var device = new Client.Device(instaUser);
+var storage = new Client.CookieFileStorage(__dirname + '/cookies/' + instaUser + '.json');
+        
             // And go for login
 Client.Session.create(device, storage, instaUser, instaPass)
 	.then(function(session) {
