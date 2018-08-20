@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html >
+        <head>
+        <!-- http://stackoverflow.com/questions/20096949/how-to-select-fabric-js-object-programmatically -->
+        <!-- http://jsfiddle.net/ThzXM/1/ -->
+       
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.5.0/fabric.min.js"></script>
+ 
+        
+        <script type="text/javascript">
+
+        </script>
+
+        </head>
+
+        <body>
+          
+          <img id="image" style="height: 100%; width: 100%">
+           
+<input type="file" id="imgLoader">            
+<canvas id="c"></canvas>
+ 
+    <canvas id="canvas">
+
+    </canvas>
+  <button onclick="replaceText()">Replace</button>
+
+  <script>
+  /* $(document).ready(function(){
+   	$("#canvas").outerHeight($(window).height()-$("#canvas").offset().top-Math.abs( $("#canvas").outerHeight(true) - $("#canvas").outerHeight()));
+  	$("#h-input").val($("#canvas").outerHeight());
+  	$("#w-input").val($("#canvas").outerWidth());
+    $("#set-size").click(function(){ 
+    	$("#canvas").outerHeight($("#h-input").val());
+      $("#main-content").width($("#w-input").val());
+      $("#canvas").outerWidth($("#main-content").width());
+    });
+   });*/
+
+document.getElementById('imgLoader').onchange = function handleImage(e) {
+    canvas = new fabric.Canvas('canvas');
+    var reader = new FileReader();
+    reader.onload = function (event) { console.log('fdsf');
+        var imgObj = new Image();
+        imgObj.src = event.target.result;
+        document.getElementById('image').src = event.target.result
+                              
+        imgObj.onload = function () {
+            // start fabricJS stuff
+            
+            var image = new fabric.Image(imgObj);
+            image.set({
+              
+                
+            });
+            canvas.setHeight(document.getElementById('image').height);
+            canvas.setWidth(document.getElementById('image').width);
+            document.getElementById('image').style.display = 'none'
+            //image.scale(getRandomNum(0.1, 0.25)).setCoords();
+            canvas.add(image);
+            canvas.add(new fabric.IText('hello world', {}));
+            
+            // end fabricJS stuff
+        }
+        
+    }
+    reader.readAsDataURL(e.target.files[0]);
+    
+}
+
+      
+      var canvas = new fabric.Canvas('c');
+canvas.setHeight(300);
+canvas.setWidth(500);
+var text = new fabric.IText('Sample Text', {
+   left: 50,
+   top: 100,
+   fontFamily: 'arial',
+   fill: '#333',
+   fontSize: 50
+ });
+canvas.add(text);
+      
+function replaceText(){
+ text.setColor('#c93e3e')
+    text.setLeft(text.left + 1)
+}
+
+      
+      
+      
+  </script>
+    </body>
+
+</html> 
+
+    

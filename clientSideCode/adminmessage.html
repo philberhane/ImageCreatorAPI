@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.5.0/fabric.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/styyle.css">
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Pacifico">
+          <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+.mySlides {display:none;}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Michroma" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <script src="js/jquery-ui.min.js"></script>
+   <script src="js/jquery.ui.touch-punch.min.js"></script>
+   
+    <script src="js/jscolor.js"></script>
+   
+     <div id="header">
+      <div class="container">
+       <a href="http://lisathomassalon.com"><img class="responsive" src="https://www.lisathomassalon.com/wp-content/uploads/2016/10/logo.png"></a>
+       <div id="navbar">
+       <div id="hide">
+       <a id="loginNav" href="#" onclick="logout()">Logout</a>
+          </div>
+          </div>
+       </div>
+    </div>
+    
+    
+    <div id="login" style="background-color: #675B65;"><h1 style="font-family: michroma; color: white; font-weight: 1;">ADMIN</h1></div>
+    <input id="imageLink" style="display:none">
+    <input id="imageCopyLink" style="display:none">
+    <input id="canvasLink" style="display:none">
+    <input id="imageId" style="display:none">
+    
+    <div class="container">
+    <p style="color: #675B65">Your changes have been made!</p>
+    <div>
+        
+        <div id="editDiv" class="w3-content w3-display-container">
+        <h3>Edit an Image</h3>
+        <div id="eImage">
+        <div id="slideshow">
+         
+            </div>
+        
+        
+        
+        <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+  <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+       <button onclick="selectImage()">Select</button><button id="deleteImage" >Delete</button>
+        </div>
+        </div>
+    </div>
+    
+    <div id="uploadDiv" style="height: 100">
+        <h3>Or Upload an Image</h3>
+        <form id="imgur">
+  <input type="file" id="imgLoader" class="imgur" accept="image/*" data-max-size="5000"/>
+</form>
+        </div>
+        <div id="hidden" style="font-size: 16px">
+        <p>Color:
+    <input class="jscolor" onchange="update(this.jscolor)" value="000000">
+    </p>
+    <p>Font: <select id="fontSelect" onchange="changeFont()">
+  <option value="open sans">Open Sans</option>
+  <option value="verdana">Verdana</option>
+  <option value="michroma">Michroma</option>
+  <option value="pacifico">Cursive</option>
+</select>
+    </p>
+ 
+   
+   </div>
+
+        
+   
+
+    
+    
+    
+    
+    </div>
+    
+    
+   
+
+    <!--<div id="finishEdit">
+        <button onclick="finishEdit()">Finish Editing</button>
+    </div>
+    
+    <div id="save">
+        <button onclick="save()">Save</button>
+    </div>-->
+    
+    <img id="image">
+           
+           
+
+ 
+    <canvas id="canvas">
+
+    </canvas>
+     
+ <!--    <button id="finishEdit" onclick="finishEdit()">Finish Edit</button>-->
+      
+           
+          <img  id="imageLocation"> 
+           
+  <div class="loader" id="loader1"></div>     
+    
+<button id="submit" onclick="submit()" style="display: none">Submit</button>
+<button id="submitChanges" onclick="submitChanges()" style="display: none">Submit Changes</button> 
+  
+  <button id = "reset" onclick="reset()">Reset</button>
+  
+   
+    <!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Are you sure you would like to Delete this image?</p>
+    <button onclick="deleteImage()">Delete</button> 
+    <button id="cancelDeletion">Cancel</button>
+  </div>
+
+</div>
+    
+<script src="js/admin.js"></script>
+  <script src="js/html2canvas.js"></script>
+   
+   <script>
+function update(jscolor) {
+    // 'jscolor' instance can be used as a string
+   text.setColor('#'+ jscolor) 
+    canvas.setActiveObject(text)
+    canvas.renderAll();
+}
+       
+       
+</script>
+      
+   <script src="js/edit.js"></script>
+    </body>
+    
+</html>

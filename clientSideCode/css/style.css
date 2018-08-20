@@ -1,0 +1,272 @@
+* {
+    -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+    margin: 0;
+    background-color: #EEEEF0;
+}
+
+
+.draggable {
+    cursor: move;
+}
+.resizable {
+    border: 1px dashed #000000;
+    position: relative;
+    min-height: 50px;
+}
+.ui-resizable-handle {
+    width: 10px;
+    height: 10px;
+    background-color: #000000;
+    border: 1px solid #000000;
+    position: absolute;
+}
+.ui-resizable-nw {
+    left: -5px;
+    top: -5px;
+    cursor: nw-resize;
+}
+.ui-resizable-ne {
+    top: -5px;
+    right: -5px;
+    cursor: ne-resize;
+}
+.ui-resizable-sw {
+    bottom: -5px;
+    left: -5px;
+    cursor: sw-resize;
+}
+.ui-resizable-se {
+    bottom: -5px;
+    right:-5px;
+    cursor: se-resize;
+}
+.ui-resizable-n {
+    top: -5px;
+    left:50%;
+    cursor: n-resize;
+}
+.ui-resizable-s {
+    bottom: -5px;
+    left: 50%;
+    cursor: s-resize;
+}
+.ui-resizable-w {
+    left:-5px;
+    top:calc(50% - 5px);
+    cursor: w-resize;
+}
+.ui-resizable-e {
+    right:-5px;
+    top:calc(50% - 5px);
+    cursor: e-resize;
+}
+
+#resizable { width: 75px; height: 75px; }
+#resizable h3 { text-align: center; margin: 0; }
+#content { font-size: 16px; overflow: hidden; font-family: "open sans"}
+
+#signupForm label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #363636;
+}
+
+#signupForm input {
+    background-color: #EEEEF0;
+    border: none;
+    border-bottom: 3px solid #b2b2b2;
+    font-size: 16px;
+    color: #848484;
+    width: 100%;
+}
+
+#signupForm input:focus {
+    border-bottom: 3px solid black;;
+}
+
+#signupForm .form-group {
+    margin-top: 15px
+}
+
+#loginForm label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #363636;
+}
+
+#loginForm input {
+    background-color: #EEEEF0;
+    border: none;
+    border-bottom: 3px solid #b2b2b2;
+    font-size: 16px;
+    color: #848484;
+    width: 100%;
+}
+
+#loginForm input:focus {
+    border-bottom: 3px solid black;;
+}
+
+#loginForm .form-group {
+    margin-top: 15px
+}
+
+.responsive {
+    width: 300px;
+    height: auto;
+}
+
+#navbar {
+    float:right; font-family:verdana;
+}
+
+
+
+#header {
+    padding-top: 15px;
+    background-color: #D8D5D7;
+}
+
+#header a {
+    text-decoration: none;
+}
+
+#navbar a {
+    font-size: 18px;
+    color: black;
+    padding: 15px 15px;
+  
+}
+
+#navbar {
+    margin-top: 15px;
+}
+
+#navbar a:hover {
+    text-decoration: underline;
+    background-color: #F5F5F5;
+}
+
+#signUp {
+    padding-top: 1px;
+    padding-bottom: 5px;
+    text-align: center
+}
+
+#login {
+    padding-top: 1px;
+    padding-bottom: 5px;
+    text-align: center
+}
+
+#signupButton {
+    color: white;
+    background-color: #675B65;
+    padding: 15px 50px;
+    font-family: Helvetica;
+    font-size: 16px;
+    margin-top: 25px;
+    border-radius: 3%;
+    border: none;
+    text-decoration: none;
+}
+
+#signupButton:hover {
+    background-color: #8D848B;
+}
+
+#loginButton {
+    color: white;
+    background-color: #675B65;
+    padding: 15px 50px;
+    font-family: Helvetica;
+    font-size: 16px;
+    margin-top: 25px;
+    border-radius: 3%;
+    border: none;
+    text-decoration: none;
+}
+
+#loginButton:hover {
+    background-color: #8D848B;
+}
+
+
+
+
+.footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #3E373F;
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    position: absolute;
+    
+}
+
+.footer p {
+    font-size: 14px;
+    font-family: Helvetica;
+    color: white
+}
+
+#navSelect {
+    font-family: michroma;
+}
+
+#loginError {
+    color: #fa755a;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#blah {
+    width: 300px;
+    display: none;
+}
+
+
+
+
+#hidden {
+    display: none;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+@media screen and (max-width: 514px) {
+    #header {
+        background-color: #333333;
+    }
+    
+}
