@@ -25,17 +25,17 @@ let options = {
 var request = require('request');
 var fs = require('fs');
 //mongoose.connect(process.env.MONGODB_URI);
-mongoose.connect(process.env.MONGODB_URI, options);
+mongoose.connect(process.env.MONGODB_URI);
 var db = mongoose.connection;
 
 
 //Init App
 var app = express();
 
-app.use(function(req, res, next) {
+/*app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers, *, X-Requested-With, Content-Type, Accept");
   next();
-
+*/
 
 
 
