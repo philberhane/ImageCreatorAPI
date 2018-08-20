@@ -27,18 +27,19 @@ var fs = require('fs');
 //mongoose.connect(process.env.MONGODB_URI);
 mongoose.connect(process.env.MONGODB_URI, options);
 var db = mongoose.connection;
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var images = require('./routes/images');
 
 
 //Init App
 var app = express();
 
-/*app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Headers, *, X-Requested-With, Content-Type, Accept");
   next();
-});*/
+});
+
+var routes = require('./routes/index');
+var users = require('./routes/users');
+var images = require('./routes/images');
 
 
 // BodyParser Middleware
@@ -47,7 +48,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(logger('dev'))
 app.use(errorhandler())
-app.use(cors({credentials: true, origin: true}))
+app.use(cors())
 
 // Express Session
 app.use(session({
