@@ -613,6 +613,7 @@ function sendToIG() {
     }
     
     fetch('https://lisathomasapi.herokuapp.com/routes/users/uploadIG', {
+        credentials: 'include',
         method: 'POST',
         body: JSON.stringify(input),
         headers: { "Content-Type": "application/json"}
