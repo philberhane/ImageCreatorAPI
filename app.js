@@ -20,7 +20,9 @@ let options = {
     autoIndex:false, 
     autoReconnect:true, 
     promiseLibrary:global.Promise
-}; 
+};
+var request = require('request');
+var fs = require('fs');
 //mongoose.connect(process.env.MONGODB_URI);
 mongoose.connect(process.env.MONGODB_URI, options);
 var db = mongoose.connection;
