@@ -177,7 +177,7 @@ router.post('/login',
 
 
 router.post('/uploadIG', function (req, res) {
-    Image.find({_id: req.body.id},  (err, user) => {
+    User.find({_id: req.body.id},  (err, user) => {
           if (err) {
                 return handleError(err);
             }

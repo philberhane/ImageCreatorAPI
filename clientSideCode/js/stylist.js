@@ -608,7 +608,7 @@ function sendToIG() {
         id : sessionStorage.id,
         caption : document.getElementById('textArea').value,
         source : document.getElementById('finalImage').src,
-        rs : document.getElementById('finalImage').srcsplit('.com/')[1]
+        rs : document.getElementById('finalImage').src.split('.com/')[1]
        
     }
     

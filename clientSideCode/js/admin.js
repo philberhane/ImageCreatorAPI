@@ -175,7 +175,7 @@ canvas.on('selection:cleared', function() {
 
 function canvasFunction() {
     
-    document.getElementById('editDiv').style.display = 'none'
+    
         
 
     
@@ -195,11 +195,11 @@ function canvasFunction() {
             });
          });*/
         
-         document.getElementById('loader2').style.display = 'none'                     
+                              
         imgObj.onload = function () {
             // start fabricJS stuff
-        
-            
+        document.getElementById('editDiv').style.display = 'none'
+         document.getElementById('loader2').style.display = 'none'   
             fabricImage.width = document.getElementById('image').width,
             fabricImage.height = document.getElementById('image').height,
                 
@@ -318,7 +318,7 @@ function finishEdit() {
     window.fabric.util.object.extend(window.fabric.Canvas.prototype, {
         updateHiddenTextareaPosition: updateHiddenTextareaPosition,
     });
-})(); 
+}); 
 
 $('input[type=file]').on("click", function() {
          document.getElementById('loader2').style.display = 'block'
@@ -466,9 +466,10 @@ function sendToServer() {
         return response.json();
     }).then(function(data) {
         
+        window.location.href = 'adminmessage.html'
         
         })
-window.location.href = 'adminmessage.html'
+
     
 }
 
@@ -514,9 +515,9 @@ function deleteImage() {
     }).then(function(response) {
         return response.json();
     }).then(function(data) {
-        
+        window.location.href = 'adminmessage.html'
         })
-window.location.href = 'adminmessage.html'
+
     
 }
 
