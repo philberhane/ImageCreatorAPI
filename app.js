@@ -32,13 +32,10 @@ var db = mongoose.connection;
 //Init App
 var app = express();
 
-app.use(function(req, res, next) {
-  res.header('Content-Type','application/json');
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
+/*app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Headers, *, X-Requested-With, Content-Type, Accept");
   next();
-})
-
+*/
 
 
 
@@ -49,7 +46,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(logger('dev'))
 app.use(errorhandler())
-
+app.use(cors())
 
 // Express Session
 app.use(session({
