@@ -32,14 +32,12 @@ var db = mongoose.connection;
 //Init App
 var app = express();
 
-app.use(function(req, res, next) {
+/*app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers, *, X-Requested-With, Content-Type, Accept");
   next();
-});
+*/
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var images = require('./routes/images');
+
 
 
 // BodyParser Middleware
@@ -78,6 +76,10 @@ app.use(expressValidator({
     };
   }
 }));
+
+var routes = require('./routes/index');
+var users = require('./routes/users');
+var images = require('./routes/images');
 
 app.use('/routes', routes);
 app.use('/routes/users', users);
