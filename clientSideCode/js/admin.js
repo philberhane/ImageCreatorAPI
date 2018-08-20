@@ -15,7 +15,10 @@ fetch('https://lisathomasapi.herokuapp.com/routes/images/getImages', {
     }).then(function(response) {
         return response.json();
     }).then(function(data) {
-
+    
+    if (data.message.indexOf('Error') === 0) {
+        document.getElementById('slideshow').innerText = data.message
+    } else {
         for (i=0; i<data.message.length; i++) {
             var image = document.createElement('img')
             image.src = data.message[i].imageCopyLink
@@ -28,7 +31,7 @@ fetch('https://lisathomasapi.herokuapp.com/routes/images/getImages', {
             
         }
     showDivs(slideIndex);
-          
+          } 
         })
 
 var slideIndex = 1;

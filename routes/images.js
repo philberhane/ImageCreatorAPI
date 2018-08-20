@@ -17,7 +17,7 @@ router.post('/addImage', function (req, res) {
     
     image.save( (err, model) => {
             
-            res.status(200).send({postId: model._id, message : 'Your event has been successfully created!'})
+            res.status(200).send({message : 'Your image has been successfully created!'})
                 console.log(model, 'saved!!!')
                 
         })
