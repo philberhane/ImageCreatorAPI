@@ -18,7 +18,7 @@ const signUp = () => {
         
     }
     
-    fetch('http://localhost:3000/routes/users/register', {
+    fetch('https://lisathomasapi.herokuapp.com/routes/users/register', {
         method: 'POST',
         body: JSON.stringify(input),
         headers: { "Content-Type": "application/json"}

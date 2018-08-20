@@ -4,7 +4,7 @@ window.location.href = "login.html";
     
 } 
 var input = {}
-fetch('http://localhost:3000/routes/images/getImages', {
+fetch('https://lisathomasapi.herokuapp.com/routes/images/getImages', {
         method: 'POST',
         body: JSON.stringify(input),
         headers: { "Content-Type": "application/json"}
@@ -450,7 +450,7 @@ function sendToServer() {
         canvasLink : JSON.stringify(canvas)
     }
     
-    fetch('http://localhost:3000/routes/images/addImage', {
+    fetch('https://lisathomasapi.herokuapp.com/routes/images/addImage', {
         method: 'POST',
         body: JSON.stringify(input),
         headers: { "Content-Type": "application/json"}
@@ -472,7 +472,7 @@ function sendToServerUpdate() {
         canvasLink : JSON.stringify(canvas)
     }
     
-    fetch('http://localhost:3000/routes/images/updateImage', {
+    fetch('https://lisathomasapi.herokuapp.com/routes/images/updateImage', {
         method: 'POST',
         body: JSON.stringify(input),
         headers: { "Content-Type": "application/json"}
@@ -499,7 +499,7 @@ function deleteImage() {
        
     }
     
-    fetch('http://localhost:3000/routes/images/deleteImage', {
+    fetch('https://lisathomasapi.herokuapp.com/routes/images/deleteImage', {
         method: 'POST',
         body: JSON.stringify(input),
         headers: { "Content-Type": "application/json"}

@@ -3,7 +3,7 @@ if (!sessionStorage.id) {
 window.location.href = "login.html";
 } 
 var input = {}
-fetch('http://localhost:3000/routes/images/getImages', {
+fetch('https://lisathomasapi.herokuapp.com/routes/images/getImages', {
         method: 'POST',
         body: JSON.stringify(input),
         headers: { "Content-Type": "application/json"}
@@ -454,7 +454,7 @@ function emailImage() {
         email : document.getElementById('emailValue').value
     }
     
-    fetch('http://localhost:3000/routes/images/emailImage', {
+    fetch('https://lisathomasapi.herokuapp.com/routes/images/emailImage', {
         method: 'POST',
         body: JSON.stringify(input),
         headers: { "Content-Type": "application/json"}
@@ -486,7 +486,7 @@ function deleteImage() {
        
     }
     
-    fetch('http://localhost:3000/routes/images/deleteImage', {
+    fetch('https://lisathomasapi.herokuapp.com/routes/images/deleteImage', {
         method: 'POST',
         body: JSON.stringify(input),
         headers: { "Content-Type": "application/json"}
@@ -608,7 +608,7 @@ function sendToIG() {
        
     }
     
-    fetch('http://localhost:3000/routes/users/uploadIG', {
+    fetch('https://lisathomasapi.herokuapp.com/routes/users/uploadIG', {
         method: 'POST',
         body: JSON.stringify(input),
         headers: { "Content-Type": "application/json"}

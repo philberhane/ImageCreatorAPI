@@ -12,7 +12,7 @@ const login = () => {
         password : document.getElementById('password').value,        
     }
     
-    fetch('http://localhost:3000/routes/users/login', {
+    fetch('https://lisathomasapi.herokuapp.com/routes/users/login', {
         method: 'POST',
         body: JSON.stringify(input),
         headers: { "Content-Type": "application/json"}

@@ -14,6 +14,7 @@
   },
   "homepage": "https://github.com/huttarichard/instagram-private-api",
   "scripts": {
+    "start": "node app.js",
     "test": "./node_modules/mocha/bin/mocha --inline-diffs --timeout 1000000 tests/run.js"
   },
   "dependencies": {
