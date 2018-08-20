@@ -34,7 +34,7 @@ var app = express();
 
 app.use(function(req, res, next) {
   res.header('Content-Type','application/json');
-    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', 'http://imagecreator.shiftmediamanagement.com/');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
 res.header('Access-Control-Allow-Credentials', 'true');
   next();
