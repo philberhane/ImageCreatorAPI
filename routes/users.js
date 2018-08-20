@@ -182,10 +182,10 @@ router.post('/uploadIG', function (req, res) {
                 return handleError(err);
             }
        
-            var instaUser = user.instaUser
+            var instaUser = user[0].instaUser
             console.log(instaUser)
         console.log(typeof insaUser)
-            var instaPass = user.instaPass
+            var instaPass = user[0].instaPass
             var caption = req.body.caption
             var source = req.body.source
             var rs = req.body.rs
