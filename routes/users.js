@@ -191,7 +191,7 @@ router.post('/uploadIG', function (req, res) {
             var device = new Client.Device(instaUser);
             var storage = new Client.CookieFileStorage(__dirname + '/cookies/' + instaUser + '.json');
             // And go for login
-Client.Session.create(device, storage, 'clydewilliam007', 'Dope1234')
+Client.Session.create(device, storage, instaUser, instaPass)
 	.then(function(session) {
    		// Now you have a session, we can follow / unfollow, anything...
 		// And we want to follow Instagram official profile
