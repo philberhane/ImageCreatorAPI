@@ -34,7 +34,8 @@ router.post('/getImages', function (req, res) {
             res.status(500).send({
 			message: 'Error: There are no images!'
 		});
-        }
+        console.log('error')
+          }
             else {
        res.status(200).send({
             message: arrayOfImages

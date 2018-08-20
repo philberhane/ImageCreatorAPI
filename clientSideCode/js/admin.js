@@ -3,6 +3,8 @@ if (!sessionStorage.id) {
 window.location.href = "login.html";
     
 } 
+
+console.log('admin')
 var input = {}
 fetch('https://lisathomasapi.herokuapp.com/routes/images/getImages', {
         method: 'POST',
