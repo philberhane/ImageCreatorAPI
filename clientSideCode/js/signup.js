@@ -14,7 +14,7 @@ const signUp = () => {
         instaPass: document.getElementById('instaPass').value,
         password : document.getElementById('password').value,
         password2 : document.getElementById('password2').value,
-        role: 'stylist'
+        role: 'admin'
         
     }
     

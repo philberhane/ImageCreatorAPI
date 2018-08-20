@@ -37,6 +37,7 @@ router.post('/getImages', function (req, res) {
         console.log('error')
           }
             else {
+                console.log(arrayOfImages)
        res.status(200).send({
             message: arrayOfImages
         })

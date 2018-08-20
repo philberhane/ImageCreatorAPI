@@ -1,8 +1,10 @@
 if (!sessionStorage.id) {
 // similar behavior as clicking on a link
-window.location.href = "login.html";
-    
-} 
+window.location.href = "login.html";   
+}
+if (sessionStorage.role !== 'admin') {
+    window.location.href = sessionStorage.role + ".html";
+}
 
 console.log('admin')
 var input = {}
@@ -13,6 +15,7 @@ fetch('https://lisathomasapi.herokuapp.com/routes/images/getImages', {
     }).then(function(response) {
         return response.json();
     }).then(function(data) {
+
         for (i=0; i<data.message.length; i++) {
             var image = document.createElement('img')
             image.src = data.message[i].imageCopyLink
@@ -25,7 +28,7 @@ fetch('https://lisathomasapi.herokuapp.com/routes/images/getImages', {
             
         }
     showDivs(slideIndex);
-        
+          
         })
 
 var slideIndex = 1;
