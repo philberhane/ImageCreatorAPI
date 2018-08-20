@@ -32,10 +32,10 @@ var images = require('./routes/images');
 //Init App
 var app = express();
 
-app.use(function(req, res, next) {
+/*app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
-});
+});*/
 
 
 // BodyParser Middleware
