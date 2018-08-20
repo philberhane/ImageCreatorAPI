@@ -177,7 +177,7 @@ function canvasFunction() {
     
     document.getElementById('editDiv').style.display = 'none'
         
-
+console.log('yes')
     
     var link = document.getElementById('imageLink').value
    
@@ -195,7 +195,7 @@ function canvasFunction() {
             });
          });*/
         
-         document.getElementById('loader2').style.display = 'none'                     
+    //     document.getElementById('loader2').style.display = 'none'                     
         imgObj.onload = function () {
             // start fabricJS stuff
         
@@ -215,14 +215,13 @@ function canvasFunction() {
             canvas.renderAll();
             
             // end fabricJS stuff
+            document.getElementById('hidden').style.display = 'block'
+
+    document.getElementById('submit').style.display = 'block'
         }
          
         
-    
-    
-    document.getElementById('hidden').style.display = 'block'
 
-    document.getElementById('submit').style.display = 'block'
 }
 
 
@@ -320,9 +319,9 @@ function finishEdit() {
     });
 })(); 
 
-$('input[type=file]').on("click", function() {
-         document.getElementById('loader2').style.display = 'block'
-     })
+/*$('input[type=file]').on("click", function() {
+     //    document.getElementById('loader2').style.display = 'block'
+     }) */
 
 $("document").ready(function() {
     
@@ -384,7 +383,7 @@ $("document").ready(function() {
 
 
 function submitChanges() {
-        document.getElementById('loader1').style.display = 'block'
+   //     document.getElementById('loader1').style.display = 'block'
 
 try {
     var img = document.getElementById('canvas').toDataURL('image/jpeg', 0.9).split(',')[1];
@@ -549,7 +548,7 @@ function save() {
 
 function saveChanges() {
     canvas.deactivateAll().renderAll();
-    document.getElementById('loader1').style.display = 'block'
+  //  document.getElementById('loader1').style.display = 'block'
     try {
     var img = document.getElementById('canvas').toDataURL('image/jpeg', 0.9).split(',')[1];
 } catch(e) {
@@ -576,7 +575,7 @@ function saveChanges() {
             }
         }
     }); 
-    document.getElementById('loader1').style.display = 'none'
+//    document.getElementById('loader1').style.display = 'none'
     document.getElementById('canvas').style.display = 'none'
     document.querySelector('.upper-canvas').style.display = 'none'
     document.querySelector('.canvas-container').style.display = 'none'
@@ -619,8 +618,12 @@ function sendToIG() {
     }).then(function(response) {
         return response.json();
     }).then(function(data) {
+        document.getElementById('myModal').style.display = 'none'
+        if (data.message === 'Success') {
+        
         document.getElementById('stylistMessage').style.display = 'block'
         document.getElementById('stylistMessage').innerText = 'Your image has been posted!'
+        }
         })
     
 }

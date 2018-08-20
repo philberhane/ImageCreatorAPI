@@ -208,6 +208,9 @@ Client.Session.create(device, storage, instaUser, instaPass)
 		console.log(medium.params)
 		// {followedBy: ... , following: ... }
 		// Yey, you just followed @instagram
+    res.status(200).send({
+      message: 'Success'  
+    })
 	})
             
             

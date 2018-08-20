@@ -12,7 +12,9 @@ html {
     margin: 0;
     background-color: #EEEEF0;
 }
-
+#stylistMessage {
+    display: none;
+}
 
 .draggable {
     cursor: move;

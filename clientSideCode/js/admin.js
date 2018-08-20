@@ -199,7 +199,7 @@ function canvasFunction() {
         imgObj.onload = function () {
             // start fabricJS stuff
         document.getElementById('editDiv').style.display = 'none'
-         document.getElementById('loader2').style.display = 'none'   
+      //   document.getElementById('loader2').style.display = 'none'   
             fabricImage.width = document.getElementById('image').width,
             fabricImage.height = document.getElementById('image').height,
                 
@@ -321,7 +321,7 @@ function finishEdit() {
 }); 
 
 $('input[type=file]').on("click", function() {
-         document.getElementById('loader2').style.display = 'block'
+  //       document.getElementById('loader2').style.display = 'block'
      })
 
 $("document").ready(function() {
@@ -383,7 +383,7 @@ $("document").ready(function() {
 
 function submit() {
     canvas.deactivateAll().renderAll();
-    document.getElementById('loader1').style.display = 'block'
+ //   document.getElementById('loader1').style.display = 'block'
 try {
     var img = document.getElementById('canvas').toDataURL('image/jpeg', 0.9).split(',')[1];
 } catch(e) {
@@ -414,7 +414,7 @@ try {
 
 function submitChanges() {
     canvas.deactivateAll().renderAll();
-        document.getElementById('loader1').style.display = 'block'
+ //       document.getElementById('loader1').style.display = 'block'
 
 try {
     var img = document.getElementById('canvas').toDataURL('image/jpeg', 0.9).split(',')[1];
@@ -515,6 +515,7 @@ function deleteImage() {
     }).then(function(response) {
         return response.json();
     }).then(function(data) {
+        document.getElementById('myModal').style.display = 'none'
         window.location.href = 'adminmessage.html'
         })
 
