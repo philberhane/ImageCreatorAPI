@@ -183,12 +183,12 @@ router.post('/uploadIG', function (req, res) {
             }
        
             var instaUser = user[0].instaUser
-            console.log(instaUser)
-        console.log(typeof insaUser)
             var instaPass = user[0].instaPass
             var caption = req.body.caption
             var source = req.body.source
+            console.log(source)
             var rs = req.body.rs
+            console.log(rs)
             
   var Client = require('instagram-private-api').V1;
 var device = new Client.Device(instaUser);
