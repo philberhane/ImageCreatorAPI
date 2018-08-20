@@ -32,10 +32,10 @@ var db = mongoose.connection;
 //Init App
 var app = express();
 
-/*app.use(function(req, res, next) {
+app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers, *, X-Requested-With, Content-Type, Accept");
   next();
-*/
+
 
 
 
