@@ -163,15 +163,21 @@ passport.deserializeUser(function (id, done) {
 
 
 router.post('/login',
-	passport.authenticate('local', { failureRedirect: '/routes/users/loginError'}), function (req, res) {
-        var today = new Date();
-    console.log(req.user)
-         res.status(200).send({
+  passport.authenticate('local'),
+  function(req, res) {
+    if (err) {
+        res.status(500).send({message: 'Error'})
+    }
+    // If this function gets called, authentication was successful.
+    // `req.user` contains the authenticated user.
+res.status(200).send({
+                message: 'Success',
                 id: req.user.id,
                 role: req.user.role,
                 images: req.user.images
-                })
-	});
+                })  });
+
+
 
 
 
@@ -193,7 +199,7 @@ router.post('/uploadIG', function (req, res) {
         let imgConvert = require('image-convert');
 imgConvert.fromURL({
     url: source,
-    quality: 90,//default 100
+    quality: 100,//default 100
     output_format:"jpg",//default jpg
     size: 300//default original
 },function(err,buffer,file){
