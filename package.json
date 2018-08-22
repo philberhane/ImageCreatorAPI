@@ -36,6 +36,7 @@
     "flash": "^1.1.0",
     "fs": "0.0.1-security",
     "https": "^1.0.0",
+    "image-convert": "^0.1.33",
     "instagram-private-api": "^0.6.8",
     "is-stream": "^1.1.0",
     "js-md5": "^0.3.0",

@@ -109,16 +109,26 @@ var mailOptions = {
 
 
 router.post('/convertImage', function (req, res) {
-    const fs = require("fs");
-const pngToJpeg = require('png-to-jpeg');
+   let imgConvert = require('image-convert');
     console.log('made it to server')
     
 const imgStr = req.body.img;
 
-const buffer = new Buffer(imgStr.split(/,\s*/)[1],'base64');
-pngToJpeg({quality: 90})(buffer).then(output => fs.writeFileSync("./some-file.jpeg", output));
-    
-    res.send({message: output})
+imgConvert.fromBuffer({
+    buffer: req.body.img,
+    quality: 50, //quality
+    output_format: "jpg", //jpg
+    size: "original" //defualt
+}, function(err, response, file) {
+    if (!err) {
+        console.log(file);
+        res.end(response);
+    } else {
+        res.json({
+            "Error": err.message
+        })
+    }
+});
     
 })
 
