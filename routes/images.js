@@ -67,7 +67,7 @@ router.post('/updateImage', function (req, res) {
     canvasLink: req.body.canvasLink
     
 }, function(err, affected, resp) {
-   console.log('updated!');
+   res.status(200).send({message : 'Your image has been successfully updated!'})
 })
     
 })

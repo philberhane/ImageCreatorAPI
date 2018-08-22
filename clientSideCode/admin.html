@@ -63,11 +63,12 @@
     
     <div id="uploadDiv" style="height: 100">
         <h3>Or Upload an Image</h3>
-        <div class="loader" id="loader2"></div> 
+         
         <form id="imgur">
   <input type="file" id="imgLoader" class="imgur" accept="image/*" data-max-size="5000"/>
 </form>
         </div>
+        <div id="loading"></div>
         <div id="hidden" style="font-size: 16px">
         <p>Color:
     <input class="jscolor" onchange="update(this.jscolor)" value="000000">
@@ -120,7 +121,8 @@
        
     
 <button id="submit" onclick="submit()" style="display: none">Save</button>
-<button id="submitChanges" onclick="submitChanges()" style="display: none">Save Changes</button> 
+<button id="submitChanges" onclick="submitChanges()" style="display: none">Save Changes</button>
+ <div id="saving"></div> 
   
   <button id = "reset" onclick="reset()">Reset</button>
   

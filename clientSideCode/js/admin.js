@@ -180,6 +180,7 @@ function canvasFunction() {
         
                               
         imgObj.onload = function () {
+            document.getElementById('loading').innerText = ''
             canvas.setHeight(document.getElementById('image').height);
             canvas.setWidth(document.getElementById('image').width);
             console.log('2')
@@ -304,6 +305,14 @@ function finishEdit() {
 /*$('input[type=file]').on("click", function() {
   //       document.getElementById('loader2').style.display = 'block'
      }) */
+$("document").ready(function() {
+    
+  $('input[type=file]').on("click", function() {
+      document.getElementById('loading').innerText = "Uploading file.." 
+  })
+    
+})
+
 
 $("document").ready(function() {
     
@@ -320,7 +329,7 @@ $("document").ready(function() {
       }
 
       // Begin file upload
-      console.log("Uploading file to Imgur..");
+     
 
       // Replace ctrlq with your own API key
       var apiUrl = 'https://api.imgur.com/3/image';
@@ -362,6 +371,7 @@ $("document").ready(function() {
 });
 
 function submit() {
+    document.getElementById('saving').innerText = 'Saving...'
   //  document.body.append(canvas.toDataURL())
   //  canvas.deactivateAll()
  //   document.getElementById('loader1').style.display = 'block'
@@ -374,7 +384,7 @@ function submit() {
   //  document.body.append(canvas.toDataURL())
 
     console.log(img)
-    document.body.append('Uploading file to Imgur..')
+  //  document.body.append('Uploading file to Imgur..')
  console.log("Uploading file to Imgur..");
 
       // Replace ctrlq with your own API key
@@ -395,7 +405,7 @@ function submit() {
                // Post the imgur url to your server.
                console.log(response.data.link)
                 document.getElementById('imageCopyLink').value = response.data.link
-                document.body.append('loading')
+            //    document.body.append('loading')
                 sendToServer()
             }
         }
@@ -405,7 +415,8 @@ function submit() {
 
 
 function submitChanges() {
-    canvas.deactivateAll().renderAll();
+    document.getElementById('saving').innerText = 'Saving...'
+   // canvas.deactivateAll().renderAll();
  //       document.getElementById('loader1').style.display = 'block'
 
 try {
@@ -449,7 +460,7 @@ function sendToServer() {
         imageCopyLink : document.getElementById('imageCopyLink').value,  
         canvasLink : JSON.stringify(canvas)
     }
-    document.body.append('about to send to server')
+ //   document.body.append('about to send to server')
     
     fetch('https://lisathomasapi.herokuapp.com/routes/images/addImage', {
         method: 'POST',
@@ -483,9 +494,9 @@ function sendToServerUpdate() {
     }).then(function(response) {
         return response.json();
     }).then(function(data) {
-        
+        window.location.href = 'adminmessage.html'
         })
-window.location.href = 'adminmessage.html'
+
     
 }
 
