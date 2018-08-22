@@ -162,20 +162,31 @@ passport.deserializeUser(function (id, done) {
 });
 
 
-router.post('/login',
-  passport.authenticate('local'),
-  function(req, res) {
+app.post('/login', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
     if (err) {
-        res.status(500).send({message: 'Error'})
+      return next(err); // will generate a 500 error
     }
-    // If this function gets called, authentication was successful.
-    // `req.user` contains the authenticated user.
-res.status(200).send({
+    // Generate a JSON response reflecting authentication status
+    if (! user) {
+      return res.send(401,{ success : false, message : 'Error failed' });
+    }
+    req.login(user, function(err){
+      if(err){
+        return next(err);
+      }
+      return res.status(200).send({
                 message: 'Success',
                 id: req.user.id,
                 role: req.user.role,
                 images: req.user.images
-                })  });
+                }) ;        
+    });
+  })(req, res, next);
+});
+
+
+
 
 
 
