@@ -169,7 +169,7 @@ router.post('/login', function(req, res, next) {
     }
     // Generate a JSON response reflecting authentication status
     if (! user) {
-      return res.send(401,{ success : false, message : 'Error failed' });
+      return res.satus(500).send({ success : false, message : 'Error' });
     }
     req.login(user, function(err){
       if(err){

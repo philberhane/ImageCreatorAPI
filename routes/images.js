@@ -96,7 +96,7 @@ var mailOptions = {
             {path: source}
  ],
   subject: "Lisa Thomas Salon Image",
-  text: 'Attached to this email is the image that was created!'
+  html: 'Attached to this email is the image that was created! /n' + '<img src ="' + source + '" />'
 };
         transporter.sendMail(mailOptions, function(error, info){
   if (error) {
