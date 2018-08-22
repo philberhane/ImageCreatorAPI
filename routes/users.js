@@ -199,7 +199,7 @@ Client.Session.create(device, storage, instaUser, instaPass)
 	.then(function(session) {
    		// Now you have a session, we can follow / unfollow, anything...
 		// And we want to follow Instagram official profile
-		return [session,Client.Upload.photo(session, request(source)) ]  
+		return [session,Client.Upload.photo(session, request(source).pipe(fs.createWriteStream(rs)) ]  
 	})
 	.spread(function(session, upload) {
 		 return Client.Media.configurePhoto(session, upload.params.uploadId, caption);

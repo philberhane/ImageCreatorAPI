@@ -37,7 +37,7 @@ Upload.photo = function (session, streamOrPathOrBuffer, uploadId, name, isSideca
     }
     var isThumbnail = !!uploadId;
     var predictedUploadId = uploadId || new Date().getTime();
-    var filename = (name || "pending_media_")+predictedUploadId+".png"
+    var filename = (name || "pending_media_")+predictedUploadId+".jpg"
     var request = new Request(session)
 
     var fields = {
@@ -61,7 +61,7 @@ Upload.photo = function (session, streamOrPathOrBuffer, uploadId, name, isSideca
                 value: data,
                 options: {
                     filename: filename,
-                    contentType: 'image/png'
+                    contentType: 'image/jpeg'
                 }
             }
             return opts;
