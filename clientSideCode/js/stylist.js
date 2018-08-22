@@ -548,21 +548,8 @@ function saveChanges() {
 } catch(e) {
     var img = canvas.toDataURL().split(',')[1];
 } 
-    const input = {
-        img : img
-       
-    }
     
-    fetch('https://lisathomasapi.herokuapp.com/routes/images/convertImage', {
-        method: 'POST',
-        body: JSON.stringify(input),
-        headers: { "Content-Type": "application/json"}
-    }).then(function(response) {
-        return response.json();
-    }).then(function(data) {
-        console.log(data)
-        })
-  /*  $.ajax({
+    $.ajax({
         url: 'https://api.imgur.com/3/image',
         type: 'post',
         headers: {
@@ -590,7 +577,7 @@ function saveChanges() {
        //         sendToServerUpdate()
             }
         }
-    }); */
+    }); 
 //    document.getElementById('loader1').style.display = 'none'
     
 }

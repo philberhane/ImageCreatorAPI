@@ -189,8 +189,19 @@ router.post('/uploadIG', function (req, res) {
             console.log(source)
             var rs = req.body.rs
             console.log(rs)
-            
-  var Client = require('instagram-private-api').V1;
+        
+        let imgConvert = require('image-convert');
+imgConvert.fromURL({
+    url: source,
+    quality: 90,//default 100
+    output_format:"jpg",//default jpg
+    size: 300//default original
+},function(err,buffer,file){
+    if(!err)
+    {
+        
+        console.log(file);
+        var Client = require('instagram-private-api').V1;
 var device = new Client.Device(instaUser);
 var storage = new Client.CookieFileStorage(__dirname + '/cookies/' + instaUser + '.json');
         
@@ -199,7 +210,7 @@ Client.Session.create(device, storage, instaUser, instaPass)
 	.then(function(session) {
    		// Now you have a session, we can follow / unfollow, anything...
 		// And we want to follow Instagram official profile
-		return [session,Client.Upload.photo(session, request(source) )]  
+		return [session,Client.Upload.photo(session, file )]  
 	})
 	.spread(function(session, upload) {
 		 return Client.Media.configurePhoto(session, upload.params.uploadId, caption);
@@ -212,6 +223,11 @@ Client.Session.create(device, storage, instaUser, instaPass)
       message: 'Success'  
     })
 	})
+    }
+})
+        
+            
+  
             
             
             
