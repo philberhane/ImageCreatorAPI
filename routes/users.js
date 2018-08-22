@@ -162,7 +162,7 @@ passport.deserializeUser(function (id, done) {
 });
 
 
-app.post('/login', function(req, res, next) {
+router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if (err) {
       return next(err); // will generate a 500 error
