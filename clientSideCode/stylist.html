@@ -56,7 +56,7 @@
         
         <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
   <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
-       <button onclick="selectImage()">Select</button>
+       <button class="styledButton" onclick="selectImage()">Select</button>
         </div>
         </div>
     </div>
@@ -65,9 +65,15 @@
         <h3>Or Upload an Image</h3>
         <div class="loader" id="loader2"></div> 
         <form id="imgur">
-  <input type="file" id="imgLoader" class="imgur" accept="image/*" data-max-size="5000"/>
+  <input style="padding: 10px 15px;
+    font-family: Helvetica;
+    font-size: 16px;
+    margin-top: 15px;
+    border-radius: 3%;
+    border: none;" type="file" id="imgLoader" class="imgur" accept="image/*" data-max-size="5000"/>
 </form>
         </div>
+        <div id="loading"></div>
         <div id="hidden" style="font-size: 16px">
         <p>Color:
     <input class="jscolor" onchange="update(this.jscolor)" value="000000">
@@ -103,7 +109,6 @@
         <button onclick="save()">Save</button>
     </div>-->
     
-    <img id="image">
            
            
 
@@ -121,16 +126,16 @@
   <div class="loader" id="loader1"></div> 
        
     <img id="finalImage">
-<button id="submit" onclick="saveChanges()" style="display: none">Save</button>
-<button id="submitChanges" onclick="saveChanges()" style="display: none">Save Changes</button> 
-  
-  <button id = "reset" onclick="reset()">Reset</button>
+<button class="styledButton" id="submit" onclick="saveChanges()" style="display: none">Save</button>
+<button class="styledButton" id="submitChanges" onclick="saveChanges()" style="display: none">Save Changes</button> 
+    <div id="saving"></div>
+  <button class="otherButton" id = "reset" onclick="reset()">Reset</button>
   
   <div id="hiddenArea">
-  <button onclick="saveToDevice()">Save to Device</button>
-  <button onclick="emailImagePopup()">Email Image</button>
-  <button id="IGPopUp">Share to Instagram</button>
-    <button onclick="fbs_click()">Share to Facebook</button>
+  <button class="styledButton" onclick="saveToDevice()">Save to Device</button>
+  <button class="styledButton" onclick="emailImagePopup()">Email Image</button>
+  <button class="styledButton" id="IGPopUp">Share to Instagram</button>
+    <button class="styledButton" onclick="fbs_click()">Share to Facebook</button>
     
     </div>
    
@@ -143,8 +148,8 @@
     <h4>Add a Caption</h4>
       <textarea id="textArea"></textarea>
       <img id="modalPic" style="width: 100%">
-    <button onclick="sendToIG()">Upload</button> 
-    <button id="cancelDeletion">Cancel</button>
+    <button class="styledButton" onclick="sendToIG()">Upload</button> 
+    <button class="otherButton" id="cancelDeletion">Cancel</button>
   </div>
 
 </div>
@@ -159,11 +164,14 @@
     <h4>Please enter an Email to send to:</h4>
       <input id="emailValue" placeholder="example@gmail.com">
       <img id="modalPic2" style="width: 100%">
-    <button onclick="emailImage()">Send Email</button> 
-    <button id="cancelEmail">Cancel</button>
+    <button class="styledButton" onclick="emailImage()">Send Email</button> 
+    <button class="otherButton" id="cancelEmail">Cancel</button>
   </div>
 
 </div>
+    <div id="imageDesignation">
+   <img id="image">
+    </div>
     
 <script src="js/stylist.js"></script>
   <script src="js/html2canvas.js"></script>

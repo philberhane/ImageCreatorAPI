@@ -4,7 +4,11 @@ window.location.href = "login.html";
 } 
 
 if (sessionStorage.role !== 'stylist') {
+ if (sessionStorage.role) {
     window.location.href = sessionStorage.role + ".html";
+    } else {
+        window.location.href = "login.html"; 
+    }    
 }
 var input = {}
 fetch('https://lisathomasapi.herokuapp.com/routes/images/getImages', {
@@ -60,54 +64,39 @@ function selectImage() {
         if (array[i].style.display === 'block') {
             document.getElementById('imageId').value = array[i].id
             document.getElementById('uploadDiv').style.display = 'none'
-            canvas.loadFromDatalessJSON(array[i].alt)
-            canvas.setActiveObject(text)
-            document.getElementById('canvas').click()
+            
+            //canvas.setActiveObject(text)
+            
             document.getElementById('image').style.display = 'block'
             document.getElementById('image').src = array[i].title
            
+            imgObj.crossOrigin = 'anonymous'
             imgObj.src = array[i].title;
-        imgObj.crossOrigin = 'anonymous'
+        
  
             
-            
+            canvas.loadFromDatalessJSON(array[i].alt)
+            canvas._objects[0].on('selected', function() {
+    canvas.allowTouchScrolling = false
+    
+    console.log('selected')
+})
             imgObj.onload = function () {
             // start fabricJS stuff
             
             
-            fabricImage.width = document.getElementById('image').width,
-            fabricImage.height = document.getElementById('image').height,
+           
                 
 
           
             canvas.setHeight(document.getElementById('image').height);
             canvas.setWidth(document.getElementById('image').width);
-            document.getElementById('image').style.display = 'none'
             //image.scale(getRandomNum(0.1, 0.25)).setCoords();
-            fabricImage.scaleToWidth(canvas.getWidth());
-           canvas.add(fabricImage);
-           canvas.add(text);
-                canvas._objects[3].text = canvas._objects[1].text
-                canvas._objects[3].fontFamily = canvas._objects[1].fontFamily
-                canvas._objects[3].fontSize = canvas._objects[1].fontSize
-                canvas._objects[3].fill = canvas._objects[1].fill
                 
-                canvas._objects[3].left = canvas._objects[1].left
-                canvas._objects[3].width = canvas._objects[1].width
-                canvas._objects[3].originX = canvas._objects[1].originX
-                canvas._objects[3].originY = canvas._objects[1].originY
+         
                 
-                
-                canvas._objects[3].angle = canvas._objects[1].angle
-                 canvas._objects[3].height = canvas._objects[1].height
-                 canvas._objects[3].left = canvas._objects[1].left
-                
-                
-                
-                canvas.setActiveObject(canvas._objects[3])
-                
-                canvas._objects.splice(0, 2)
-            canvas.renderAll();
+          //      canvas._objects.shift()
+            canvas.renderAll.bind(canvas);
             
             // end fabricJS stuff
         }
@@ -115,7 +104,7 @@ function selectImage() {
             document.getElementById('eImage').style.display = 'none'
             document.getElementById('submitChanges').style.display = 'block'
             
-            
+            document.getElementById('image').style.visibility = 'hidden'
         }
     }
     
@@ -175,53 +164,50 @@ canvas.on('selection:cleared', function() {
 
 function canvasFunction() {
     
-    document.getElementById('editDiv').style.display = 'none'
+ 
         
-console.log('yes')
+
     
     var link = document.getElementById('imageLink').value
    
+    console.log('1')
+    
+       
+         document.getElementById('image').style.display = 'block' 
     
     
-        imgObj.src = link;
-        imgObj.crossOrigin = 'anonymous'
-         document.getElementById('image').style.display = 'block'                             
         document.getElementById('image').src = link
-        
-           /*  fabric.Image.fromURL(link, function(img) {
-            canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
-               scaleX: canvas.width / img.width,
-               scaleY: canvas.height / img.height
-            });
-         });*/
-        
-    //     document.getElementById('loader2').style.display = 'none'                     
-        imgObj.onload = function () {
-            // start fabricJS stuff
-        
+            imgObj.crossOrigin = 'anonymous'
+             imgObj.src = link
             
-            fabricImage.width = document.getElementById('image').width,
-            fabricImage.height = document.getElementById('image').height,
-                
-
-          
+        
+                              
+        imgObj.onload = function () {
+            document.getElementById('loading').innerText = ''
             canvas.setHeight(document.getElementById('image').height);
             canvas.setWidth(document.getElementById('image').width);
-            document.getElementById('image').style.display = 'none'
-            //image.scale(getRandomNum(0.1, 0.25)).setCoords();
-            fabricImage.scaleToWidth(canvas.getWidth());
-            canvas.add(fabricImage);
+            console.log('2')
+            // start fabricJS stuff
+        document.getElementById('editDiv').style.display = 'none'
+      //   document.getElementById('loader2').style.display = 'none'   
+           
+            canvas.setBackgroundImage(new fabric.Image(imgObj, {
+                scaleX: canvas.width / imgObj.width,
+               scaleY: canvas.height / imgObj.height
+            }));
             canvas.add(text);
-            canvas.renderAll();
-            
+            canvas.renderAll.bind(canvas);
             // end fabricJS stuff
             document.getElementById('hidden').style.display = 'block'
 
     document.getElementById('submit').style.display = 'block'
+            document.getElementById('image').style.visibility = 'hidden'
+            
         }
-         
         
-
+    
+  //  document.body.append(canvas.toDataURL())
+    
 }
 
 
@@ -322,6 +308,14 @@ function finishEdit() {
 /*$('input[type=file]').on("click", function() {
      //    document.getElementById('loader2').style.display = 'block'
      }) */
+$("document").ready(function() {
+    
+  $('input[type=file]').on("click", function() {
+      document.getElementById('loading').innerText = "Uploading file.." 
+  })
+    
+})
+
 
 $("document").ready(function() {
     
@@ -332,13 +326,13 @@ $("document").ready(function() {
     if ($files.length) {
 
       // Reject big files
-      if ($files[0].size > $(this).data("max-size") * 5024) {
+      if ($files[0].size > $(this).data("max-size") * 10024) {
         console.log("Please select a smaller file");
         return false;
       }
 
       // Begin file upload
-      console.log("Uploading file to Imgur..");
+     
 
       // Replace ctrlq with your own API key
       var apiUrl = 'https://api.imgur.com/3/image';
@@ -365,13 +359,12 @@ $("document").ready(function() {
       // Response contains stringified JSON
       // Image URL available at response.data.link
       $.ajax(settings).done(function(response) {
-          
+          console.log('uploaded!')
           var link = JSON.parse(response).data.link
         document.getElementById('imageLink').value = link
-          canvasFunction() 
+           canvasFunction()
        
       });
-
     }
   });
     
@@ -547,12 +540,13 @@ function save() {
 }
 
 function saveChanges() {
-    canvas.deactivateAll().renderAll();
+    document.getElementById('saving').innerText = 'Saving...'
+   // canvas.deactivateAll().renderAll();
   //  document.getElementById('loader1').style.display = 'block'
     try {
-    var img = document.getElementById('canvas').toDataURL('image/jpeg', 0.9).split(',')[1];
+    var img = canvas.toDataURL('image/jpeg', 0.9).split(',')[1];
 } catch(e) {
-    var img = document.getElementById('canvas').toDataURL().split(',')[1];
+    var img = canvas.toDataURL().split(',')[1];
 } 
     
     $.ajax({
@@ -570,18 +564,22 @@ function saveChanges() {
                // Post the imgur url to your server.
                console.log(response.data.link)
                 document.getElementById('finalImage').setAttribute('src', response.data.link)
-                
-       //         sendToServerUpdate()
-            }
-        }
-    }); 
-//    document.getElementById('loader1').style.display = 'none'
-    document.getElementById('canvas').style.display = 'none'
+                document.getElementById('canvas').style.display = 'none'
     document.querySelector('.upper-canvas').style.display = 'none'
     document.querySelector('.canvas-container').style.display = 'none'
     document.getElementById('submitChanges').style.display = 'none'
     document.getElementById('reset').style.display = 'none'
     document.getElementById('hiddenArea').style.display = 'block'
+     document.getElementById('saving').innerText = ''          
+                document.getElementById('hidden').style.display = 'none'
+                document.getElementById('submit').style.display = 'none'
+                document.getElementById('submitChanges').style.display = 'none'
+       //         sendToServerUpdate()
+            }
+        }
+    }); 
+//    document.getElementById('loader1').style.display = 'none'
+    
 }
 
 function saveToDevice() {
@@ -620,7 +618,7 @@ function sendToIG() {
     }).then(function(data) {
         document.getElementById('myModal').style.display = 'none'
         if (data.message === 'Success') {
-        
+        document.getElementById('myModal').style.display = 'none'
         document.getElementById('stylistMessage').style.display = 'block'
         document.getElementById('stylistMessage').innerText = 'Your image has been posted!'
         }

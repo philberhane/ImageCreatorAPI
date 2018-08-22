@@ -3,7 +3,11 @@ if (!sessionStorage.id) {
 window.location.href = "login.html";   
 }
 if (sessionStorage.role !== 'admin') {
+    if (sessionStorage.role) {
     window.location.href = sessionStorage.role + ".html";
+    } else {
+        window.location.href = "login.html"; 
+    }
 }
 
 console.log('admin')
@@ -88,7 +92,6 @@ function selectImage() {
           
             canvas.setHeight(document.getElementById('image').height);
             canvas.setWidth(document.getElementById('image').width);
-            document.getElementById('image').style.display = 'none'
             //image.scale(getRandomNum(0.1, 0.25)).setCoords();
                 
          
@@ -102,7 +105,7 @@ function selectImage() {
             document.getElementById('eImage').style.display = 'none'
             document.getElementById('submitChanges').style.display = 'block'
             
-            
+            document.getElementById('image').style.visibility = 'hidden'
         }
     }
     
@@ -420,9 +423,9 @@ function submitChanges() {
  //       document.getElementById('loader1').style.display = 'block'
 
 try {
-    var img = document.getElementById('canvas').toDataURL('image/jpeg', 0.9).split(',')[1];
+    var img = canvas.toDataURL('image/jpeg', 0.9).split(',')[1];
 } catch(e) {
-    var img = document.getElementById('canvas').toDataURL().split(',')[1];
+    var img = canvas.toDataURL().split(',')[1];
 } 
     
     $.ajax({

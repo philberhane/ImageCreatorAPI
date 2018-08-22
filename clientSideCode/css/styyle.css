@@ -200,6 +200,32 @@ html {
     background-color: #8D848B;
 }
 
+.styledButton {
+    color: white;
+    background-color: #675B65;
+    padding: 10px 15px;
+    font-family: Helvetica;
+    font-size: 16px;
+    margin-top: 15px;
+    border-radius: 3%;
+    border: none;
+}
+
+.styledButton:hover {
+    background-color: #8D848B;
+}
+
+.otherButton {
+    background-color: rgb(208, 208, 208);
+    padding: 10px 15px;
+    font-family: Helvetica;
+    font-size: 16px;
+    margin-top: 15px;
+    border-radius: 3%;
+    border: none;
+}
+
+
 
 
 
