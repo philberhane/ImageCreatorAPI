@@ -12,7 +12,7 @@ Client.Session.create(device, storage, 'clydewilliam007', 'Dope1234')
 	.then(function(session) {
    		// Now you have a session, we can follow / unfollow, anything...
 		// And we want to follow Instagram official profile
-		return [session,Client.Upload.photo(session, request('https://i.imgur.com/x5UM1W3.jpg')) ]  
+		return [session,Client.Upload.photo(session, request('https://i.imgur.com/La7vMy5.png')) ]  
 	})
 	.spread(function(session, upload) {
 		 return Client.Media.configurePhoto(session, upload.params.uploadId, 'akward caption');
