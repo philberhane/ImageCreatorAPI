@@ -118,7 +118,7 @@ imgConvert.fromBuffer({
     buffer: req.body.img,
     quality: 100, //quality
     output_format: "jpg", //jpg
-    size: "original" //defualt
+    size: "300" //defualt
 }, function(err, response, file) {
     if (!err) {
         console.log(file);
