@@ -212,7 +212,7 @@ imgConvert.fromURL({
     url: source,
     quality: 100,//default 100
     output_format:"jpg",//default jpg
-    size: 'original'//default original
+    size: 600//default original
 },function(err,buffer,file){
     if(!err)
     {
