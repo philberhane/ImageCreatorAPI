@@ -237,12 +237,13 @@ html {
     text-align: center;
     padding-top: 25px;
     padding-bottom: 25px;
+    margin-top: 50px;
 }
 
 .footer p {
     font-size: 14px;
     font-family: Helvetica;
-    color: white
+    color: white;
 }
 
 #navSelect {
@@ -416,6 +417,9 @@ background-size:contain;
   .container {
     width: 750px;
   }
+    .footer {
+        margin-top: 100px;
+    }
 }
 @media (min-width: 992px) {
   .container {

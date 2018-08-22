@@ -57,17 +57,24 @@
         
         <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
   <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
-       <button onclick="selectImage()">Select</button><button id="deleteImage" >Delete</button>
+       <button class="styledButton" onclick="selectImage()">Select</button><button class="otherButton" id="deleteImage" >Delete</button>
         </div>
         </div>
     </div>
     
     <div id="uploadDiv" style="height: 100">
         <h3>Or Upload an Image</h3>
+         
         <form id="imgur">
-  <input type="file" id="imgLoader" class="imgur" accept="image/*" data-max-size="5000"/>
+  <input style="padding: 10px 15px;
+    font-family: Helvetica;
+    font-size: 16px;
+    margin-top: 15px;
+    border-radius: 3%;
+    border: none;" type="file" id="imgLoader" class="imgur" accept="image/*" data-max-size="5000"/>
 </form>
         </div>
+        <div id="loading"></div>
         <div id="hidden" style="font-size: 16px">
         <p>Color:
     <input class="jscolor" onchange="update(this.jscolor)" value="000000">
@@ -103,12 +110,11 @@
         <button onclick="save()">Save</button>
     </div>-->
     
-    <img id="image">
            
            
 
  
-    <canvas id="canvas">
+    <canvas id="canvas" width="240" height="297">
 
     </canvas>
      
@@ -117,12 +123,14 @@
            
           <img  id="imageLocation"> 
            
-  <div class="loader" id="loader1"></div>     
+  <div class="loader" id="loader1"></div> 
+       
     
-<button id="submit" onclick="submit()" style="display: none">Submit</button>
-<button id="submitChanges" onclick="submitChanges()" style="display: none">Submit Changes</button> 
+<button class="styledButton" id="submit" onclick="submit()" style="display: none">Save</button>
+<button class="styledButton" id="submitChanges" onclick="submitChanges()" style="display: none">Save Changes</button>
+ <div id="saving"></div> 
   
-  <button id = "reset" onclick="reset()">Reset</button>
+  <button class="otherButton" id = "reset" onclick="reset()">Reset</button>
   
    
     <!-- The Modal -->
@@ -132,19 +140,26 @@
   <div class="modal-content">
     <span class="close">&times;</span>
     <p>Are you sure you would like to Delete this image?</p>
-    <button onclick="deleteImage()">Delete</button> 
+    <button class="styledButton" onclick="deleteImage()">Delete</button> 
     <button id="cancelDeletion">Cancel</button>
   </div>
 
 </div>
+  <div id="imageDesignation">
+   <img id="image">
+    </div>
     
+    
+    <div id="element"></div>
 <script src="js/admin.js"></script>
   <script src="js/html2canvas.js"></script>
+  <script src="js/canvas-to-blob.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js" ></script>
    
    <script>
 function update(jscolor) {
     // 'jscolor' instance can be used as a string
-   text.setColor('#'+ jscolor) 
+   canvas._objects[0].setColor('#'+ jscolor) 
     canvas.setActiveObject(text)
     canvas.renderAll();
 }
