@@ -8,8 +8,7 @@ var Image = require('../models/image');
 
 // To see whether a user is checked in or not
 var User = require('../models/user');
-const fs = require("fs");
-const pngToJpeg = require('png-to-jpeg');
+
 
 router.post('/addImage', function (req, res) {
     data = req.body
@@ -110,6 +109,10 @@ var mailOptions = {
 
 
 router.post('/convertImage', function (req, res) {
+    const fs = require("fs");
+const pngToJpeg = require('png-to-jpeg');
+    console.log('made it to server')
+    
 const imgStr = req.body.img;
 
 const buffer = new Buffer(imgStr.split(/,\s*/)[1],'base64');
