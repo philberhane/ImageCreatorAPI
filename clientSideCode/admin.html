@@ -103,12 +103,11 @@
         <button onclick="save()">Save</button>
     </div>-->
     
-    <img id="image">
            
            
 
  
-    <canvas id="canvas">
+    <canvas id="canvas" width="240" height="297">
 
     </canvas>
      
@@ -138,14 +137,21 @@
   </div>
 
 </div>
+  <div id="imageDesignation">
+   <img id="image">
+    </div>
     
+    
+    <div id="element"></div>
 <script src="js/admin.js"></script>
   <script src="js/html2canvas.js"></script>
+  <script src="js/canvas-to-blob.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js" ></script>
    
    <script>
 function update(jscolor) {
     // 'jscolor' instance can be used as a string
-   text.setColor('#'+ jscolor) 
+   canvas._objects[0].setColor('#'+ jscolor) 
     canvas.setActiveObject(text)
     canvas.renderAll();
 }

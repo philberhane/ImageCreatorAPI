@@ -5,7 +5,7 @@ window.location.href = sessionStorage.role + ".html";
 }
 
 
-const login = () => {
+function login() {
     
     const input = {
         email : document.getElementById('email').value,

@@ -50,9 +50,12 @@ router.post('/getImages', function (req, res) {
 router.post('/deleteImage', function (req, res) {
     Image.findByIdAndRemove(req.body.id, function (err, img) {
     console.log('deleting image', img);
-    if (err)
+    if (err) {
         throw err;
-    
+    }
+    res.status(200).send({
+            message: 'Success'
+        })
 }) 
     
 })
