@@ -209,7 +209,15 @@ router.post('/getUsers', function(req, res, next) {
 
 
 
-
+router.post('/changeStatus', function(req, res, next) {
+ User.update({_id: req.body.id}, {
+    accountStatus: req.body.accountStatus
+    
+}, function(err, affected, resp) {
+   res.status(200)
+})   
+    
+})
 
 
 

@@ -105,7 +105,7 @@ function redirect(t) {
     
 
 
-console.log('admin')
+
 var input = {}
 fetch('https://lisathomasapi.herokuapp.com/routes/users/getUsers', {
         method: 'POST',
@@ -114,22 +114,94 @@ fetch('https://lisathomasapi.herokuapp.com/routes/users/getUsers', {
     }).then(function(response) {
         return response.json();
     }).then(function(data) {
+   
     
-    if (data.message.indexOf('Error') === 0) {
-        document.getElementById('slideshow').innerText = data.message
-    } else {
-        for (i=0; i<data.message.length; i++) {
-            var image = document.createElement('img')
-            image.src = data.message[i].imageCopyLink
-            image.className = 'mySlides'
-            image.style.width = '100%'
-           image.id = data.message[i]._id
-            image.title = data.message[i].imageLink
-            image.alt = data.message[i].canvasLink
-            document.getElementById('slideshow').appendChild(image)
+        for (i=0;i<data.message.length;i++) {
+            if (data.message[i].accountStatus) {
+               var div = document.createElement('div')
+               div.className = 'row'
+                div.style.marginTop = '25px'
+                
+                var div2 = document.createElement('div')
+                div2.className = 'col-md-3 col-xs-6'
+                var h4 = document.createElement('h4')
+                h4.innerText = data.message[i].name
+                div2.appendChild(h4)
+                
+                
+                var div3 = document.createElement('div')
+                div3.className = 'col-md-3 col-xs-6'
+                var input = document.createElement('input')
+                input.setAttribute('type', 'checkbox')
+                input.setAttribute('data-toggle', 'toggle')
+                input.value = data.message[i]._id
+                input.id = 'toggle' + i
+                
+                
             
+                
+                div3.appendChild(input)
+                
+                div.appendChild(div2)
+                div.appendChild(div3)
+                
+                document.getElementById('main').appendChild(div)
+                
+                if (data.message[i].accountStatus === 'inactive') {
+                    $('#toggle'+i).bootstrapToggle({
+      on: 'Active',
+      off: 'Inactive'
+    });
+                } else {
+                    $('#toggle'+i).bootstrapToggle('on', {
+      on: 'Active',
+      off: 'Inactive'
+    });
+                }
+                
+                input.setAttribute('onchange', 'changeStatus(this.id)')
+                
+                
+            }
         }
-    showDivs(slideIndex);
-          } 
+    
+    
         })
 
+
+function changeStatus(clicked_id) {
+    var input = document.getElementById(clicked_id)
+    console.log(input.checked)
+    var inputData = {}
+    
+    if (input.checked === true) {
+        inputData.accountStatus = 'active'
+    } else {
+        inputData.accountStatus = 'inactive'
+    }
+    
+    inputData.id = input.value
+   
+   console.log(inputData)
+    
+    
+    
+fetch('https://lisathomasapi.herokuapp.com/routes/users/changeStatus', {
+        method: 'POST',
+        body: JSON.stringify(inputData),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+ 
+        })
+    
+}
+
+
+function logout() {
+    delete sessionStorage.id
+    delete sessionStorage.images
+    delete sessionStorage.role
+    window.location.href = "login.html";
+}
