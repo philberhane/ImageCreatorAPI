@@ -179,7 +179,7 @@
    <script>
 function update(jscolor) {
     // 'jscolor' instance can be used as a string
-   text.setColor('#'+ jscolor) 
+   canvas._objects[0].setColor('#'+ jscolor) 
     canvas.setActiveObject(text)
     canvas.renderAll();
 }

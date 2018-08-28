@@ -42,90 +42,7 @@
     
     
     <div id="login" style="background-color: #675B65;"><h1 style="font-family: michroma; color: white; font-weight: 1;">ADMIN</h1></div>
-    <input id="imageLink" style="display:none">
-    <input id="imageCopyLink" style="display:none">
-    <input id="canvasLink" style="display:none">
-    <input id="imageId" style="display:none">
-    
-    <div class="container">
-    <div>
-        
-        <div id="editDiv" class="w3-content w3-display-container">
-        <h3>Edit an Image</h3>
-        <div id="eImage">
-        <div id="slideshow">
-         
-            </div>
-        
-        
-        
-        <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-  <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
-       <button class="styledButton" onclick="selectImage()">Select</button><button class="otherButton" id="deleteImage" >Delete</button>
-        </div>
-        </div>
-    </div>
-    
-    <div id="uploadDiv" style="height: 100">
-        <h3>Or Upload an Image</h3>
-         
-        <form id="imgur">
-  <input style="padding: 10px 15px;
-    font-family: Helvetica;
-    font-size: 16px;
-    margin-top: 15px;
-    border-radius: 3%;
-    border: none;" type="file" id="imgLoader" class="imgur" accept="image/*" data-max-size="5000"/>
-</form>
-        </div>
-        <div id="loading"></div>
-        <div id="hidden" style="font-size: 16px">
-        <p>Color:
-    <input class="jscolor" onchange="update(this.jscolor)" value="000000">
-    </p>
-    <p>Font: <select id="fontSelect" onchange="changeFont()">
-  <option value="open sans">Open Sans</option>
-  <option value="verdana">Verdana</option>
-  <option value="michroma">Michroma</option>
-  <option value="pacifico">Cursive</option>
-</select>
-    </p>
- 
    
-   </div>
-
-        
-   
-
-    
-    
-    
-    
-    </div>
-    
-    
-   
-
-    <!--<div id="finishEdit">
-        <button onclick="finishEdit()">Finish Editing</button>
-    </div>
-    
-    <div id="save">
-        <button onclick="save()">Save</button>
-    </div>-->
-    
-           
-           
-
- 
-    <canvas id="canvas" width="240" height="297">
-
-    </canvas>
-     
- <!--    <button id="finishEdit" onclick="finishEdit()">Finish Edit</button>-->
-      
-           
-          <img  id="imageLocation"> 
            
   <div class="loader" id="loader1"></div> 
        
@@ -155,7 +72,7 @@
     
     
     <div id="element"></div>
-<script src="js/admin.js"></script>
+<script src="js/users.js"></script>
   <script src="js/html2canvas.js"></script>
   <script src="js/canvas-to-blob.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js" ></script>

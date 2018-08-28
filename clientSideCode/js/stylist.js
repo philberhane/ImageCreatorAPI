@@ -1,4 +1,4 @@
-if (!sessionStorage.id) {
+/*if (!sessionStorage.id) {
 // similar behavior as clicking on a link
 window.location.href = "login.html";
 } 
@@ -10,6 +10,8 @@ if (sessionStorage.role !== 'stylist') {
         window.location.href = "login.html"; 
     }    
 }
+
+*/
 var input = {}
 fetch('https://lisathomasapi.herokuapp.com/routes/images/getImages', {
         method: 'POST',
@@ -217,7 +219,7 @@ function canvasFunction() {
 
 
 function changeFont() {
-    text.setFontFamily(document.getElementById('fontSelect').value)
+    canvas._objects[0].setFontFamily(document.getElementById('fontSelect').value)
     canvas.setActiveObject(text)
     canvas.renderAll();
 }

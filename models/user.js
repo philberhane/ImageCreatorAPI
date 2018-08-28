@@ -26,6 +26,9 @@ var UserSchema = mongoose.Schema({
     },
     images: {
         type: Array
+    },
+    accountStatus: {
+        type: String
     }
 });
 

@@ -31,7 +31,7 @@ router.post('/register', function (req, res) {
     var instaUser = req.body.instaUser;
     var instaPass = req.body.instaPass;
     var role = req.body.role;
-    var active = req.body.active;
+    var accountStatus = req.body.accountStatus
 
 	// Validation
 	req.checkBody('name', 'Name is required!').notEmpty();
@@ -89,7 +89,8 @@ Client.Session.create(device, storage, instaUser, instaPass)
                         instaUser: instaUser,
                         instaPass: instaPass,
 						password: password,
-                        role : role
+                        role : role,
+                        accountStatus: accountStatus
                         
 					});
 					User.createUser(newUser, function (err, user) {
@@ -97,7 +98,7 @@ Client.Session.create(device, storage, instaUser, instaPass)
 						console.log(user);
 					});
          	res.status(200).send({
-                message: 'You have successfully signed up! Please <a href="login.html">Login</a> to continue.'
+                message: 'Thank you for signing up, your account is pending approval!'
                 })
 
             }
@@ -171,6 +172,11 @@ router.post('/login', function(req, res, next) {
     if (! user) {
       return res.status(500).send({message : 'Error' });
     }
+    if (user.accountStatus === 'inactive')
+        {
+      return res.status(500).send({message : 'Error' });
+    }
+      
     req.login(user, function(err){
       if(err){
         return next(err);
@@ -183,6 +189,21 @@ router.post('/login', function(req, res, next) {
                 }) ;        
     });
   })(req, res, next);
+});
+
+
+router.post('/getUsers', function(req, res, next) {
+  
+        User.find({},  (err, arrayOfUsers) => {
+          if (err) {
+                return handleError(err);
+            }
+            
+            res.status(200).send({
+            message: arrayOfUsers
+        })
+            
+        })
 });
 
 
