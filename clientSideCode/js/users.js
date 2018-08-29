@@ -1,4 +1,4 @@
-/*if (!sessionStorage.id) {
+if (!sessionStorage.id) {
 // similar behavior as clicking on a link
 window.location.href = "login.html";   
 }
@@ -8,7 +8,7 @@ if (sessionStorage.role !== 'admin') {
     } else {
         window.location.href = "login.html"; 
     }
-} */
+} 
 
 function redirect(t) {
     if (t === 'logout') {
@@ -55,6 +55,7 @@ function redirect(t) {
      anchor2.setAttribute('href', 'users.html')
      anchor2.innerText = 'Users'
      var anchor3 = document.createElement('a')
+     anchor3.setAttribute('href', '#')
      anchor3.id = 'logoutNav'
      anchor3.setAttribute('onclick', 'logout()')
      anchor3.innerText = 'Logout'
@@ -97,6 +98,7 @@ function redirect(t) {
      anchor3.id = 'logoutNav'
      anchor3.setAttribute('onclick', 'logout()')
      anchor3.innerText = 'Logout'
+     anchor3.setAttribute('href', '#')
      document.getElementById('hideTho').appendChild(anchor1)
      document.getElementById('hideTho').appendChild(anchor2)
      document.getElementById('hideTho').appendChild(anchor3)
@@ -149,13 +151,13 @@ fetch('https://lisathomasapi.herokuapp.com/routes/users/getUsers', {
                 
                 if (data.message[i].accountStatus === 'inactive') {
                     $('#toggle'+i).bootstrapToggle({
-      on: 'Active',
-      off: 'Inactive'
+      on: 'On',
+      off: 'Off'
     });
                 } else {
                     $('#toggle'+i).bootstrapToggle('on', {
-      on: 'Active',
-      off: 'Inactive'
+      on: 'On',
+      off: 'Off'
     });
                 }
                 
@@ -182,7 +184,6 @@ function changeStatus(clicked_id) {
     
     inputData.id = input.value
    
-   console.log(inputData)
     
     
     

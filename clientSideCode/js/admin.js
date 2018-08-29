@@ -421,10 +421,10 @@ $("document").ready(function() {
     if ($files.length) {
 
       // Reject big files
-      if ($files[0].size > $(this).data("max-size") * 10024) {
+   /*   if ($files[0].size > $(this).data("max-size") * 10024) {
         console.log("Please select a smaller file");
         return false;
-      }
+      } */
 
       // Begin file upload
      
@@ -446,27 +446,38 @@ $("document").ready(function() {
         },
         mimeType: 'multipart/form-data'
       };
+        
+        console.log($files)
+        for (i=0; i<$files.length; i++) {
 
       var formData = new FormData();
-      formData.append("image", $files[0]);
+      formData.append("image", $files[i]);
       settings.data = formData;
 
       // Response contains stringified JSON
       // Image URL available at response.data.link
       $.ajax(settings).done(function(response) {
-          console.log('uploaded!')
-          var link = JSON.parse(response).data.link
+    //      console.log(JSON.parse(response).data)
+          
+          var newImg = document.createElement('input')
+          newImg.style.display = 'none'
+          newImg.className = 'newImg'
+          newImg.value = JSON.parse(response).data.link
+          document.body.appendChild(newImg)
+        /*  var link = JSON.parse(response).data.link
         document.getElementById('imageLink').value = link
-           canvasFunction()
+           canvasFunction() */
        
-      });
+      }) }
+        
+        console.log(document.querySelectorAll('.newImg'))
     }
   });
     
     
  
     
-});
+}); 
 
 function submit() {
     document.getElementById('saving').innerText = 'Saving...'
@@ -551,12 +562,17 @@ function test() {
 }
 
 
-function sendToServer() {
+function sendImageToServer() {
+    var serverArray = []
+    
+    var imgArray = document.querySelectorAll('.newImg')
+    
+    for (i=0; i<imgArray.length;i++) {
+        serverArray.push(imgArray[i].value)
+    }
     
     var input = {
-        imageLink : document.getElementById('imageLink').value,
-        imageCopyLink : document.getElementById('imageCopyLink').value,  
-        canvasLink : JSON.stringify(canvas)
+        array : serverArray
     }
  //   document.body.append('about to send to server')
     
@@ -568,7 +584,7 @@ function sendToServer() {
         return response.json();
     }).then(function(data) {
         
-        window.location.href = 'adminmessage.html'
+    //    window.location.href = 'adminmessage.html'
         
         })
 

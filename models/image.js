@@ -5,12 +5,6 @@ var ImageSchema = new mongoose.Schema({
 
     imageLink: {
         type: String
-    },
-    imageCopyLink: {
-        type: String
-    },
-    canvasLink: {
-        type: String
     }
 });
 
