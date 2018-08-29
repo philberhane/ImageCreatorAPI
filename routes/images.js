@@ -78,13 +78,16 @@ router.post('/deleteImage', function (req, res) {
 
 
 router.post('/updateImage', function (req, res) {
-    Image.update({_id: req.body.id}, {
-    imageCopyLink: req.body.imageCopyLink,
-    canvasLink: req.body.canvasLink
+    var imgArray = req.body.imgArray
+    for (i=0; i<imgArray.length;i++) {
     
+    Image.update({_id: imgArray[i]}, {
+    status: req.body.status    
 }, function(err, affected, resp) {
-   res.status(200).send({message : 'Your image has been successfully updated!'})
+   
 })
+    }
+    res.status(200).send({message : 'Your image has been successfully updated!'})
     
 })
 

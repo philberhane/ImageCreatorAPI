@@ -116,7 +116,10 @@ fetch('https://lisathomasapi.herokuapp.com/routes/images/getImages', {
     }).then(function(data) {
     
     if (data.message.indexOf('Error') === 0) {
-        document.getElementById('imageList').innerText = data.message
+        console.log(data.message)
+        document.getElementById('activeImageHeader').innerText += ' - none'
+        
+        document.getElementById('inactiveImageHeader').innerText += ' - none'
     } else {
         for (i=0; i<data.message.length; i++) {
             var image = document.createElement('img')
@@ -170,6 +173,47 @@ function selectImg(clicked_id) {
   //   clickedImg.className += ' selected'
 }
 
+function changeImgStatus(clicked_id){
+    
+    var clickedButton = document.getElementById('clicked_id')
+    
+     var selectArray = document.querySelectorAll('.selected')
+    
+    var serverArray = []
+    
+    for (i=0;i<selectArray.length;i++) {
+        if (selectArray[i].parentElement.parentElement.id === clickedButton.parentElement.firstElementChild.id) {
+        serverArray.push(selectArray[i].id)
+        }
+    }
+    
+    var status
+    
+    if (clickedButton.innerText === 'Deactivate Selected Images') {
+        status = 'inactive'
+    } else {
+        status = 'active'
+    }
+    
+    const input = {
+        imgArray : serverArray,
+        status : status
+       
+    }
+    
+    fetch('https://lisathomasapi.herokuapp.com/routes/images/updateImage', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        if (data.message === 'Success') {
+        window.location.href = 'adminmessage.html'
+        }
+        })
+    
+}
 
 
 
@@ -615,7 +659,7 @@ function sendImageToServer() {
         return response.json();
     }).then(function(data) {
         console.log(data.message)
-    //    window.location.href = 'adminmessage.html'
+        window.location.href = 'adminmessage.html'
         
         })
 
@@ -651,7 +695,9 @@ function deleteImage() {
     var serverArray = []
     
     for (i=0;i<selectArray.length;i++) {
+        if (selectArray[i].parentElement.parentElement.id === document.getElementById('deleteId').value) {
         serverArray.push(selectArray[i].id)
+        }
     }
     
     const input = {
@@ -667,7 +713,7 @@ function deleteImage() {
         return response.json();
     }).then(function(data) {
         if (data.message === 'Success') {
-     //   window.location.href = 'adminmessage.html'
+        window.location.href = 'adminmessage.html'
         }
         })
 
@@ -687,8 +733,12 @@ var cancel = document.getElementById("cancelDeletion");
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
-function displayModal() {
+function displayModal(clicked_id) {
+    var gallery = document.getElementById(clicked_id).parentElement.firstElementChild.id
+    
+    document.getElementById('deleteId').value = gallery
     modal.style.display = "block";
+    
 } 
 
 // When the user clicks on <span> (x), close the modal
