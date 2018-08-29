@@ -14,6 +14,7 @@ router.post('/addImage', function (req, res) {
     imgArray = req.body.array
     
     for (i=0; i<imgArray;i++) {
+        console.log(imgArray[i])
     
     var image = new Image(imgArray[i])
     

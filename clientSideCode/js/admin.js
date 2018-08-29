@@ -464,6 +464,7 @@ $("document").ready(function() {
           newImg.className = 'newImg'
           newImg.value = JSON.parse(response).data.link
           document.body.appendChild(newImg)
+          sendImageToServer()
         /*  var link = JSON.parse(response).data.link
         document.getElementById('imageLink').value = link
            canvasFunction() */
