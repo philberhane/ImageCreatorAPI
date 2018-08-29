@@ -11,7 +11,9 @@ var User = require('../models/user');
 
 
 router.post('/addImage', function (req, res) {
-    imgArray = req.body.array
+   var imgArray = req.body.imgArray
+    
+    console.log(imgArray)
     
     for (i=0; i<imgArray;i++) {
         console.log(imgArray[i])

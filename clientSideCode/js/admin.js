@@ -572,8 +572,10 @@ function sendImageToServer() {
     }
     
     var input = {
-        array : serverArray
+        imgArray : serverArray
     }
+    
+    
  //   document.body.append('about to send to server')
     
     fetch('https://lisathomasapi.herokuapp.com/routes/images/addImage', {
