@@ -18,7 +18,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
+<body id="adminBody" style="background-color: white;">
   <script src="js/jquery-ui.min.js"></script>
    <script src="js/jquery.ui.touch-punch.min.js"></script>
    
@@ -47,27 +47,30 @@
     <input id="canvasLink" style="display:none">
     <input id="imageId" style="display:none">
     
-    <div class="container">
-    <div>
-        
-        <div id="editDiv" class="w3-content w3-display-container">
-        <h3>Edit an Image</h3>
-        <div id="eImage">
-        <div id="slideshow">
-         
-            </div>
-        
-        
-        
-        <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-  <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
-       <button class="styledButton" onclick="selectImage()">Select</button><button class="otherButton" id="deleteImage" >Delete</button>
-        </div>
-        </div>
-    </div>
+    <div class="container" style="background-color: white">
     
-    <div id="uploadDiv" style="height: 100">
-        <h3>Or Upload an Image</h3>
+    <div style="background-color: white;">
+    <div class="row" id="gallery1" >
+     <h3 id="activeImageHeader">Active Images</h3>
+ 
+        
+    </div>
+       <button class="styledButton selectedImageButton">Deactivate Selected Images</button>
+       <button class="otherButton selectedImageButton" onclick="displayModal()">Delete Selected Images</button>
+        </div>
+    
+    
+    <div style="background-color: white; margin-top: 50px">
+    <div  class="row" id="gallery2" >
+     <h3 id="inactiveImageHeader">Inactive Images</h3>
+   
+    </div>
+       <button class="styledButton selectedImageButton">Activate Selected Images</button>
+       <button class="otherButton selectedImageButton" onclick="displayModal()">Delete Selected Images</button>
+        </div>
+    
+    <div  id="uploadDiv" style="height: 100; margin-top: 50px">
+        <h3>Upload an Image</h3>
          
         <form id="imgur">
   <input style="padding: 10px 15px;
@@ -113,7 +116,7 @@
     <div id="save">
         <button onclick="save()">Save</button>
     </div>-->
-    
+
            
            
 
@@ -143,9 +146,9 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-    <p>Are you sure you would like to Delete this image?</p>
+    <p>Are you sure you would like to delete the selected images?</p>
     <button class="styledButton" onclick="deleteImage()">Delete</button> 
-    <button id="cancelDeletion">Cancel</button>
+    <button class="otherButton" id="cancelDeletion">Cancel</button>
   </div>
 
 </div>

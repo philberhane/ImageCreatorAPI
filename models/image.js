@@ -5,6 +5,9 @@ var ImageSchema = new mongoose.Schema({
 
     imageLink: {
         type: String
+    },
+    status: {
+        type: String
     }
 });
 

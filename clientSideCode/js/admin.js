@@ -116,38 +116,62 @@ fetch('https://lisathomasapi.herokuapp.com/routes/images/getImages', {
     }).then(function(data) {
     
     if (data.message.indexOf('Error') === 0) {
-        document.getElementById('slideshow').innerText = data.message
+        document.getElementById('imageList').innerText = data.message
     } else {
         for (i=0; i<data.message.length; i++) {
             var image = document.createElement('img')
             image.src = data.message[i].imageLink
-            image.className = 'mySlides'
             image.style.width = '100%'
            image.id = data.message[i]._id
             image.title = data.message[i].imageLink
-            document.getElementById('slideshow').appendChild(image)
+            image.alt = data.message[i].status
+            image.className = 'img-fluid'
+            image.setAttribute('onclick', 'selectImg(this.id)')
+            var div = document.createElement('div')
+            div.style.marginTop = '15px'
+            div.className = 'col-md-3 col-sm-4 col-xs-6'
+            div.appendChild(image)
             
+            if (data.message[i].status === 'active') {
+            
+            document.getElementById('gallery1').appendChild(div)
+            } else {
+                document.getElementById('gallery2').appendChild(div)
+            }
         }
-    showDivs(slideIndex);
+        
+        if (!document.getElementById('activeImageHeader').nextElementSibling) {
+            document.getElementById('activeImageHeader').innerText += ' - none'
+        }
+        
+        if (!document.getElementById('inactiveImageHeader').nextElementSibling) {
+            document.getElementById('inactiveImageHeader').innerText += ' - none'
+        }
+    
           } 
         })
 
-var slideIndex = 1;
 
-function plusDivs(n) {
-  showDivs(slideIndex += n);
+function selectImg(clicked_id) {
+    console.log('dope')
+    var clickedImg = document.getElementById(clicked_id)
+    if (clickedImg.className === 'img-fluid selected') {
+    clickedImg.className = 'img-fluid'
+  //  console.log(clickedImg.className)
+    } else {
+        clickedImg.className += ' selected'
+    }
+    
+   clickedImg.parentElement.parentElement.nextElementSibling.style.display = 'block'
+    
+    clickedImg.parentElement.parentElement.nextElementSibling.nextElementSibling.style.display = 'block'
+    
+    
+  //   clickedImg.className += ' selected'
 }
 
-function showDivs(n) {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  if (n > x.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = x.length}
-  for (i = 0; i < x.length; i++) {
-     x[i].style.display = "none";  
-  }
-  x[slideIndex-1].style.display = "block";  
-}
+
+
 
 var imgObj = new Image();
 var fabricImage = new fabric.Image(imgObj);
@@ -622,18 +646,16 @@ function sendToServerUpdate() {
 }
 
 function deleteImage() {
-    document.getElementById('myModal').style.display = 'none'
-    //document.getElementById('cancelDeletion').click()
+    var selectArray = document.querySelectorAll('.selected')
     
-    var array = document.querySelectorAll('.mySlides')
-    for (i=0;i<array.length;i++) {
-        if (array[i].style.display === 'block') {
-            document.getElementById('imageId').value = array[i].id
-        }
+    var serverArray = []
+    
+    for (i=0;i<selectArray.length;i++) {
+        serverArray.push(selectArray[i].id)
     }
     
     const input = {
-        id : document.getElementById('imageId').value
+        imgArray : serverArray
        
     }
     
@@ -645,7 +667,7 @@ function deleteImage() {
         return response.json();
     }).then(function(data) {
         if (data.message === 'Success') {
-        window.location.href = 'adminmessage.html'
+     //   window.location.href = 'adminmessage.html'
         }
         })
 
@@ -665,9 +687,9 @@ var cancel = document.getElementById("cancelDeletion");
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
-btn.onclick = function() {
+function displayModal() {
     modal.style.display = "block";
-}
+} 
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {

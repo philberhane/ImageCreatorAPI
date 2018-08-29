@@ -12,6 +12,27 @@ html {
     margin: 0;
     background-color: #EEEEF0;
 }
+
+#adminBody {
+    height: 100%;
+}
+
+.selectedImageButton {
+    display: none;
+}
+
+.selected {
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+#imageList li{
+    list-style-type:none;
+    margin-right:10px;
+    margin-bottom:10px;
+    float:left;
+}
+
 #stylistMessage {
     display: none;
 }

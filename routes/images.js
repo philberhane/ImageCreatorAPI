@@ -18,7 +18,7 @@ router.post('/addImage', function (req, res) {
     for (i=0; i<imgArray.length;i++) {
         console.log(imgArray[i])
     
-    var image = new Image({imageLink: imgArray[i]})
+    var image = new Image({imageLink: imgArray[i], status: 'active'})
     
     console.log(image)
     
@@ -59,15 +59,20 @@ router.post('/getImages', function (req, res) {
 
 
 router.post('/deleteImage', function (req, res) {
-    Image.findByIdAndRemove(req.body.id, function (err, img) {
+    var imgArray = req.body.imgArray
+     for (i=0; i<imgArray.length;i++) {
+    
+    Image.findByIdAndRemove(imgArray[i], function (err, img) {
     console.log('deleting image', img);
     if (err) {
         throw err;
     }
-    res.status(200).send({
+
+})
+} 
+            res.status(200).send({
             message: 'Success'
         })
-}) 
     
 })
 
