@@ -20,13 +20,13 @@ router.post('/addImage', function (req, res) {
     
     var image = new Image({imageLink: imgArray[i]})
     
+    console.log(image)
     
-    image.save( (err, model) => {
-            
-           
-                console.log(model, 'saved!!!')
-                
-        })
+    
+    image.save(function (err) {
+  if (err) return handleError(err);
+  // saved!
+});
     }
     
      res.status(200).send({message : 'Your image has been successfully created!'})
