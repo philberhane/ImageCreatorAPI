@@ -11,17 +11,24 @@ var User = require('../models/user');
 
 
 router.post('/addImage', function (req, res) {
-    data = req.body
-    const image = new Image(data)
+    imgArray = req.body.array
+    
+    for (i=0; i<imgArray;i++) {
+    
+    var image = new Image(imgArray[i])
     
     
     image.save( (err, model) => {
             
-            res.status(200).send({message : 'Your image has been successfully created!'})
+           
                 console.log(model, 'saved!!!')
                 
         })
+    }
+    
+     res.status(200).send({message : 'Your image has been successfully created!'})
 })
+
 
 
 router.post('/getImages', function (req, res) {
