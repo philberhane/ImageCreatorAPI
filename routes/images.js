@@ -34,6 +34,7 @@ router.post('/addImage', function (req, res) {
 
 router.post('/getImages', function (req, res) {
     Image.find({},  (err, arrayOfImages) => {
+        console.log(arrayOfImages)
           if (err) {
                 return handleError(err);
             }

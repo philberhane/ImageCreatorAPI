@@ -120,12 +120,11 @@ fetch('https://lisathomasapi.herokuapp.com/routes/images/getImages', {
     } else {
         for (i=0; i<data.message.length; i++) {
             var image = document.createElement('img')
-            image.src = data.message[i].imageCopyLink
+            image.src = data.message[i].imageLink
             image.className = 'mySlides'
             image.style.width = '100%'
            image.id = data.message[i]._id
             image.title = data.message[i].imageLink
-            image.alt = data.message[i].canvasLink
             document.getElementById('slideshow').appendChild(image)
             
         }
@@ -584,7 +583,7 @@ function sendImageToServer() {
     }).then(function(response) {
         return response.json();
     }).then(function(data) {
-        
+        console.log(data.message)
     //    window.location.href = 'adminmessage.html'
         
         })
