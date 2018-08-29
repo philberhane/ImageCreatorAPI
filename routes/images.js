@@ -18,7 +18,7 @@ router.post('/addImage', function (req, res) {
     for (i=0; i<imgArray;i++) {
         console.log(imgArray[i])
     
-    var image = new Image(imgArray[i])
+    var image = new Image({imageLink: imgArray[i]})
     
     
     image.save( (err, model) => {

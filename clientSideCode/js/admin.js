@@ -447,9 +447,11 @@ $("document").ready(function() {
       };
         
         console.log($files)
+        var formData = new FormData();
+        
         for (i=0; i<$files.length; i++) {
 
-      var formData = new FormData();
+      
       formData.append("image", $files[i]);
       settings.data = formData;
 
@@ -463,14 +465,17 @@ $("document").ready(function() {
           newImg.className = 'newImg'
           newImg.value = JSON.parse(response).data.link
           document.body.appendChild(newImg)
-          sendImageToServer()
+          
         /*  var link = JSON.parse(response).data.link
         document.getElementById('imageLink').value = link
            canvasFunction() */
        
       }) }
+    //    
         
         console.log(document.querySelectorAll('.newImg'))
+        
+        sendImageToServer()
     }
   });
     
