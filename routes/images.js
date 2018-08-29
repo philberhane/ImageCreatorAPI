@@ -17,6 +17,8 @@ router.post('/addImage', function (req, res) {
     
     for (i=0; i<imgArray;i++) {
         console.log(imgArray[i])
+    }
+    return
     
     var image = new Image({imageLink: imgArray[i]})
     
@@ -27,7 +29,7 @@ router.post('/addImage', function (req, res) {
   if (err) return handleError(err);
   // saved!
 });
-    }
+    
     
      res.status(200).send({message : 'Your image has been successfully created!'})
 })
