@@ -843,6 +843,9 @@ function deleteCopy() {
         }
     }
     
+    console.log(selectArray)
+    console.log(serverArray)
+    
     const input = {
         copyArray : serverArray
        

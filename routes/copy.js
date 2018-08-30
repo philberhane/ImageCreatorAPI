@@ -64,5 +64,22 @@ router.post('/deleteCopy', function (req, res) {
     
 })
 
+router.get('/deleteCopy', function (req, res) {
+    var copyArray = req.body.copyArray
+    
+    Copy.findByIdAndRemove('5b87899d637757001400802b', function (err, cop) {
+    console.log('deleting copy', cop);
+    if (err) {
+        throw err;
+    }
+
+})
+
+            res.status(200).send({
+            message: 'Success'
+        })
+    
+})
+
 
 module.exports = router;
