@@ -174,7 +174,7 @@ fetch('https://lisathomasapi.herokuapp.com/routes/copy/getCopy', {
         for (i=0; i<data.message.length; i++) {
             var image = document.createElement('img')
             image.src = data.message[i].imageLink
-            image.style.width = '100%'
+            image.style.width = '200%'
            image.id = data.message[i]._id
             image.title = data.message[i].canvasLink
             image.alt = data.message[i].status
@@ -222,7 +222,7 @@ function addCopySection() {
 function addCopy() {
     
     const input = {
-        imageCopyLink : document.getElementById('imageCopyLink').value,  
+        imageLink : document.getElementById('imageCopyLink').value,
         canvasLink : JSON.stringify(canvas),
         status : 'active'
     }
@@ -258,6 +258,25 @@ function selectImg(clicked_id) {
     
     clickedImg.parentElement.parentElement.nextElementSibling.nextElementSibling.style.display = 'block'
     
+    
+  //   clickedImg.className += ' selected'
+}
+
+function selectCopy(clicked_id) {
+    console.log('dope')
+    var clickedImg = document.getElementById(clicked_id)
+    if (clickedImg.className === 'img-fluid selected') {
+    clickedImg.className = 'img-fluid'
+  //  console.log(clickedImg.className)
+    } else {
+        clickedImg.className += ' selected'
+    }
+    
+   clickedImg.parentElement.parentElement.nextElementSibling.style.display = 'block'
+    
+    clickedImg.parentElement.parentElement.nextElementSibling.nextElementSibling.style.display = 'block'
+    
+    clickedImg.parentElement.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.style.display = 'block'
     
   //   clickedImg.className += ' selected'
 }
@@ -812,16 +831,54 @@ function deleteImage() {
 }
 
 
+
+function deleteCopy() {
+    var selectArray = document.querySelectorAll('.selected')
+    
+    var serverArray = []
+    
+    for (i=0;i<selectArray.length;i++) {
+        if (selectArray[i].parentElement.parentElement.id === document.getElementById('deleteId2').value) {
+        serverArray.push(selectArray[i].id)
+        }
+    }
+    
+    const input = {
+        copyArray : serverArray
+       
+    }
+    
+    fetch('https://lisathomasapi.herokuapp.com/routes/copy/deleteCopy', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+      /*  if (data.message === 'Success') {
+        window.location.href = 'adminmessage.html'
+        }*/
+        })
+
+    
+}
+
+
 // Get the modal
 var modal = document.getElementById('myModal');
+
+var modal2 = document.getElementById('myModal2');
 
 // Get the button that opens the modal
 var btn = document.getElementById("deleteImage");
 
 var cancel = document.getElementById("cancelDeletion");
 
+var cancel2 = document.getElementById("cancelDeletion2");
+
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
+var span2 = document.getElementsByClassName("close2")[0];
 
 // When the user clicks the button, open the modal 
 function displayModal(clicked_id) {
@@ -832,18 +889,38 @@ function displayModal(clicked_id) {
     
 } 
 
+function displayModal2(clicked_id) {
+    var gallery = document.getElementById(clicked_id).parentElement.firstElementChild.id
+    
+    document.getElementById('deleteId2').value = gallery
+    modal2.style.display = "block";
+    
+} 
+
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
     modal.style.display = "none";
+}
+
+span2.onclick = function() {
+    modal2.style.display = "none";
 }
 
 cancel.onclick = function() {
     modal.style.display = "none";
 }
 
+cancel2.onclick = function() {
+    modal2.style.display = "none";
+}
+
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
+    }
+    
+    if (event.target == modal2) {
+        modal2.style.display = "none";
     }
 }

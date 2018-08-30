@@ -45,4 +45,24 @@ router.post('/getCopy', function (req, res) {
 })
 
 
+
+router.post('/deleteCopy', function (req, res) {
+    var copyArray = req.body.copyArray
+     for (i=0; i<imgArray.length;i++) {
+    
+    Image.findByIdAndRemove(imgArray[i], function (err, img) {
+    console.log('deleting image', img);
+    if (err) {
+        throw err;
+    }
+
+})
+} 
+            res.status(200).send({
+            message: 'Success'
+        })
+    
+})
+
+
 module.exports = router;
