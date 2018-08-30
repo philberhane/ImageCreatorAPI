@@ -600,7 +600,7 @@ function submit() {
     }
   //  document.body.append(canvas.toDataURL())
 
-    console.log(img)
+ //   console.log(img)
   //  document.body.append('Uploading file to Imgur..')
  console.log("Uploading file to Imgur..");
 

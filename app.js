@@ -84,6 +84,7 @@ var images = require('./routes/images');
 app.use('/routes', routes);
 app.use('/routes/users', users);
 app.use('/routes/images', images);
+app.use('/routes/copy', copy);
 
 
 
