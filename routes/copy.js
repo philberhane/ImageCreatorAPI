@@ -22,7 +22,7 @@ router.post('/addCopy', function (req, res) {
 
 
 router.post('/getCopy', function (req, res) {
-    Image.find({},  (err, arrayOfCopy) => {
+    Copy.find({},  (err, arrayOfCopy) => {
         console.log(arrayOfCopy)
           if (err) {
                 return handleError(err);
