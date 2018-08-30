@@ -102,7 +102,7 @@ router.post('/saveCopy', function (req, res) {
     var imageLink = req.body.imageLink
     var canvasLink = req.body.canvasLink
     
-    Copy.update({_id: id, {
+    Copy.update({_id: id}, {
     imageLink: imageLink,
     canvasLink : canvasLink
 }, function(err, affected, resp) {
