@@ -8,7 +8,10 @@ var CopySchema = new mongoose.Schema({
     },
     canvasLink: {
         type: String
-}
+},
+    status: {
+        type: String
+    }
 });
 
 module.exports = mongoose.model('Copy', CopySchema);

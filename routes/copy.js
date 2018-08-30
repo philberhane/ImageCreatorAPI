@@ -14,13 +14,35 @@ router.post('/addCopy', function (req, res) {
     
     copy.save( (err, model) => {
             
-            res.status(201).send({message : 'Your event has been successfully created!'})
+            res.status(201).send({message : 'Your copy has been successfully created!'})
                 console.log(model, 'saved!!!')
                 
         })
     })
 
 
+router.post('/getCopy', function (req, res) {
+    Image.find({},  (err, arrayOfCopy) => {
+        console.log(arrayOfCopy)
+          if (err) {
+                return handleError(err);
+            }
+        
+          if (arrayOfCopy.length === 0) {
+            res.status(500).send({
+			message: 'Error: There is no copy!'
+		});
+        console.log('error')
+          }
+            else {
+                console.log(arrayOfCopy)
+       res.status(200).send({
+            message: arrayOfCopy
+        })
+            }
+            
+        })
+})
 
 
 module.exports = router;

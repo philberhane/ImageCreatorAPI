@@ -107,6 +107,7 @@ function redirect(t) {
 
 console.log('admin')
 var input = {}
+
 fetch('https://lisathomasapi.herokuapp.com/routes/images/getImages', {
         method: 'POST',
         body: JSON.stringify(input),
@@ -154,6 +155,59 @@ fetch('https://lisathomasapi.herokuapp.com/routes/images/getImages', {
           } 
         })
 
+
+
+fetch('https://lisathomasapi.herokuapp.com/routes/copy/getCopy', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+    
+    if (data.message.indexOf('Error') === 0) {
+        console.log(data.message)
+        document.getElementById('activeCopyHeader').innerText += ' - none'
+        
+        document.getElementById('inactiveCopyHeader').innerText += ' - none'
+    } else {
+        for (i=0; i<data.message.length; i++) {
+            var image = document.createElement('img')
+            image.src = data.message[i].imageLink
+            image.style.width = '100%'
+           image.id = data.message[i]._id
+            image.title = data.message[i].canvasLink
+            image.alt = data.message[i].status
+            image.className = 'img-fluid'
+            image.setAttribute('onclick', 'selectCopy(this.id)')
+            var div = document.createElement('div')
+            div.style.marginTop = '15px'
+            div.className = 'col-md-3 col-sm-4 col-xs-6'
+            div.appendChild(image)
+            
+            if (data.message[i].status === 'active') {
+            
+            document.getElementById('gallery3').appendChild(div)
+            } else {
+                document.getElementById('gallery4').appendChild(div)
+            }
+        }
+        
+        if (!document.getElementById('activeCopyHeader').nextElementSibling) {
+            document.getElementById('activeCopyHeader').innerText += ' - none'
+        }
+        
+        if (!document.getElementById('inactiveCopyHeader').nextElementSibling) {
+            document.getElementById('inactiveCopyHeader').innerText += ' - none'
+        }
+    
+          } 
+        })
+
+
+
+
+
 function addCopySection() {
     document.getElementById('addCopy').appendChild(document.getElementById('hidden'))
     document.getElementById('saveButton').setAttribute('onclick', 'submit()')
@@ -169,7 +223,8 @@ function addCopy() {
     
     const input = {
         imageCopyLink : document.getElementById('imageCopyLink').value,  
-        canvasLink : JSON.stringify(canvas)
+        canvasLink : JSON.stringify(canvas),
+        status : 'active'
     }
     
     fetch('https://lisathomasapi.herokuapp.com/routes/copy/addCopy', {
