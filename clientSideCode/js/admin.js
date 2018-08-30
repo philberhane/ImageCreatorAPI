@@ -172,7 +172,7 @@ function addCopy() {
         canvasLink : JSON.stringify(canvas)
     }
     
-    fetch('https://lisathomasapi.herokuapp.com/routes/images/deleteImage', {
+    fetch('https://lisathomasapi.herokuapp.com/routes/copy/addCopy', {
         method: 'POST',
         body: JSON.stringify(input),
         headers: { "Content-Type": "application/json"}
