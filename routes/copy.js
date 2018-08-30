@@ -48,10 +48,10 @@ router.post('/getCopy', function (req, res) {
 
 router.post('/deleteCopy', function (req, res) {
     var copyArray = req.body.copyArray
-     for (i=0; i<imgArray.length;i++) {
+     for (i=0; i<copyArray.length;i++) {
     
-    Image.findByIdAndRemove(imgArray[i], function (err, img) {
-    console.log('deleting image', img);
+    Copy.findByIdAndRemove(copyArray[i], function (err, cop) {
+    console.log('deleting copy', cop);
     if (err) {
         throw err;
     }
