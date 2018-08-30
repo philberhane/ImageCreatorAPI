@@ -64,7 +64,7 @@ router.post('/deleteCopy', function (req, res) {
     
 })
 
-router.get('/deleteCopy', function (req, res) {
+/* router.get('/deleteCopy', function (req, res) {
     var copyArray = req.body.copyArray
     
     Copy.findByIdAndRemove('5b87899d637757001400802b', function (err, cop) {
@@ -78,6 +78,21 @@ router.get('/deleteCopy', function (req, res) {
             res.status(200).send({
             message: 'Success'
         })
+    
+}) */
+
+
+router.post('/updateCopyStatus', function (req, res) {
+    var copyArray = req.body.copyArray
+    for (i=0; i<copyArray.length;i++) {
+    
+    Copy.update({_id: copyArray[i]}, {
+    status: req.body.status    
+}, function(err, affected, resp) {
+   
+})
+    }
+    res.status(200).send({message : 'Your copy has been successfully updated!'})
     
 })
 

@@ -324,6 +324,49 @@ function changeImgStatus(clicked_id){
 }
 
 
+function changeCopyStatus(clicked_id){
+    
+    var clickedButton = document.getElementById(clicked_id)
+    
+     var selectArray = document.querySelectorAll('.selected')
+    
+    var serverArray = []
+    
+    for (i=0;i<selectArray.length;i++) {
+        if (selectArray[i].parentElement.parentElement.id === clickedButton.parentElement.firstElementChild.id) {
+        serverArray.push(selectArray[i].id)
+        }
+    }
+    
+    var status
+    
+    if (clickedButton.innerText === 'Deactivate Selected Copy') {
+        status = 'inactive'
+    } else {
+        status = 'active'
+    }
+    
+    const input = {
+        copyArray : serverArray,
+        status : status
+       
+    }
+    
+    fetch('https://lisathomasapi.herokuapp.com/routes/copy/updateCopyStatus', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+       /* if (data.message === 'Success') {
+        window.location.href = 'adminmessage.html'
+        }*/
+        })
+    
+}
+
+
 
 var imgObj = new Image();
 var fabricImage = new fabric.Image(imgObj);
