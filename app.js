@@ -80,12 +80,12 @@ app.use(expressValidator({
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var images = require('./routes/images');
-//var copy = require('./routes/copy');
+var copy = require('./routes/copy');
 
 app.use('/routes', routes);
 app.use('/routes/users', users);
 app.use('/routes/images', images);
-//app.use('/routes/copy', copy);
+app.use('/routes/copy', copy);
 
 
 

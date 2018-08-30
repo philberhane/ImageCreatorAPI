@@ -6,7 +6,7 @@ var CopySchema = new mongoose.Schema({
     imageLink: {
         type: String
     },
-    canvasLink {
+    canvasLink: {
         type: String
 }
 });
