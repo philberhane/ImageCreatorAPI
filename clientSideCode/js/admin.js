@@ -839,7 +839,7 @@ try {
                console.log(response.data.link)
                 document.getElementById('imageCopyLink').value = response.data.link
                 
-                saveCanvas()
+                saveCopy()
             }
         }
     }); 
