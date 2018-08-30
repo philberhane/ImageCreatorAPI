@@ -46,10 +46,24 @@
     <input id="imageCopyLink" style="display:none">
     <input id="canvasLink" style="display:none">
     <input id="imageId" style="display:none">
-    
+   <div style="background-color: white"> 
     <div class="container" style="background-color: white">
-    
-    <div style="background-color: white;">
+    <h2 style="color:#675B65">Images</h2>
+    <div  id="uploadDiv" style="height: 100; margin-top: 50px">
+        <h3>Upload Images</h3>
+         
+        <form id="imgur">
+  <input style="padding: 10px 15px;
+    font-family: Helvetica;
+    font-size: 16px;
+    margin-top: 15px;
+    border-radius: 3%;
+    border: none;" type="file" id="imgLoader" class="imgur" accept="image/*" data-max-size="5000" multiple/>
+</form>
+       
+        </div>
+        <div id="loading"></div>
+    <div style="background-color: white; margin-top: 25px">
     <div class="row" id="gallery1" >
      <h3 id="activeImageHeader">Active Images</h3>
  
@@ -69,20 +83,14 @@
        <button class="otherButton selectedImageButton" onclick="displayModal(this.id)" id="delete2">Delete Selected Images</button>
         </div>
     
-    <div  id="uploadDiv" style="height: 100; margin-top: 50px">
-        <h3>Upload an Image</h3>
-         
-        <form id="imgur">
-  <input style="padding: 10px 15px;
-    font-family: Helvetica;
-    font-size: 16px;
-    margin-top: 15px;
-    border-radius: 3%;
-    border: none;" type="file" id="imgLoader" class="imgur" accept="image/*" data-max-size="5000" multiple/>
-</form>
+    
+        
+        <h2 style="margin-top: 100px; color: #675B65">Copy</h2>
+        
+        <div id="addCopy">
+        <button id="addCopyButton" class="styledButton" onclick="addCopySection()">Add Copy</button>
         </div>
-        <div id="loading"></div>
-        <div id="hidden" style="font-size: 16px">
+        <div id="hidden" style="font-size: 16px; margin-top: 25px">
         <p>Color:
     <input class="jscolor" onchange="update(this.jscolor)" value="000000">
     </p>
@@ -94,8 +102,17 @@
 </select>
     </p>
  
-   
+     <canvas id="canvas" width="700" height="297">
+
+    </canvas>
+    <button id="saveButton" class="styledButton">Save</button>
+    <button onclick="reset()" class="otherButton">Reset</button>
+    <div id="saving"></div>
    </div>
+        
+        <h3 style="margin-top: 100px">Active Copy</h3>
+        
+         <h3 style="margin-top: 100px">Inactive Copy</h3>
 
         
    
@@ -104,7 +121,6 @@
     
     
     
-    </div>
     
     
    
@@ -121,13 +137,12 @@
            
 
  
-    <canvas id="canvas" width="240" height="297">
-
-    </canvas>
+  
+     </div>
      
  <!--    <button id="finishEdit" onclick="finishEdit()">Finish Edit</button>-->
       
-           
+    </div>     
           <img  id="imageLocation"> 
            
   <div class="loader" id="loader1"></div> 
@@ -135,7 +150,7 @@
     
 <button class="styledButton" id="submit" onclick="submit()" style="display: none">Save</button>
 <button class="styledButton" id="submitChanges" onclick="submitChanges()" style="display: none">Save Changes</button>
- <div id="saving"></div> 
+  
   
   <button class="otherButton" id = "reset" onclick="reset()">Reset</button>
   

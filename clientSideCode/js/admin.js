@@ -154,6 +154,40 @@ fetch('https://lisathomasapi.herokuapp.com/routes/images/getImages', {
           } 
         })
 
+function addCopySection() {
+    document.getElementById('addCopy').appendChild(document.getElementById('hidden'))
+    document.getElementById('saveButton').setAttribute('onclick', 'submit()')
+    document.getElementById('addCopyButton').style.display = 'none'
+    document.getElementById('hidden').style.display = 'block'
+    canvas.add(text)
+    
+    
+}
+
+
+function addCopy() {
+    
+    const input = {
+        imageCopyLink : document.getElementById('imageCopyLink').value,  
+        canvasLink : JSON.stringify(canvas)
+    }
+    
+    fetch('https://lisathomasapi.herokuapp.com/routes/images/deleteImage', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        /*if (data.message === 'Success') {
+        window.location.href = 'adminmessage.html'
+        }*/
+        console.log(data.message)
+        })
+    
+}
+
+
 
 function selectImg(clicked_id) {
     console.log('dope')
@@ -175,7 +209,7 @@ function selectImg(clicked_id) {
 
 function changeImgStatus(clicked_id){
     
-    var clickedButton = document.getElementById('clicked_id')
+    var clickedButton = document.getElementById(clicked_id)
     
      var selectArray = document.querySelectorAll('.selected')
     
@@ -278,7 +312,8 @@ function selectImage() {
 
 
 function reset() {
-window.location.href = 'admin.html'}
+window.location.href = 'admin.html'
+}
 
 
 function logout() {
@@ -588,7 +623,9 @@ function submit() {
                console.log(response.data.link)
                 document.getElementById('imageCopyLink').value = response.data.link
             //    document.body.append('loading')
-                sendToServer()
+              //  sendToServer()
+                
+                addCopy()
             }
         }
     }); 
@@ -669,7 +706,6 @@ function sendImageToServer() {
 function sendToServerUpdate() {
     
     const input = {
-        id : document.getElementById('imageId').value,
         imageCopyLink : document.getElementById('imageCopyLink').value,  
         canvasLink : JSON.stringify(canvas)
     }

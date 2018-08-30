@@ -3,9 +3,12 @@ var mongoose = require('mongoose');
 // User Schema
 var CopySchema = new mongoose.Schema({
 
-    copy: {
+    imageLink: {
         type: String
-    }
+    },
+    canvasLink {
+        type: String
+}
 });
 
 module.exports = mongoose.model('Copy', CopySchema);
