@@ -97,4 +97,20 @@ router.post('/updateCopyStatus', function (req, res) {
 })
 
 
+router.post('/saveCopy', function (req, res) {
+    var id = req.body.id
+    var imageLink = req.body.imageLink
+    var canvasLink = req.body.canvasLink
+    
+    Copy.update({_id: copyArray[i]}, {
+    imageLink: imageLink,
+    canvasLink : canvasLink
+}, function(err, affected, resp) {
+   
+})
+    res.status(200).send({message : 'Your copy has been successfully updated!'})
+    
+})
+
+
 module.exports = router;

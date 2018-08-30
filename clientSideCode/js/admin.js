@@ -243,6 +243,30 @@ function addCopy() {
 }
 
 
+function saveCopy() {
+    
+    const input = {
+        imageLink : document.getElementById('imageCopyLink').value,
+        canvasLink : JSON.stringify(canvas),
+        id : document.getElementById('imageId').value
+    }
+    
+    fetch('https://lisathomasapi.herokuapp.com/routes/copy/saveCopy', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        /*if (data.message === 'Success') {
+        window.location.href = 'adminmessage.html'
+        }*/
+        console.log(data.message)
+        })
+    
+}
+
+
 
 function selectImg(clicked_id) {
     console.log('dope')
@@ -320,6 +344,44 @@ function changeImgStatus(clicked_id){
         window.location.href = 'adminmessage.html'
         }
         })
+    
+}
+
+function editCanvas(clicked_id) {
+    
+    var clickedButton = document.getElementById(clicked_id)
+    
+     var selectArray = document.querySelectorAll('.selected')
+     
+     var canvasArray = []
+    
+     for (i=0;i<selectArray.length;i++) {
+        if (selectArray[i].parentElement.parentElement.id === clickedButton.parentElement.firstElementChild.id) {
+        canvasArray.push(selectArray[i])
+        }
+    }
+    
+    
+    
+//   canvas.setHeight('500px');
+   //        canvas.setWidth('500px');
+    
+    clickedButton.parentElement.appendChild(document.getElementById('hidden'))
+    
+    document.getElementById('hidden').style.display = 'block'
+    
+    canvas.loadFromDatalessJSON(canvasArray[0].title)
+    
+    document.getElementById('imageId').value = canvasArray[0].id
+    
+    
+    canvas.renderAll();
+    
+    canvas._objects[0].on('selected', function() {
+    canvas.allowTouchScrolling = false
+    
+    console.log('selected')
+})
     
 }
 
@@ -777,7 +839,7 @@ try {
                console.log(response.data.link)
                 document.getElementById('imageCopyLink').value = response.data.link
                 
-                sendToServerUpdate()
+                saveCanvas()
             }
         }
     }); 

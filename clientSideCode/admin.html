@@ -105,7 +105,7 @@
      <canvas id="canvas" width="700" height="297">
 
     </canvas>
-    <button id="saveButton" class="styledButton">Save</button>
+    <button id="saveButton" onclick="submitChanges()" class="styledButton">Save</button>
     <button onclick="reset()" class="otherButton">Reset</button>
     <div id="saving"></div>
    </div>
@@ -113,8 +113,8 @@
         <div class="row" id="gallery3" >
          <h3 id="activeCopyHeader">Active Copy</h3>
         </div>
-        <button class="styledButton selectedCopyButton" >Edit</button>
-        <button id="activateCopy" class="styledButton selectedCopyButton" onclick="changeCopyStatus(this.id)">Activate Selected Copy</button>
+        <button id="edit1" class="styledButton selectedCopyButton" onclick="editCanvas(this.id)">Edit</button>
+        <button id="DeactivateCopy" class="styledButton selectedCopyButton" onclick="changeCopyStatus(this.id)">Deactivate Selected Copy</button>
        <button class="otherButton selectedCopyButton" onclick="displayModal2(this.id)" id="delete3">Delete Selected Copy</button>
         </div>
         
@@ -123,8 +123,8 @@
          <h3 id="inactiveCopyHeader" style="margin-top: 100px">Inactive Copy</h3>
          
         </div>
-        <button class="styledButton selectedCopyButton" >Edit</button>
-        <button id="activateCopy" class="styledButton selectedCopyButton" onclick="changeCopyStatus(this.id)">Deactivate Selected Copy</button>
+        <button id="edit2" class="styledButton selectedCopyButton" onclick="editCanvas(this.id)">Edit</button>
+        <button id="activateCopy" class="styledButton selectedCopyButton" onclick="changeCopyStatus(this.id)">Activate Selected Copy</button>
        <button class="otherButton selectedCopyButton" onclick="displayModal2(this.id)" id="delete3">Delete Selected Copy</button>
         </div>
 
