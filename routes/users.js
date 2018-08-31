@@ -56,7 +56,10 @@ var device = new Client.Device(instaUser);
 var storage = new Client.CookieFileStorage(__dirname + '/cookies/' + instaUser + '.json');
         // And go for login
 Client.Session.create(device, storage, instaUser, instaPass)
-	function(err) {
+	.then(function(session) {
+    console.log('test10')
+   		
+	}, function(err) {
         return res.status(500).send({
 			message: 'Error: Instagram Username/Password is invalid! Please Try again.'
 		});
