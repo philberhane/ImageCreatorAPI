@@ -178,7 +178,7 @@ fetch('https://lisathomasapi.herokuapp.com/routes/copy/getCopy', {
            image.id = data.message[i]._id
             image.title = data.message[i].canvasLink
             image.alt = data.message[i].status
-            image.className = 'img-fluid'
+            image.className = 'img-fluid img-thumbnail'
             image.setAttribute('onclick', 'selectCopy(this.id)')
             var div = document.createElement('div')
             div.style.marginTop = '15px'
@@ -287,13 +287,15 @@ function selectImg(clicked_id) {
 }
 
 function selectCopy(clicked_id) {
-    console.log('dope')
+    
     var clickedImg = document.getElementById(clicked_id)
-    if (clickedImg.className === 'img-fluid selected') {
-    clickedImg.className = 'img-fluid'
+    
+    if (clickedImg.className === 'img-fluid img-thumbnail') {
+   clickedImg.className += ' selected'
   //  console.log(clickedImg.className)
     } else {
         clickedImg.className += ' selected'
+        clickedImg.className = 'img-fluid img-thumbnail'
     }
     
    clickedImg.parentElement.parentElement.nextElementSibling.style.display = 'block'

@@ -12,6 +12,18 @@ if (sessionStorage.role !== 'stylist') {
 }
 
 */
+
+// Do an onlick (this.id) so that when clicked, the big div's img src becomes the clicked div
+function dope() {
+    console.log('dope')
+}
+
+
+
+
+// Basically create images for each number, and make the big image the first image's src
+
+
 var input = {}
 fetch('https://lisathomasapi.herokuapp.com/routes/images/getImages', {
         method: 'POST',
@@ -22,38 +34,192 @@ fetch('https://lisathomasapi.herokuapp.com/routes/images/getImages', {
     }).then(function(data) {
     
     if (data.message.indexOf('Error') === 0) {
-        document.getElementById('slideshow').innerText = data.message
+        document.getElementById('sliderDiv').innerText = data.message
     } else {
         for (i=0; i<data.message.length; i++) {
             var image = document.createElement('img')
-            image.src = data.message[i].imageCopyLink
-            image.className = 'mySlides'
+            image.src = data.message[i].imageLink
             image.style.width = '100%'
            image.id = data.message[i]._id
             image.title = data.message[i].imageLink
-            image.alt = data.message[i].canvasLink
-            document.getElementById('slideshow').appendChild(image)
+            image.alt = data.message[i].status
+            image.className = 'img-fluid img-thumbnail'
+            image.setAttribute('onclick', 'selectImg(this.id)')
             
+            
+            var div = document.createElement('div')
+            var h3 = document.createElement('h3')
+            var span = document.createElement('span')
+           
+            
+            
+            if (data.message[i].status === 'active') {
+            
+            span.appendChild(image)
+            div.appendChild(span)
+            
+            document.getElementById('sliderNav').appendChild(div)
+                
+            } 
         }
-    showDivs(slideIndex);
-    }
+        
+       
+
+ $('.slider-nav')
+ 	.on('init', function(event, slick) {
+ 		$('.slider-nav .slick-slide.slick-current').addClass('is-active');
+     
+ 	})
+ 	.slick({
+ 		slidesToShow: 7,
+ 		slidesToScroll: 7,
+ 		dots: false,
+ 		focusOnSelect: false,
+ 		infinite: false,
+ 		responsive: [{
+ 			breakpoint: 1024,
+ 			settings: {
+ 				slidesToShow: 5,
+ 				slidesToScroll: 5,
+ 			}
+ 		}, {
+ 			breakpoint: 640,
+ 			settings: {
+ 				slidesToShow: 4,
+ 				slidesToScroll: 4,
+			}
+ 		}, {
+ 			breakpoint: 420,
+ 			settings: {
+ 				slidesToShow: 7,
+ 				slidesToScroll: 7,
+		}
+ 		}]
+     
+     
+ 	});
+        
+        document.getElementById('mainImg').src = document.getElementById('sliderNav').firstElementChild.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.firstElementChild.src
+    
+          } 
+    
         })
 
-var slideIndex = 1;
 
-function plusDivs(n) {
-  showDivs(slideIndex += n);
+
+
+
+
+
+
+function uploadImg() {
+    document.getElementById('imgLoader').click()
 }
 
-function showDivs(n) {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  if (n > x.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = x.length}
-  for (i = 0; i < x.length; i++) {
-     x[i].style.display = "none";  
-  }
-  x[slideIndex-1].style.display = "block";  
+var arrayOfCanvas = []
+
+function next() {
+    
+    document.getElementById('selectImgDiv').style.display = 'none'
+    document.getElementById('selectCopyDiv').style.display = 'block'
+    document.getElementById('imageLink').value = document.getElementById('mainImg').src
+    fetch('https://lisathomasapi.herokuapp.com/routes/copy/getCopy', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+    
+    if (data.message.indexOf('Error') === 0) {
+        document.getElementById('sliderDiv2').innerText = data.message
+    } else {
+        for (i=0; i<data.message.length; i++) {
+            
+            
+            var image = document.createElement('img')
+            image.src = data.message[i].imageLink
+            image.style.width = '100%'
+           image.id = data.message[i]._id
+            image.title = data.message[i].canvasLink
+            image.alt = data.message[i].status
+            image.className = 'img-fluid img-thumbnail copyResults'
+            image.setAttribute('onclick', 'selectCopy(this.id)')
+            
+            
+            arrayOfCanvas.push(data.message[i].canvasLink)
+            
+            var div = document.createElement('div')
+            var h3 = document.createElement('h3')
+            var span = document.createElement('span')
+           
+            
+            
+            if (data.message[i].status === 'active') {
+            
+            span.appendChild(image)
+            div.appendChild(span)
+            
+            document.getElementById('sliderNav2').appendChild(div)
+                
+            } 
+    
+          } 
+     $('.slider-nav2')
+ 	.on('init', function(event, slick) {
+ 		$('.slider-nav2 .slick-slide.slick-current').addClass('is-active');
+     
+ 	})
+ 	.slick({
+ 		slidesToShow: 7,
+ 		slidesToScroll: 7,
+ 		dots: false,
+ 		focusOnSelect: false,
+ 		infinite: false,
+ 		responsive: [{
+ 			breakpoint: 1024,
+ 			settings: {
+ 				slidesToShow: 5,
+ 				slidesToScroll: 5,
+ 			}
+ 		}, {
+ 			breakpoint: 640,
+ 			settings: {
+ 				slidesToShow: 4,
+ 				slidesToScroll: 4,
+			}
+ 		}, {
+ 			breakpoint: 420,
+ 			settings: {
+ 				slidesToShow: 7,
+ 				slidesToScroll: 7,
+		}
+ 		}]
+     
+     
+ 	});
+        
+        document.getElementById('mainCopy').src = document.getElementById('sliderNav2').firstElementChild.nextElementSibling.firstElementChild.firstElementChild.src
+    
+          } 
+    
+        }) 
+    document.getElementById('hidden').style.display = 'block'
+    
+
+    
+    canvasFunction()
+}
+
+function selectCopy(clicked_id) {
+    var clickedCopy = document.getElementById(clicked_id)
+    canvas.loadFromDatalessJSON(clickedCopy.title)
+    canvas.renderAll()
+}
+
+function selectImg(clicked_id) {
+    var clickedImg = document.getElementById(clicked_id)
+    document.getElementById('mainImg').src = clickedImg.src
 }
 
 var imgObj = new Image();
@@ -138,7 +304,7 @@ function logout() {
     }                  
    )
 
-var text = new fabric.IText('Add Text', {});
+var text = new fabric.IText('', {});
 
 text.on('selected', function() {
     canvas.allowTouchScrolling = false
@@ -166,6 +332,69 @@ canvas.on('selection:cleared', function() {
 
 function canvasFunction() {
     
+
+    
+    
+ 
+        document.getElementById('hidden').style.display = 'block'
+    
+    
+    var link = document.getElementById('imageLink').value
+   
+    
+       
+         document.getElementById('image').style.display = 'block' 
+    
+    
+        document.getElementById('image').src = link
+            imgObj.crossOrigin = 'anonymous'
+             imgObj.src = link
+            
+        
+                              
+        imgObj.onload = function () {
+            document.getElementById('loading').innerText = ''
+            canvas.setHeight(document.getElementById('image').height);
+            canvas.setWidth(document.getElementById('image').width);
+            // start fabricJS stuff
+     //   document.getElementById('editDiv').style.display = 'none'
+      //   document.getElementById('loader2').style.display = 'none'   
+           
+            
+            canvas.setBackgroundImage(new fabric.Image(imgObj, {
+                scaleX: canvas.width / imgObj.width,
+               scaleY: canvas.height / imgObj.height
+            }));
+            var copyArray = document.querySelectorAll('.copyResults')
+            
+            
+           // canvas.add(text)
+        //    canvas.loadFromDatalessJSON(arrayOfCanvas[0])
+            canvas.add(text)
+            canvas.renderAll.bind(canvas);
+            // end fabricJS stuff
+            
+
+    document.getElementById('submit').style.display = 'block'
+            document.getElementById('image').style.visibility = 'hidden'
+            
+        }
+        
+      /*  var copyArray = document.querySelectorAll('.copyResults')
+        
+        console.log(copyArray)
+        
+        canvas.loadFromJSON(copyArray[0].title) */
+        
+     
+  //  document.body.append(canvas.toDataURL())
+     canvas.loadFromDatalessJSON(arrayOfCanvas[0])
+         canvas.renderAll()
+}
+
+
+function canvasFunction1() {
+    
  
         
 
@@ -190,7 +419,7 @@ function canvasFunction() {
             canvas.setWidth(document.getElementById('image').width);
             console.log('2')
             // start fabricJS stuff
-        document.getElementById('editDiv').style.display = 'none'
+     //   document.getElementById('editDiv').style.display = 'none'
       //   document.getElementById('loader2').style.display = 'none'   
            
             canvas.setBackgroundImage(new fabric.Image(imgObj, {
@@ -364,7 +593,9 @@ $("document").ready(function() {
           console.log('uploaded!')
           var link = JSON.parse(response).data.link
         document.getElementById('imageLink').value = link
-           canvasFunction()
+          
+          
+           next()
        
       });
     }
@@ -575,6 +806,8 @@ function saveChanges() {
      document.getElementById('saving').innerText = ''          
                 document.getElementById('hidden').style.display = 'none'
                 document.getElementById('submit').style.display = 'none'
+                
+                document.getElementById('selectCopyDiv').style.display = 'none'
                 document.getElementById('submitChanges').style.display = 'none'
        //         sendToServerUpdate()
             }

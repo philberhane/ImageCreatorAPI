@@ -56,12 +56,7 @@ var device = new Client.Device(instaUser);
 var storage = new Client.CookieFileStorage(__dirname + '/cookies/' + instaUser + '.json');
         // And go for login
 Client.Session.create(device, storage, instaUser, instaPass)
-	.then(function(session) {
-    console.log('test1')
-   		// Now you have a session, we can follow / unfollow, anything...
-		// And we want to follow Instagram official profile
-		return [session, Client.Account.searchForUser(session, 'instagram')]
-	}, function(err) {
+	function(err) {
         return res.status(500).send({
 			message: 'Error: Instagram Username/Password is invalid! Please Try again.'
 		});

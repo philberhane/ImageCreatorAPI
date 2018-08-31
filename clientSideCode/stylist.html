@@ -14,14 +14,28 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- Latest compiled and minified CSS -->
 
+
+
+<link href="https://cdn.jsdelivr.net/foundation/5.5.0/css/foundation.css">
+<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+
+
+
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Michroma" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 
 <body>
+ 
+ 
   <script src="js/jquery-ui.min.js"></script>
    <script src="js/jquery.ui.touch-punch.min.js"></script>
-   
+ 
+   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="slick/slick.min.js"></script>
     <script src="js/jscolor.js"></script>
    
      <div id="header">
@@ -43,25 +57,26 @@
     <input id="imageId" style="display:none">
     
     <div class="container">
-    <div>
-        
-        <div id="editDiv" class="w3-content w3-display-container">
-        <h3>Choose an Image</h3>
-        <div id="eImage">
-        <div id="slideshow">
-         
-            </div>
-        
-        
-        
-        <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-  <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
-       <button class="styledButton" onclick="selectImage()">Select</button>
+ <div id="selectImgDiv">
+    <div id="page">
+	<div class="row">
+		<div class="column small-11 small-centered" id="sliderDiv">
+			<h2>Select an Image</h2>
+			<div >
+				<div><img style="width: 100%" id="mainImg"></div>
+				
+			</div>
+			<div class="slider slider-nav" id="sliderNav">
+				
+			</div>
+		</div>
+	</div>
+</div>
+   <button onclick="next()" class="styledButton">Next</button>
+   <button class="otherButton" onclick="uploadImg()">Or Upload an Image</button>
+   <div id="loading"></div>
         </div>
-        </div>
-    </div>
-    
-    <div id="uploadDiv" style="height: 100">
+    <div style="display: none" id="uploadDiv" style="height: 100">
         <h3>Or Upload an Image</h3>
         <div class="loader" id="loader2"></div> 
         <form id="imgur">
@@ -73,7 +88,7 @@
     border: none;" type="file" id="imgLoader" class="imgur" accept="image/*" data-max-size="5000"/>
 </form>
         </div>
-        <div id="loading"></div>
+        
         <div id="hidden" style="font-size: 16px">
         <p>Color:
     <input class="jscolor" onchange="update(this.jscolor)" value="000000">
@@ -85,15 +100,34 @@
   <option value="pacifico">Cursive</option>
 </select>
     </p>
- 
+
+    
    
+    
    </div>
+      <canvas id="canvas">
 
-        
-   
+    </canvas>
+
+      <div id="selectCopyDiv" style="display:none">
+   <div id="page">
+	<div class="row">
+		<div class="column small-11 small-centered" id="sliderDiv2">
+			<h2>Choose Text</h2>
+			<div>
+				<div><img style="width: 100%" id="mainCopy"></div>
+				
+				
+			</div>
+			<div class="slider slider-nav2" id="sliderNav2">
+				
+			</div>
+		</div>
+	</div>
+</div>
 
     
-    
+    </div>  
     
     
     </div>
@@ -114,9 +148,7 @@
 
  <p id="stylistMessage" style="color: #675B65"></p>
    
-    <canvas id="canvas">
-
-    </canvas>
+    
      
  <!--    <button id="finishEdit" onclick="finishEdit()">Finish Edit</button>-->
       
