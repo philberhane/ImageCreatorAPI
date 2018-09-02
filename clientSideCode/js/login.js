@@ -89,6 +89,8 @@ function login() {
         email : document.getElementById('email').value,
     }
     
+    console.log(input)
+    
     fetch('https://lisathomasapi.herokuapp.com/routes/users/login', {
         method: 'POST',
         body: JSON.stringify(input),
