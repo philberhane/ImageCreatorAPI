@@ -159,7 +159,7 @@ passport.deserializeUser(function (id, done) {
 
 router.post('/login', function(req, res, next) {
     console.log(req.body)
-      User.find({email: req.body.email},  (err, user) =>  {
+      User.findOne({email: req.body.email},  (err, user) =>  {
     console.log('find user')
     // Generate a JSON response reflecting authentication status
     if (!user) {
