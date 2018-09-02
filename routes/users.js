@@ -110,9 +110,10 @@ Client.Session.create(device, storage, instaUser, instaPass)
 passport.use('local', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
         usernameField : 'email',
-    
+        passwordField : 'password',
+        passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
     },
-    function(req, email, done) {
+    function(req, email, password, done) {
         if (email)
             email = email.toLowerCase(); // Use lower-case e-mails to avoid case-sensitive e-mail matching
 
@@ -157,7 +158,7 @@ passport.deserializeUser(function (id, done) {
 
 
 router.post('/login', function(req, res, next) {
-  passport.authenticate('local', function(err, user, info) {
+      User.find({email: req.body.email},  (err, user) =>  {
     if (err) {
       return next(err); // will generate a 500 error
     }
@@ -199,6 +200,38 @@ router.post('/getUsers', function(req, res, next) {
         })
 });
 
+
+
+
+
+
+router.post('/adminLogin', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) {
+      return next(err); // will generate a 500 error
+    }
+    // Generate a JSON response reflecting authentication status
+    if (! user) {
+      return res.status(500).send({message : 'Error' });
+    }
+    if (user.accountStatus === 'inactive')
+        {
+      return res.status(500).send({message : 'Error' });
+    }
+      
+    req.login(user, function(err){
+      if(err){
+        return next(err);
+      }
+      return res.status(200).send({
+                message: 'Success',
+                id: req.user.id,
+                role: req.user.role,
+                images: req.user.images
+                }) ;        
+    });
+  })(req, res, next);
+});
 
 
 

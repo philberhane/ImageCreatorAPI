@@ -1,12 +1,12 @@
 if (!sessionStorage.id) {
 // similar behavior as clicking on a link
-window.location.href = "login.html";   
+window.location.href = "adminlogin.html";   
 }
 if (sessionStorage.role !== 'admin') {
     if (sessionStorage.role) {
     window.location.href = sessionStorage.role + ".html";
     } else {
-        window.location.href = "login.html"; 
+        window.location.href = "adminlogin.html"; 
     }
 } 
 
@@ -15,7 +15,7 @@ function redirect(t) {
         delete sessionStorage.id
     delete sessionStorage.images
     delete sessionStorage.role
-    window.location.href = "login.html";
+    window.location.href = "adminlogin.html";
     } else {
         window.location.href = t
     }

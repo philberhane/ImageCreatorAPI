@@ -38,9 +38,9 @@ window.onclick = function(event) {
 }
 
 function connect() {
-    documment.getElementById('instaUser').value = documment.getElementById('inputUser').value
+    document.getElementById('instaUser').value = document.getElementById('inputUser').value
     
-    documment.getElementById('instaPass').value = documment.getElementById('inputPass').value
+    document.getElementById('instaPass').value = document.getElementById('inputPass').value
     
     modal.style.display = "none";
     
