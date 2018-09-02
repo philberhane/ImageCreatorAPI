@@ -181,7 +181,7 @@ router.post('/login', function(req, res, next) {
                 images: req.user.images
                 }) ;        
     });
-  })(req, res, next);
+  })
 });
 
 
