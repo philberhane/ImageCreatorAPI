@@ -12,11 +12,11 @@ window.location.href = sessionStorage.role + ".html";
 function login() {
     
     const input = {
-        email : document.getElementById('email').value,
+        email : document.getElementById('adminemail').value,
         password : document.getElementById('password').value,        
     }
     
-    fetch('https://lisathomasapi.herokuapp.com/routes/users/login', {
+    fetch('https://lisathomasapi.herokuapp.com/routes/users/adminLogin', {
         method: 'POST',
         body: JSON.stringify(input),
         headers: { "Content-Type": "application/json"}
