@@ -119,6 +119,7 @@ fetch('https://lisathomasapi.herokuapp.com/routes/users/getUsers', {
    
     
         for (i=0;i<data.message.length;i++) {
+           
             if (data.message[i].accountStatus) {
                var div = document.createElement('div')
                div.className = 'row'

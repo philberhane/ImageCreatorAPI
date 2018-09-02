@@ -13,12 +13,12 @@
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- Latest compiled and minified CSS -->
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Michroma" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
+<body id="adminBody" style="background-color: white;">
   <script src="js/jquery-ui.min.js"></script>
    <script src="js/jquery.ui.touch-punch.min.js"></script>
    
@@ -26,44 +26,33 @@
    
      <div id="header">
       <div class="container">
+      <div class="row">
        <a href="http://lisathomassalon.com"><img class="responsive" src="https://www.lisathomassalon.com/wp-content/uploads/2016/10/logo.png"></a>
        <div id="navbar">
        <div id="hide">
-       <a id="loginNav" href="#" onclick="logout()">Logout</a>
+       <div class="" id="hideTho">
+           
+       </div>
+          </div>
+          
           </div>
           </div>
        </div>
     </div>
     
     
-    <div id="login" style="background-color: #675B65;"><h1 style="font-family: michroma; color: white; font-weight: 1;">ADMIN</h1></div>
+    <div id="login" style="background-color: #675B65;"><h1 style="font-family: michroma; color: white; font-weight: 1; font-size: 24px">ADMIN</h1></div>
     <input id="imageLink" style="display:none">
     <input id="imageCopyLink" style="display:none">
     <input id="canvasLink" style="display:none">
     <input id="imageId" style="display:none">
+   <div style="background-color: white"> 
+   <p style="color: #675B65">Your changes have been made!</p>
     
-    <div class="container">
-    <p style="color: #675B65">Your changes have been made!</p>
-    <div>
-        
-        <div id="editDiv" class="w3-content w3-display-container">
-        <h3>Edit an Image</h3>
-        <div id="eImage">
-        <div id="slideshow">
-         
-            </div>
-        
-        
-        
-        <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-  <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
-       <button class="styledButton" onclick="selectImage()">Select</button><button class="otherButton" id="deleteImage" >Delete</button>
-        </div>
-        </div>
-    </div>
-    
-    <div id="uploadDiv" style="height: 100">
-        <h3>Or Upload an Image</h3>
+      <div class="container" style="background-color: white">
+    <h2 style="color:#675B65">Images</h2>
+    <div  id="uploadDiv" style="height: 100; margin-top: 50px">
+        <h3>Upload Images</h3>
          
         <form id="imgur">
   <input style="padding: 10px 15px;
@@ -71,11 +60,39 @@
     font-size: 16px;
     margin-top: 15px;
     border-radius: 3%;
-    border: none;" type="file" id="imgLoader" class="imgur" accept="image/*" data-max-size="5000"/>
+    border: none;" type="file" id="imgLoader" class="imgur" accept="image/*" data-max-size="5000" multiple/>
 </form>
+       
         </div>
         <div id="loading"></div>
-        <div id="hidden" style="font-size: 16px">
+    <div style="background-color: white; margin-top: 25px">
+    <div class="row" id="gallery1" >
+     <h3 id="activeImageHeader">Active Images</h3>
+ 
+        
+    </div>
+       <button class="styledButton selectedImageButton" id="deactivateImg" onclick="changeImgStatus(this.id)">Deactivate Selected Images</button>
+       <button class="otherButton selectedImageButton" onclick="displayModal(this.id)" id="delete1">Delete Selected Images</button>
+        </div>
+    
+    
+    <div style="background-color: white; margin-top: 50px">
+    <div  class="row" id="gallery2" >
+     <h3 id="inactiveImageHeader">Inactive Images</h3>
+   
+    </div>
+       <button id="activateImg" class="styledButton selectedImageButton" onclick="changeImgStatus(this.id)">Activate Selected Images</button>
+       <button class="otherButton selectedImageButton" onclick="displayModal(this.id)" id="delete2">Delete Selected Images</button>
+        </div>
+    
+    
+        
+        <h2 style="margin-top: 100px; color: #675B65">Copy</h2>
+        
+        <div id="addCopy">
+        <button id="addCopyButton" class="styledButton" onclick="addCopySection()">Add Copy</button>
+        </div>
+        <div id="hidden" style="font-size: 16px; margin-top: 25px">
         <p>Color:
     <input class="jscolor" onchange="update(this.jscolor)" value="000000">
     </p>
@@ -87,8 +104,31 @@
 </select>
     </p>
  
-   
+     <canvas id="canvas" width="500" height="297">
+
+    </canvas>
+    <button id="saveButton" onclick="submitChanges()" class="styledButton">Save</button>
+    <button onclick="reset()" class="otherButton">Reset</button>
+    <div id="saving"></div>
    </div>
+        <div style="background-color: white; margin-top: 50px">
+        <div class="row" id="gallery3" >
+         <h3 id="activeCopyHeader">Active Copy</h3>
+        </div>
+        <button id="edit1" class="styledButton selectedCopyButton" onclick="editCanvas(this.id)">Edit</button>
+        <button id="DeactivateCopy" class="styledButton selectedCopyButton" onclick="changeCopyStatus(this.id)">Deactivate Selected Copy</button>
+       <button class="otherButton selectedCopyButton" onclick="displayModal2(this.id)" id="delete3">Delete Selected Copy</button>
+        </div>
+        
+         <div style="background-color: white; margin-top: 50px">
+        <div class="row" id="gallery4" >
+         <h3 id="inactiveCopyHeader" style="margin-top: 100px">Inactive Copy</h3>
+         
+        </div>
+        <button id="edit2" class="styledButton selectedCopyButton" onclick="editCanvas(this.id)">Edit</button>
+        <button id="activateCopy" class="styledButton selectedCopyButton" onclick="changeCopyStatus(this.id)">Activate Selected Copy</button>
+       <button class="otherButton selectedCopyButton" onclick="displayModal2(this.id)" id="delete3">Delete Selected Copy</button>
+        </div>
 
         
    
@@ -97,7 +137,6 @@
     
     
     
-    </div>
     
     
    
@@ -109,18 +148,17 @@
     <div id="save">
         <button onclick="save()">Save</button>
     </div>-->
-    
+
            
            
 
  
-    <canvas id="canvas" width="240" height="297">
-
-    </canvas>
+  
+     </div>
      
  <!--    <button id="finishEdit" onclick="finishEdit()">Finish Edit</button>-->
       
-           
+    </div>     
           <img  id="imageLocation"> 
            
   <div class="loader" id="loader1"></div> 
@@ -128,7 +166,7 @@
     
 <button class="styledButton" id="submit" onclick="submit()" style="display: none">Save</button>
 <button class="styledButton" id="submitChanges" onclick="submitChanges()" style="display: none">Save Changes</button>
- <div id="saving"></div> 
+  
   
   <button class="otherButton" id = "reset" onclick="reset()">Reset</button>
   
@@ -139,9 +177,24 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-    <p>Are you sure you would like to Delete this image?</p>
+    <p>Are you sure you would like to delete the selected images?</p>
+    <input style="display:none" id="deleteId">
     <button class="styledButton" onclick="deleteImage()">Delete</button> 
-    <button id="cancelDeletion">Cancel</button>
+    <button class="otherButton" id="cancelDeletion">Cancel</button>
+  </div>
+
+</div>
+ 
+ 
+ <div id="myModal2" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close2">&times;</span>
+    <p>Are you sure you would like to delete the selected copy?</p>
+    <input style="display:none" id="deleteId2">
+    <button class="styledButton" onclick="deleteCopy()">Delete</button> 
+    <button class="otherButton" id="cancelDeletion2">Cancel</button>
   </div>
 
 </div>

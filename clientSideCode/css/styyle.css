@@ -18,7 +18,6 @@ html {
 
 
 
-
 .js .slider-single > div:nth-child(1n+2) { display: none }
 
 .slick-arrow {
@@ -252,8 +251,8 @@ html {
     font-family: Helvetica;
     font-size: 16px;
     margin-top: 25px;
-    border-radius: 3%;
     border: none;
+    border-radius: 10px;
     text-decoration: none;
 }
 
@@ -262,15 +261,14 @@ html {
 }
 
 #loginButton {
-    color: white;
+     color: white;
     background-color: #675B65;
-    padding: 15px 50px;
+    padding: 10px 15px;
     font-family: Helvetica;
     font-size: 16px;
-    margin-top: 25px;
-    border-radius: 3%;
+    margin-top: 15px;
+    border-radius: 10px;
     border: none;
-    text-decoration: none;
 }
 
 #loginButton:hover {
@@ -284,7 +282,7 @@ html {
     font-family: Helvetica;
     font-size: 16px;
     margin-top: 15px;
-    border-radius: 3%;
+    border-radius: 10px;
     border: none;
 }
 
@@ -298,7 +296,7 @@ html {
     font-family: Helvetica;
     font-size: 16px;
     margin-top: 15px;
-    border-radius: 3%;
+    border-radius: 10px;
     border: none;
 }
 

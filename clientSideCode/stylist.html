@@ -24,7 +24,7 @@
 
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Michroma" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -105,6 +105,7 @@
    
     
    </div>
+       </div>
       <canvas id="canvas">
 
     </canvas>
@@ -115,7 +116,7 @@
 		<div class="column small-11 small-centered" id="sliderDiv2">
 			<h2>Choose Text</h2>
 			<div>
-				<div><img style="width: 100%" id="mainCopy"></div>
+				
 				
 				
 			</div>
@@ -130,7 +131,7 @@
     </div>  
     
     
-    </div>
+  
     
     
    
@@ -158,16 +159,16 @@
   <div class="loader" id="loader1"></div> 
        
     <img id="finalImage">
-<button class="styledButton" id="submit" onclick="saveChanges()" style="display: none">Save</button>
+<button class="styledButton" id="submit" onclick="saveChanges()" style="display: none">Finish</button>
 <button class="styledButton" id="submitChanges" onclick="saveChanges()" style="display: none">Save Changes</button> 
     <div id="saving"></div>
   <button class="otherButton" id = "reset" onclick="reset()">Reset</button>
   
   <div id="hiddenArea">
-  <button class="styledButton" onclick="saveToDevice()">Save to Device</button>
-  <button class="styledButton" onclick="emailImagePopup()">Email Image</button>
-  <button class="styledButton" id="IGPopUp">Share to Instagram</button>
-    <button class="styledButton" onclick="fbs_click()">Share to Facebook</button>
+  <button class="styledButton" onclick="saveToDevice()"><i class="fa fa-save"></i> Save to Device</button>
+  <button class="styledButton" onclick="emailImagePopup()"><i class="fa fa-envelope"></i> Email Image</button>
+  <button class="styledButton" id="IGPopUp"><i class="fa fa-instagram"></i> Share to Instagram</button>
+    <button class="styledButton" onclick="fbs_click()"><i class="fa fa-facebook"></i> Share to Facebook</button>
     
     </div>
    

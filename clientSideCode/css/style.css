@@ -13,6 +13,49 @@ html {
     background-color: #EEEEF0;
 }
 
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.35s;
+    animation-name: animatetop;
+    animation-duration: 0.35s;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 
 .draggable {
     cursor: move;
@@ -168,6 +211,16 @@ html {
     text-align: center
 }
 
+.otherButton {
+    background-color: rgb(208, 208, 208);
+    padding: 10px 15px;
+    font-family: Helvetica;
+    font-size: 16px;
+    margin-top: 15px;
+    border-radius: 10px;
+    border: none;
+}
+
 #signupButton {
     color: white;
     background-color: #675B65;
@@ -175,12 +228,27 @@ html {
     font-family: Helvetica;
     font-size: 16px;
     margin-top: 25px;
-    border-radius: 3%;
+    border-radius: 10px;
     border: none;
     text-decoration: none;
 }
 
 #signupButton:hover {
+    background-color: #8D848B;
+}
+.signupButton {
+    color: white;
+    background-color: #675B65;
+    padding: 10px 20px;
+    font-family: Helvetica;
+    font-size: 16px;
+    margin-top: 25px;
+    border-radius: 10px;
+    border: none;
+    text-decoration: none;
+}
+
+.signupButton:hover {
     background-color: #8D848B;
 }
 
@@ -191,9 +259,9 @@ html {
     font-family: Helvetica;
     font-size: 16px;
     margin-top: 25px;
-    border-radius: 3%;
     border: none;
-    text-decoration: none;
+    border-radius: 10px;
+    
 }
 
 #loginButton:hover {

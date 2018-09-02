@@ -1,4 +1,4 @@
-/*if (!sessionStorage.id) {
+if (!sessionStorage.id) {
 // similar behavior as clicking on a link
 window.location.href = "login.html";
 } 
@@ -11,7 +11,7 @@ if (sessionStorage.role !== 'stylist') {
     }    
 }
 
-*/
+
 
 // Do an onlick (this.id) so that when clicked, the big div's img src becomes the clicked div
 function dope() {
@@ -199,7 +199,103 @@ function next() {
      
  	});
         
-        document.getElementById('mainCopy').src = document.getElementById('sliderNav2').firstElementChild.nextElementSibling.firstElementChild.firstElementChild.src
+        
+    
+          } 
+    
+        }) 
+    document.getElementById('hidden').style.display = 'block'
+    
+
+    
+    canvasFunction()
+}
+
+
+
+
+function nextt() {
+    
+    document.getElementById('selectImgDiv').style.display = 'none'
+    document.getElementById('selectCopyDiv').style.display = 'block'
+   
+    fetch('https://lisathomasapi.herokuapp.com/routes/copy/getCopy', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+    
+    if (data.message.indexOf('Error') === 0) {
+        document.getElementById('sliderDiv2').innerText = data.message
+    } else {
+        for (i=0; i<data.message.length; i++) {
+            
+            
+            var image = document.createElement('img')
+            image.src = data.message[i].imageLink
+            image.style.width = '100%'
+           image.id = data.message[i]._id
+            image.title = data.message[i].canvasLink
+            image.alt = data.message[i].status
+            image.className = 'img-fluid img-thumbnail copyResults'
+            image.setAttribute('onclick', 'selectCopy(this.id)')
+            
+            
+            arrayOfCanvas.push(data.message[i].canvasLink)
+            
+            var div = document.createElement('div')
+            var h3 = document.createElement('h3')
+            var span = document.createElement('span')
+           
+            
+            
+            if (data.message[i].status === 'active') {
+            
+            span.appendChild(image)
+            div.appendChild(span)
+            
+            document.getElementById('sliderNav2').appendChild(div)
+                
+            } 
+    
+          } 
+     $('.slider-nav2')
+ 	.on('init', function(event, slick) {
+ 		$('.slider-nav2 .slick-slide.slick-current').addClass('is-active');
+     
+ 	})
+ 	.slick({
+ 		slidesToShow: 7,
+ 		slidesToScroll: 7,
+ 		dots: false,
+ 		focusOnSelect: false,
+ 		infinite: false,
+ 		responsive: [{
+ 			breakpoint: 1024,
+ 			settings: {
+ 				slidesToShow: 5,
+ 				slidesToScroll: 5,
+ 			}
+ 		}, {
+ 			breakpoint: 640,
+ 			settings: {
+ 				slidesToShow: 4,
+ 				slidesToScroll: 4,
+			}
+ 		}, {
+ 			breakpoint: 420,
+ 			settings: {
+ 				slidesToShow: 7,
+ 				slidesToScroll: 7,
+		}
+ 		}]
+     
+     
+ 	});
+        
+        
     
           } 
     
@@ -214,6 +310,31 @@ function next() {
 function selectCopy(clicked_id) {
     var clickedCopy = document.getElementById(clicked_id)
     canvas.loadFromDatalessJSON(clickedCopy.title)
+    
+    var logo1 = new fabric.IText('LISA THOMAS', {
+    hasBorders: false,
+    hasControls: false,
+    hasRotatingPoint: false,
+    fill: 'white',
+    left: canvas.width -85,
+    top: canvas.height -25,
+    fontSize: 8
+});
+
+var logo2 = new fabric.IText('Salon', {
+    hasBorders: false,
+    hasControls: false,
+    hasRotatingPoint: false,
+    fill: 'white',
+    left: canvas.width - 40,
+    top: canvas.height - 15,
+    fontSize: 8
+});
+    
+    canvas.add(logo1)
+    canvas.add(logo2)
+    logo1.setFontFamily('michroma')
+    logo2.setFontFamily('pacifico')
     canvas.renderAll()
 }
 
@@ -268,6 +389,8 @@ function selectImage() {
             
             // end fabricJS stuff
         }
+            
+            
             document.getElementById('hidden').style.display = 'block'
             document.getElementById('eImage').style.display = 'none'
             document.getElementById('submitChanges').style.display = 'block'
@@ -306,6 +429,10 @@ function logout() {
 
 var text = new fabric.IText('', {});
 
+
+
+
+
 text.on('selected', function() {
     canvas.allowTouchScrolling = false
     
@@ -313,7 +440,7 @@ text.on('selected', function() {
 })
 
 fabricImage.on('selected', function() {
-canvas.deactivateAll().renderAll();
+//canvas.deactivateAll().renderAll();
     fabricImage.lockMovementX = true;
     fabricImage.lockMovementY = true;
     canvas.allowTouchScrolling = true;
@@ -367,10 +494,9 @@ function canvasFunction() {
             }));
             var copyArray = document.querySelectorAll('.copyResults')
             
-            
-           // canvas.add(text)
-        //    canvas.loadFromDatalessJSON(arrayOfCanvas[0])
             canvas.add(text)
+        //    canvas.loadFromDatalessJSON(arrayOfCanvas[0])
+            
             canvas.renderAll.bind(canvas);
             // end fabricJS stuff
             
@@ -389,7 +515,20 @@ function canvasFunction() {
      
   //  document.body.append(canvas.toDataURL())
      canvas.loadFromDatalessJSON(arrayOfCanvas[0])
+   
+    
+   
+
+    
+    
+    
          canvas.renderAll()
+    
+    canvas._objects[0].on('selected', function() {
+    canvas.allowTouchScrolling = false
+    
+    console.log('selected')
+})
 }
 
 
@@ -595,7 +734,7 @@ $("document").ready(function() {
         document.getElementById('imageLink').value = link
           
           
-           next()
+           nextt()
        
       });
     }
@@ -776,6 +915,12 @@ function saveChanges() {
     document.getElementById('saving').innerText = 'Saving...'
    // canvas.deactivateAll().renderAll();
   //  document.getElementById('loader1').style.display = 'block'
+   
+    
+    
+    console.log(canvas.toDataURL())
+    
+   // canvas.renderAll()
     try {
     var img = canvas.toDataURL('image/jpeg', 0.9).split(',')[1];
 } catch(e) {

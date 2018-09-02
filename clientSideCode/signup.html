@@ -7,11 +7,95 @@
 <!-- Latest compiled and minified CSS -->
 
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Michroma" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
 </head>
 <body>
+  <script>
+  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+    } else {
+      // The person is not logged into your app or we are unable to tell.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    }
+  }
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+         console.log(response);
+    });
+  }
+
+  window.onload = function() {
+    FB.init({
+      appId      : '716786942016112',
+      cookie     : true,  // enable cookies to allow the server to access 
+                          // the session
+      xfbml      : true,  // parse social plugins on this page
+      version    : 'v3.1' // use graph api version 2.8
+    });
+
+    // Now that we've initialized the JavaScript SDK, we call 
+    // FB.getLoginStatus().  This function gets the state of the
+    // person visiting this page and can return one of three states to
+    // the callback you provide.  They can be:
+    //
+    // 1. Logged into your app ('connected')
+    // 2. Logged into Facebook, but not your app ('not_authorized')
+    // 3. Not logged into Facebook and can't tell if they are logged into
+    //    your app or not.
+    //
+    // These three cases are handled in the callback function.
+
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function testAPI() {
+  //  console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', {locale: 'en_US', fields: 'name, email'}, function(response) {
+      console.log(response);
+        document.getElementById('name').value = response.name
+        
+        document.getElementById('email').value = response.email
+      
+    });
+  }
+           
+           
+           
+           
+</script>
    <div id="header">
       <div class="container">
        <a href="http://lisathomassalon.com"><img class="responsive" src="https://www.lisathomassalon.com/wp-content/uploads/2016/10/logo.png"></a>
@@ -25,38 +109,54 @@
     </div>
     
     <div id="signUp" style="background-color: #675B65;"><h1 style="font-family: michroma; color: white; font-weight: 1; font-size: 24px">SIGN UP</h1></div>
-    
+    <p></p>
     
     <div style="padding-top: 25px" id="signupForm">
     <div class="container">
+     <div class="form-group">
+     <label>Please Connect your Facebook Account</label><br>
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
+    </div>
     <div class="form-group">
+    <label>Please Connect your Instagram Account</label><br>
+    <button id="IGPopUp" style="color: white; background-color: #D12798; border: none; font-size: 12px; font-weight: bold; padding-top: 2px; padding-bottom: 2px; padding-right: 6px; padding-left: -3px;"><i style="color: #D12798; background-color: white; font-weight: bold; padding: 2px 4px" class="fa fa-instagram"></i> Log In</button>
+    </div>
+    <div class="form-group" style="display: none">
     <label>Name <span style="color:#951e1f">*</span></label><br>
     <input type="text" class="form-control" id="name" name="name" >
   </div>
 
-   <div class="form-group">
+   <div class="form-group" style="display: none">
     <label>Email <span style="color:#951e1f">*</span></label>
     <input type="email" class="form-control"  id="email" name="email">
   </div>
-  <div class="form-group">
-    <label>Password <span style="color:#951e1f">*</span></label>
-    <input type="password" class="form-control"  id="password" name="password">
-  </div>
-  <div class="form-group">
-    <label>Confirm Password <span style="color:#951e1f">*</span></label>
-    <input type="password" class="form-control"  id="password2" name="password2">
-  </div>
-  <div class="form-group">
+ 
+  <div class="form-group" style="display: none">
     <label>Instagram Username <span style="color:#951e1f">*</span></label>
     <input type="text" class="form-control" id="instaUser" name="instaUser">
   </div>
-  <div class="form-group">
+  <div class="form-group" style="display: none">
     <label>Instagram Password <span style="color:#951e1f">*</span></label>
     <input type="password" class="form-control" id="instaPass" name="instaPass">
   </div>
  
-  <button id="signupButton" >SIGN UP</button>
-    
+  <button id="signupButton" >FINISH SIGN UP</button>
+        <!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h4>Connect your Instagram</h4>
+      <input placeholder="Username" id="inputUser">
+      
+      <input placeholder="Password" type="password" id="inputPass">
+    <button class="signupButton" onclick="connect()">Connect</button> 
+    <button class="otherButton" id="cancelDeletion">Cancel</button>
+  </div>
+
+</div>
     
     <p id="server-response"></p>
     </div>

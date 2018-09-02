@@ -31,17 +31,17 @@
     
     <div style="padding-top: 25px" id="loginForm" >
     
-   <div class="form-group">
+   <div style="display: none" class="form-group">
     <label>Email</label>
     <input type="email" class="form-control"  id="email" name="email">
   </div>
-  <div class="form-group">
-    <label>Password</label>
-    <input type="password" class="form-control"  id="password" name="password">
-  </div>
+  <label>Please Login using Facebook</label><br>
+  <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
+  
   
  
-  <button id="loginButton" type="submit">LOG IN</button>
+  <br><button id="loginButton" type="submit">SUBMIT</button>
     
     
     <p id="server-response"></p>

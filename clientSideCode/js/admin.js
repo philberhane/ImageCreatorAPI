@@ -1,4 +1,4 @@
-/*if (!sessionStorage.id) {
+if (!sessionStorage.id) {
 // similar behavior as clicking on a link
 window.location.href = "login.html";   
 }
@@ -8,7 +8,7 @@ if (sessionStorage.role !== 'admin') {
     } else {
         window.location.href = "login.html"; 
     }
-} */
+} 
 
 function redirect(t) {
     if (t === 'logout') {
@@ -234,9 +234,9 @@ function addCopy() {
     }).then(function(response) {
         return response.json();
     }).then(function(data) {
-        /*if (data.message === 'Success') {
+        if (data.message === 'Success') {
         window.location.href = 'adminmessage.html'
-        }*/
+        }
         console.log(data.message)
         })
     
@@ -258,9 +258,9 @@ function saveCopy() {
     }).then(function(response) {
         return response.json();
     }).then(function(data) {
-        /*if (data.message === 'Success') {
+        if (data.message === 'Success') {
         window.location.href = 'adminmessage.html'
-        }*/
+        }
         console.log(data.message)
         })
     
@@ -423,9 +423,9 @@ function changeCopyStatus(clicked_id){
     }).then(function(response) {
         return response.json();
     }).then(function(data) {
-       /* if (data.message === 'Success') {
+        if (data.message === 'Success') {
         window.location.href = 'adminmessage.html'
-        }*/
+        }
         })
     
 }
@@ -965,9 +965,9 @@ function deleteCopy() {
     }).then(function(response) {
         return response.json();
     }).then(function(data) {
-      /*  if (data.message === 'Success') {
+        if (data.message === 'Success') {
         window.location.href = 'adminmessage.html'
-        }*/
+        }
         })
 
     

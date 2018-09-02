@@ -26,8 +26,6 @@ router.get('/loginError', function (req, res) {
 router.post('/register', function (req, res) {
 	var name = req.body.name;
 	var email = req.body.email.toLowerCase();
-	var password = req.body.password;
-	var password2 = req.body.password2;
     var instaUser = req.body.instaUser;
     var instaPass = req.body.instaPass;
     var role = req.body.role;
@@ -39,8 +37,7 @@ router.post('/register', function (req, res) {
     req.checkBody('instaUser', 'Instagram Username is required!').notEmpty();
     req.checkBody('instaPass', 'Instagram Password is required!').notEmpty();
 	req.checkBody('email', 'Email is not valid!').isEmail();
-	req.checkBody('password', 'Password is required!').notEmpty();
-	req.checkBody('password2', 'Passwords do not match!').equals(req.body.password);
+	
 
 	var errors = req.validationErrors();
 
@@ -86,7 +83,6 @@ Client.Session.create(device, storage, instaUser, instaPass)
 						email: email,
                         instaUser: instaUser,
                         instaPass: instaPass,
-						password: password,
                         role : role,
                         accountStatus: accountStatus
                         
@@ -114,10 +110,9 @@ Client.Session.create(device, storage, instaUser, instaPass)
 passport.use('local', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
         usernameField : 'email',
-        passwordField : 'password',
-        passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
+    
     },
-    function(req, email, password, done) {
+    function(req, email, done) {
         if (email)
             email = email.toLowerCase(); // Use lower-case e-mails to avoid case-sensitive e-mail matching
 
