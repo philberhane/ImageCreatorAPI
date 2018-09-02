@@ -159,11 +159,9 @@ passport.deserializeUser(function (id, done) {
 
 router.post('/login', function(req, res, next) {
       User.find({email: req.body.email},  (err, user) =>  {
-    if (err) {
-      return next(err); // will generate a 500 error
-    }
+    
     // Generate a JSON response reflecting authentication status
-    if (! user) {
+    if (!user) {
       return res.status(500).send({message : 'Error' });
     }
     if (user.accountStatus === 'inactive')
