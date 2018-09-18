@@ -242,7 +242,7 @@ passport.use(new LocalStrategy({
         passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
     },
     function(req, email, password, done) {
-    	User.getUserByUsername(username, function (err, user) {
+    	User.findOne({email: req.body.email}, function (err, user) {
 			if (err) throw err;
 			if (!user) {
 				return done(null, false, { message: 'Error: Unknown User' });
