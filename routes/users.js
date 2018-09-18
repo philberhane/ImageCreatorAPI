@@ -242,33 +242,21 @@ passport.use(new LocalStrategy({
         passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
     },
     function(req, email, password, done) {
-    console.log(req)
-        if (req.body.email)
-            req.body.email = req.body.email.toLowerCase(); // Use lower-case e-mails to avoid case-sensitive e-mail matching
+    	User.getUserByUsername(username, function (err, user) {
+			if (err) throw err;
+			if (!user) {
+				return done(null, false, { message: 'Error: Unknown User' });
+			}
 
-        // asynchronous
-        process.nextTick(function() {
-            User.findOne({ 'email' :  req.body.email }, function(err, user) {
-                // if there are any errors, return the error
-                if (err)
-                    return done(err);
-
-                // if no user is found, return the message
-                if (!user)
-return done(null, false, {message: 'this account does not exist'});
-                User.comparePassword(password, user.password, function (err, isMatch) {
-      if(err) throw err;
-      if(isMatch) {
-        return done(null, user);
-      } else {
-        return done(null, false, {message: 'oops! wrong password! try again'});
-      }
-    });
-
-                // all is well, return user
-              
-            });
-        });
+			User.comparePassword(password, user.password, function (err, isMatch) {
+				if (err) throw err;
+				if (isMatch) {
+					return done(null, user);
+				} else {
+					return done(null, false, { message: 'Error: Invalid password' });
+				}
+			});
+		});
 
     }));
 
