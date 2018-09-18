@@ -353,7 +353,7 @@ router.post('/login', function(req, res, next) {
   User.findOne({email: req.body.email}, function (err, user)   {
     // Generate a JSON response reflecting authentication status
     if (!user) {
-      return res.status(500).send({message : 'Error: This code is incorrect!' });
+      return res.status(500).send({message : 'Error' });
     }
       
     if (req.body.password === user.password) {
