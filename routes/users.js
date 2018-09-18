@@ -310,21 +310,6 @@ router.post('/fblogin', function(req, res, next) {
   })
 });
 
-router.post('/login',
-	passport.authenticate('local', { failureRedirect: '/users/loginError' }), function (req, res) {
-          if (user.accountStatus === 'inactive')
-        {
-      return res.status(500).send({message : 'Error' });
-        }
-    
-    return res.status(200).send({
-                message: 'Success',
-                id: req.user.id,
-                role: req.user.role,
-                images: req.user.images
-                })     
-	})
-
 
 router.post('/getUsers', function(req, res, next) {
   
@@ -345,7 +330,7 @@ router.post('/getUsers', function(req, res, next) {
 
 
 
-router.post('/adminLogin', function(req, res, next) {
+router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if (err) {
       return next(err); // will generate a 500 error
