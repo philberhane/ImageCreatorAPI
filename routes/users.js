@@ -350,31 +350,26 @@ router.post('/getUsers', function(req, res, next) {
 
 
 router.post('/login', function(req, res, next) {
-  passport.authenticate('local', {session: false}, function(err, user, info) {
-    if (err) {
-      return next(err); // will generate a 500 error
-    }
+  User.findOne({email: req.body.email}, function (err, user)   {
     // Generate a JSON response reflecting authentication status
-    /*if (! user) {
-      return res.status(500).send({message : 'Error' });
-    }*/
-    if (user.accountStatus === 'inactive')
-        {
-      return res.status(500).send({message : 'Error' });
+    if (!user) {
+      return res.status(500).send({message : 'Error: This code is incorrect!' });
     }
       
-    req.login(user, function(err){
-      if(err){
-        return next(err);
-      }
-      return res.status(200).send({
+    if (req.body.password === user.password) {
+         return res.status(200).send({
                 message: 'Success',
                 id: req.user.id,
                 role: req.user.role,
                 images: req.user.images
-                }) ;        
-    });
-  })(req, res, next);
+                })     
+    } else {
+        return res.status(200).send({
+                message: 'Error'
+        })
+    }
+      
+  })
 });
 
 
