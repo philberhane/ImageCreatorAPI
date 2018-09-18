@@ -355,9 +355,9 @@ router.post('/login', function(req, res, next) {
       return next(err); // will generate a 500 error
     }
     // Generate a JSON response reflecting authentication status
-    if (! user) {
+    /*if (! user) {
       return res.status(500).send({message : 'Error' });
-    }
+    }*/
     if (user.accountStatus === 'inactive')
         {
       return res.status(500).send({message : 'Error' });
