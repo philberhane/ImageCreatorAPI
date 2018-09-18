@@ -337,11 +337,11 @@ router.post('/login', function(req, res, next) {
     }
     // Generate a JSON response reflecting authentication status
     if (! user) {
-      return res.status(500).send({message : 'Error' });
+      return res.status(500).send({message : 'Error: not user' });
     }
     if (user.accountStatus === 'inactive')
         {
-      return res.status(500).send({message : 'Error' });
+      return res.status(500).send({message : 'Error: inactive' });
     }
       
     req.login(user, function(err){
