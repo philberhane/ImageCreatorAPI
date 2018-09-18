@@ -196,7 +196,7 @@ router.post('/register', function (req, res) {
                     
                     if (mail) {
                         return res.status(500).send({
-			             message: `Error: A user with the email ${mail.email} already exists! Try another.`
+			             message: 'Error: A user with the email ' + mail.email + ' already exists! Try another.'
 		              });
                     }
 				
@@ -254,7 +254,7 @@ passport.use('local', new LocalStrategy({
                 // if no user is found, return the message
                 if (!user)
 return done(null, false, {message: 'this account does not exist'});
-                User.comparePassword(password, user.password, (err, isMatch) => {
+                User.comparePassword(password, user.password, function (err, isMatch) {
       if(err) throw err;
       if(isMatch) {
         return done(null, user);
@@ -285,7 +285,7 @@ passport.deserializeUser(function (id, done) {
 
 
 router.post('/fblogin', function(req, res, next) {
-      User.findOne({email: req.body.fbemail},  (err, user) =>  {
+      User.findOne({email: req.body.fbemail},  function (err, user)  {
     console.log('find user')
     // Generate a JSON response reflecting authentication status
     if (!user) {
@@ -328,7 +328,7 @@ router.post('/login',
 
 router.post('/getUsers', function(req, res, next) {
   
-        User.find({},  (err, arrayOfUsers) => {
+        User.find({}, function (err, arrayOfUsers) {
           if (err) {
                 return handleError(err);
             }
@@ -389,7 +389,7 @@ router.post('/changeStatus', function(req, res, next) {
 
 
 router.post('/uploadIG', function (req, res) {
-    User.find({_id: req.body.id},  (err, user) => {
+    User.find({_id: req.body.id}, function (err, user) {
           if (err) {
                 return handleError(err);
             }
@@ -402,7 +402,7 @@ router.post('/uploadIG', function (req, res) {
             var rs = req.body.rs
             console.log(rs)
         
-        let imgConvert = require('image-convert');
+        var imgConvert = require('image-convert');
 imgConvert.fromURL({
     url: source,
     quality: 100,//default 100
