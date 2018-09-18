@@ -152,7 +152,7 @@ process.on('unhandledRejection', function(reason, p) {
     res.status(500).send({
                 message: 'Error'
                 })
-});
+})
     
     
           })
@@ -271,7 +271,7 @@ return done(null, false, {message: 'this account does not exist'});
             });
         });
 
-    }));
+    }))
 
 
 
@@ -284,7 +284,7 @@ passport.deserializeUser(function (id, done) {
 	User.getUserById(id, function (err, user) {
 		done(err, user);
 	});
-});
+})
 
 
 router.post('/fblogin', function(req, res, next) {
@@ -311,7 +311,7 @@ router.post('/fblogin', function(req, res, next) {
                 }) ;        
     });
   })
-});
+})
 
 router.post('/login',
 	passport.authenticate('local', { failureRedirect: '/users/loginError' }), function (req, res) {
@@ -325,8 +325,8 @@ router.post('/login',
                 id: req.user.id,
                 role: req.user.role,
                 images: req.user.images
-                }) ;    
-	});
+                })     
+	})
 
 
 router.post('/getUsers', function(req, res, next) {
@@ -341,7 +341,7 @@ router.post('/getUsers', function(req, res, next) {
         })
             
         })
-});
+})
 
 
 
