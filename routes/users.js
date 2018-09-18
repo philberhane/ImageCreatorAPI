@@ -350,8 +350,7 @@ router.post('/getUsers', function(req, res, next) {
 
 
 router.post('/login', function(req, res, next) {
-  passport.authenticate('basic', {session: false}), function(err, user, info) {
-      console.log(user)
+  passport.authenticate('basic', {session: false}, function(err, user, info) {
     if (err) {
       return next(err); // will generate a 500 error
     }
@@ -375,7 +374,7 @@ router.post('/login', function(req, res, next) {
                 images: req.user.images
                 }) ;        
     });
-  }(req, res, next);
+  })(req, res, next);
 });
 
 
