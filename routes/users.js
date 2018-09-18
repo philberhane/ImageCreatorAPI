@@ -17,16 +17,16 @@ router.get('/register', function (req, res) {
 // Login Error
 router.get('/loginError', function (req, res) {
 	res.redirect('loginError.html');
-})
+});
 
 router.post('/verifyCode', function (req, res) {
     
-    User.findOne({code: req.body.code},  (err, user) =>  {
+    User.findOne({code: req.body.code}, function (err, user)   {
     // Generate a JSON response reflecting authentication status
     if (!user) {
-      return res.status(500).send({message : 'Error: This code is incorrect!' })
+      return res.status(500).send({message : 'Error: This code is incorrect!' });
     } else {
-        return res.status(500).send({message : 'Success' })
+        return res.status(500).send({message : 'Success' });
     }  
         
     })
@@ -49,7 +49,7 @@ router.post('/changePassword', function (req, res) {
         console.log(errors)
 		return res.status(500).send({
 			message: 'Error: ' + errors[0].msg
-		})
+		});
 	}
     
      User.update({code: req.body.code}, {
@@ -68,14 +68,14 @@ router.post('/changePassword', function (req, res) {
 
 router.post('/forgotPassword', function (req, res) {
     
-    User.findOne({email: req.body.email},  (err, user) =>  {
+    User.findOne({email: req.body.email}, function (err, user)  {
     // Generate a JSON response reflecting authentication status
     if (!user) {
-      return res.status(500).send({message : 'Error: No user matches this email' })
+      return res.status(500).send({message : 'Error: No user matches this email' });
     }
     if (user.accountStatus === 'inactive')
         {
-      return res.status(500).send({message : 'Error: No user matches this email' })
+      return res.status(500).send({message : 'Error: No user matches this email' });
     }
       
     // Generate a random six digit code
@@ -95,7 +95,7 @@ router.post('/forgotPassword', function (req, res) {
     user: 'lisathomassalonemailer@gmail.com',
     pass: 'LisaThomas1!'
   }
-})
+});
         
 
 var mailOptions = {
@@ -113,11 +113,10 @@ var mailOptions = {
                 message: 'Success'
                 })
   }
-})
-    })
+});
+    });
   })
     
-})
 
 
 
@@ -186,7 +185,7 @@ router.post('/register', function (req, res) {
         console.log(errors)
 		return res.status(500).send({
 			message: 'Error: ' + errors[0].msg
-		})
+		});
 	} else {
         console.log('test1')
         
@@ -200,7 +199,7 @@ router.post('/register', function (req, res) {
                     if (mail) {
                         return res.status(500).send({
 			             message: `Error: A user with the email ${mail.email} already exists! Try another.`
-		              })
+		              });
                     }
 				
 				else {
@@ -216,11 +215,11 @@ router.post('/register', function (req, res) {
                         fbemail : fbemail,
                         password: password
                         
-					})
+					});
 					User.createUser(newUser, function (err, user) {
 						if (err) throw err;
 						console.log(user);
-					})
+					});
          	res.status(200).send({
                 message: 'Thank you for signing up, your account is pending approval!'
                 })
@@ -256,20 +255,20 @@ passport.use('local', new LocalStrategy({
 
                 // if no user is found, return the message
                 if (!user)
-return done(null, false, {message: 'this account does not exist'})
+return done(null, false, {message: 'this account does not exist'});
                 User.comparePassword(password, user.password, (err, isMatch) => {
       if(err) throw err;
       if(isMatch) {
         return done(null, user);
       } else {
-        return done(null, false, {message: 'oops! wrong password! try again'})
+        return done(null, false, {message: 'oops! wrong password! try again'});
       }
-    })
+    });
 
                 // all is well, return user
               
-            })
-        })
+            });
+        });
 
     }))
 
@@ -278,12 +277,12 @@ return done(null, false, {message: 'this account does not exist'})
 
 passport.serializeUser(function (user, done) {
 	done(null, user.id);
-})
+});
 
 passport.deserializeUser(function (id, done) {
 	User.getUserById(id, function (err, user) {
 		done(err, user);
-	})
+	});
 })
 
 
@@ -292,11 +291,11 @@ router.post('/fblogin', function(req, res, next) {
     console.log('find user')
     // Generate a JSON response reflecting authentication status
     if (!user) {
-      return res.status(500).send({message : 'Error' })
+      return res.status(500).send({message : 'Error' });
     }
     if (user.accountStatus === 'inactive')
         {
-      return res.status(500).send({message : 'Error' })
+      return res.status(500).send({message : 'Error' });
     }
       
     req.login(user, function(err){
@@ -309,7 +308,7 @@ router.post('/fblogin', function(req, res, next) {
                 role: req.user.role,
                 images: req.user.images
                 }) ;        
-    })
+    });
   })
 })
 
@@ -317,7 +316,7 @@ router.post('/login',
 	passport.authenticate('local', { failureRedirect: '/users/loginError' }), function (req, res) {
           if (user.accountStatus === 'inactive')
         {
-      return res.status(500).send({message : 'Error' })
+      return res.status(500).send({message : 'Error' });
         }
     
     return res.status(200).send({
@@ -355,11 +354,11 @@ router.post('/adminLogin', function(req, res, next) {
     }
     // Generate a JSON response reflecting authentication status
     if (! user) {
-      return res.status(500).send({message : 'Error' })
+      return res.status(500).send({message : 'Error' });
     }
     if (user.accountStatus === 'inactive')
         {
-      return res.status(500).send({message : 'Error' })
+      return res.status(500).send({message : 'Error' });
     }
       
     req.login(user, function(err){
@@ -372,9 +371,9 @@ router.post('/adminLogin', function(req, res, next) {
                 role: req.user.role,
                 images: req.user.images
                 }) ;        
-    })
+    });
   })(req, res, next);
-})
+});
 
 
 
