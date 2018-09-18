@@ -312,11 +312,11 @@ router.post('/fblogin', function(req, res, next) {
 
 router.post('/login',
 	passport.authenticate('local', { failureRedirect: '/users/loginError' }), function (req, res) {
-    console.log(user)
-    if (!user) {
+    console.log(req.user)
+    if (!req.user) {
       return res.status(500).send({message : 'Error: not user' });
     }
-          if (user.accountStatus === 'inactive') {
+          if (req.user.accountStatus === 'inactive') {
       return res.status(500).send({message : 'Error' });
         }
     

@@ -175,7 +175,7 @@ function login() {
         sessionStorage.role = data.role
         sessionStorage.images = data.images
         
-        window.location.href = sessionStorage.role + ".html";
+     //   window.location.href = sessionStorage.role + ".html";
         
     }
         })
