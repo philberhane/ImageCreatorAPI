@@ -274,11 +274,13 @@ return done(null, false, {message: 'this account does not exist'});
 
 
 passport.serializeUser(function (user, done) {
-	done(null, user);
+	done(null, user._id);
 });
 
-passport.deserializeUser(function(user, done) {
-  done(null, user);
+passport.deserializeUser(function (id, done) {
+	User.getUserById(id, function (err, user) {
+		done(err, user);
+	});
 });
 
 
