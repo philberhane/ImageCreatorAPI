@@ -57,7 +57,6 @@ exports.RequestError = RequestError;
 function AuthenticationError(message) {
     this.name = "AuthenticationError";
     this.message = message || "Not possible to authenticate";
-    console.log(message)
 }
 util.inherits(AuthenticationError, APIError);
 exports.AuthenticationError = AuthenticationError;
