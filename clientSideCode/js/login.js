@@ -169,7 +169,7 @@ function login() {
     }).then(function(data) {
         console.log(data)
         if (data.message.indexOf('Error') === 0) {
-        //    window.location.href = "loginError.html";
+            window.location.href = "loginError.html";
         } else {
         sessionStorage.id = data.id
         sessionStorage.role = data.role

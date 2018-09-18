@@ -359,7 +359,7 @@ router.post('/login', function(req, res, next) {
     if (req.body.password === user.password) {
          return res.status(200).send({
                 message: 'Success',
-                id: req.user.id,
+                id: req.user._id,
                 role: req.user.role,
                 images: req.user.images
                 })     
