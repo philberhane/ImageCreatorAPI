@@ -235,7 +235,7 @@ router.post('/register', function (req, res) {
 });
 			
 
-passport.use(new LocalStrategy({
+passport.use('local', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
         usernameField : 'email',
         passwordField : 'password',
@@ -264,7 +264,7 @@ passport.use(new LocalStrategy({
 
 
 passport.serializeUser(function (user, done) {
-	done(null, user.id);
+	done(null, user._id);
 });
 
 passport.deserializeUser(function (id, done) {
