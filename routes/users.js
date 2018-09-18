@@ -82,7 +82,7 @@ router.post('/forgotPassword', function (req, res) {
         var code = Math.floor(Math.random()*90000) + 10000;
     // Store the code to the user object
         User.update({email: req.body.email}, {
-    code: code;
+    code: code
     
 }, function(err, affected, resp) {
 }) 
