@@ -22,6 +22,7 @@ router.get('/loginError', function (req, res) {
 router.post('/verifyCode', function (req, res) {
     
     User.findOne({code: req.body.code}, function (err, user)   {
+        console.log(user)
     // Generate a JSON response reflecting authentication status
     if (!user) {
       return res.status(500).send({message : 'Error: This code is incorrect!' });
