@@ -274,7 +274,7 @@ return done(null, false, {message: 'this account does not exist'});
 
 
 passport.serializeUser(function (user, done) {
-	done(null, user.id);
+	done(null, user);
 });
 
 passport.deserializeUser(function (id, done) {
