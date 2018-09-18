@@ -242,21 +242,32 @@ passport.use('local', new LocalStrategy({
         passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
     },
     function(req, email, password, done) {
-    	User.findOne({email: req.body.email}, function (err, user) {
-			if (err) throw err;
-			if (!user) {
-				return done(null, false, { message: 'Error: Unknown User' });
-			}
+        if (email)
+            email = email.toLowerCase(); // Use lower-case e-mails to avoid case-sensitive e-mail matching
 
-			User.comparePassword(password, user.password, function (err, isMatch) {
-				if (err) throw err;
-				if (isMatch) {
-					return done(null, user);
-				} else {
-					return done(null, false, { message: 'Error: Invalid password' });
-				}
-			});
-		});
+        // asynchronous
+        process.nextTick(function() {
+            User.findOne({ 'email' :  email }, function(err, user) {
+                // if there are any errors, return the error
+                if (err)
+                    return done(err);
+
+                // if no user is found, return the message
+                if (!user)
+return done(null, false, {message: 'this account does not exist'});
+                User.comparePassword(password, user.password, function (err, isMatch) {
+      if(err) throw err;
+      if(isMatch) {
+        return done(null, user);
+      } else {
+        return done(null, false, {message: 'oops! wrong password! try again'});
+      }
+    });
+
+                // all is well, return user
+              
+            });
+        });
 
     }));
 
@@ -264,7 +275,7 @@ passport.use('local', new LocalStrategy({
 
 
 passport.serializeUser(function (user, done) {
-	done(null, user._id);
+	done(null, user.id);
 });
 
 passport.deserializeUser(function (id, done) {
@@ -339,7 +350,7 @@ router.post('/getUsers', function(req, res, next) {
 
 
 router.post('/login', function(req, res, next) {
-  passport.authenticate('local', function(err, user, info) {
+  passport.authenticate('basic', {session: false}), function(err, user, info) {
       console.log(user)
     if (err) {
       return next(err); // will generate a 500 error
@@ -364,7 +375,7 @@ router.post('/login', function(req, res, next) {
                 images: req.user.images
                 }) ;        
     });
-  })(req, res, next);
+  }(req, res, next);
 });
 
 
