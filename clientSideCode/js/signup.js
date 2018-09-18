@@ -38,11 +38,45 @@ window.onclick = function(event) {
 }
 
 function connect() {
-    document.getElementById('instaUser').value = document.getElementById('inputUser').value
+   // document.getElementById('instaUser').value = document.getElementById('inputUser').value
+    
+  //  document.getElementById('instaPass').value = document.getElementById('inputPass').value
+    
+ //   modal.style.display = "none";
+    var input = {
+        instaUser: document.getElementById('inputUser').value,
+        instaPass: document.getElementById('inputPass').value
+    }
+    
+    fetch('https://lisathomasapi.herokuapp.com/routes/users/testIGLogin', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        document.getElementById('serverMessage').innerText = data.message
+    
+        
+              if (data.message.indexOf('Success') === 0) {
+         document.getElementById('instaUser').value = document.getElementById('inputUser').value
     
     document.getElementById('instaPass').value = document.getElementById('inputPass').value
     
     modal.style.display = "none";
+            
+            document.getElementById('clear2').innerHTML = 'Connected!'
+        
+        
+        } 
+        
+         if (data.message.indexOf('Error') === 0) {
+            document.getElementById('serverMessage').innerText = 'Error: Instagram Username/Password is invalid! Please Try again.'
+            document.getElementById('serverMessage').style.color = '#fa755a'
+        }
+    })
+    
+    
     
 }
 
@@ -50,7 +84,10 @@ const signUp = () => {
     
     const input = {
         name: document.getElementById('name').value,
+        password: document.getElementById('password').value,
+        password2: document.getElementById('password2').value,
         email : document.getElementById('email').value,
+        fbemail : document.getElementById('fbemail').value,
         instaUser: document.getElementById('instaUser').value,
         instaPass: document.getElementById('instaPass').value,
         role: 'stylist',

@@ -25,8 +25,8 @@ let options = {
 var request = require('request');
 var fs = require('fs');
 //mongoose.connect(process.env.MONGODB_URI);
-mongoose.connect(process.env.MONGODB_URI);
-var db = mongoose.connection;
+//mongoose.connect(process.env.MONGODB_URI);
+//var db = mongoose.connection;
 
 
 //Init App

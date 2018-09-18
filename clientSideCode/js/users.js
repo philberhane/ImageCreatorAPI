@@ -1,4 +1,4 @@
-/*if (!sessionStorage.id) {
+if (!sessionStorage.id) {
 // similar behavior as clicking on a link
 window.location.href = "login.html";   
 }
@@ -19,7 +19,7 @@ function redirect(t) {
     } else {
         window.location.href = t
     }
-} */
+} 
 
 
         if ($(window).width() <= 616) {

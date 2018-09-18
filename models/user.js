@@ -21,13 +21,16 @@ var UserSchema = mongoose.Schema({
     instaPass: {
         type: String
     },
-    passwordNumber: {
+    code: {
         type: String
     },
     images: {
         type: Array
     },
     accountStatus: {
+        type: String
+    },
+    fbemail: {
         type: String
     }
 });

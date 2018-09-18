@@ -3,12 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google" content="notranslate">
+<meta http-equiv="Content-Language" content="en">
+
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- Latest compiled and minified CSS -->
 
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Michroma" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
 </head>
 
@@ -17,101 +20,69 @@
       <div class="container">
        <a href="http://lisathomassalon.com"><img class="responsive" src="https://www.lisathomassalon.com/wp-content/uploads/2016/10/logo.png"></a>
        <div id="navbar">
-       <div id="hide">
        <a id="signupNav" href="signup.html">Sign Up</a>
-       <a id="loginNav" href="login.html">Login</a>
-          </div>
           </div>
        </div>
     </div>
+    <input id="userCode" style="display: none">
     
-    <div id="login" style="background-color: #675B65;"><h1 style="font-family: michroma; color: white; font-weight: 1; font-size: 24px">ACCOUNT LOGIN</h1></div>
+    <div id="login" style="background-color: #675B65;"><h1 style="font-family: michroma; color: white; font-weight: 1; font-size: 18px">ACCOUNT LOGIN</h1></div>
     
     <div class="container">
     
     <div style="padding-top: 25px" id="loginForm" >
+    <div class="form-group">
+    <label>Email <span style="color:#951e1f">*</span></label>
+    <input type="email" class="form-control"  id="email" name="email">
+  </div>
+  
+  <div class="form-group">
+    <label>Password <span style="color:#951e1f">*</span></label>
+    <input type="password" class="form-control" id="password" name="password">
+  </div>
     
    <div style="display: none" class="form-group">
     <label>Email</label>
-    <input type="email" class="form-control"  id="email" name="email">
+    <input type="email" class="form-control"  id="fbemail" name="email">
   </div>
-  <label>Please Login using Facebook</label><br>
+  
+  <button id="loginButton">LOG IN</button><br>
+        <p>Forgot your password? <button id="forgotPopup" style="background-color: transparent; border: none; color: #4D4DEE; text-decoration: underline">Click here</button></p>
+  
+  <div style="margin-top: 25px">
+  <label >Or Login using Facebook</label><br>
   <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
+        </div>
   
   
  
-  <br><button id="loginButton" type="submit">SUBMIT</button>
-    
+  <div id="myModal" class="modal">
+     <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h4>Reset Password</h4>
+    <div id="clear">
+     <p>Please enter your email:</p>
+      <input style="background-color: transparent" placeholder="Email" id="forgotEmail">
+    </div>
+      <p id="serverMessage"></p>
+    <button id="forgotButton" class="signupButton" onclick="sendCode()">Submit</button> 
+    <button class="otherButton" id="cancelButton">Cancel</button>
+  </div>
+        </div>
+   
     
     <p id="server-response"></p>
     </div>
     </div>
-    <footer class="footer">
+   <!-- <footer class="footer">
         <p>COPYRIGHT 2018 LISA THOMAS SALON</p>
-    </footer>
+    </footer>-->
     
 
     <script>
-        if ($(window).width() <= 514) {
-     var select = document.createElement('select')
-        select.id = 'navSelect'
-        var option1 = document.createElement('option')
-        option1.value = 'login.html'
-        option1.innerText = 'LOGIN'
-        var option2 = document.createElement('option')
-        option2.value = 'signup.html'
-        option2.innerText = 'SIGNUP'
-        select.appendChild(option1)
-        select.appendChild(option2)
-        select.setAttribute('onchange', 'javascript:location.href = this.value')
-        document.getElementById('hide').innerHTML = ''
-        document.getElementById('hide').appendChild(select)
-  }
- else {
-    document.getElementById('hide').innerHTML = ''
-     var anchor1 = document.createElement('a')
-     anchor1.id = 'loginNav'
-     anchor1.setAttribute('href', 'login.html')
-     anchor1.innerText = 'Login'
-     var anchor2 = document.createElement('a')
-     anchor2.id = 'signupNav'
-     anchor2.setAttribute('href', 'signup.html')
-     anchor2.innerText = 'Sign Up'
-     document.getElementById('hide').appendChild(anchor2)
-     document.getElementById('hide').appendChild(anchor1)
- }
-        
-        $(window).resize(function() {
-  if ($(window).width() <= 514) {
-     var select = document.createElement('select')
-        select.id = 'navSelect'
-        var option1 = document.createElement('option')
-        option1.value = 'login.html'
-        option1.innerText = 'LOGIN'
-        var option2 = document.createElement('option')
-        option2.value = 'signup.html'
-        option2.innerText = 'SIGNUP'
-        select.appendChild(option1)
-        select.appendChild(option2)
-        select.setAttribute('onchange', 'javascript:location.href = this.value')
-        document.getElementById('hide').innerHTML = ''
-        document.getElementById('hide').appendChild(select)
-  }
- else {
-    document.getElementById('hide').innerHTML = ''
-     var anchor1 = document.createElement('a')
-     anchor1.id = 'loginNav'
-     anchor1.setAttribute('href', 'login.html')
-     anchor1.innerText = 'Login'
-     var anchor2 = document.createElement('a')
-     anchor2.id = 'signupNav'
-     anchor2.setAttribute('href', 'signup.html')
-     anchor2.innerText = 'Sign Up'
-     document.getElementById('hide').appendChild(anchor2)
-     document.getElementById('hide').appendChild(anchor1)
- }
-});
+      
     
 
     </script>

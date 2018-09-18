@@ -7,6 +7,39 @@ window.location.href = sessionStorage.role + ".html";
     
 }
 
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("forgotPopup");
+
+var cancel = document.getElementById("cancelButton");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+    
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+cancel.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
 // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -37,7 +70,7 @@ window.location.href = sessionStorage.role + ".html";
 
   window.onload = function() {
     FB.init({
-      appId      : '716786942016112',
+      appId      : '291738151646105',
       cookie     : true,  // enable cookies to allow the server to access 
                           // the session
       xfbml      : true,  // parse social plugins on this page
@@ -56,9 +89,7 @@ window.location.href = sessionStorage.role + ".html";
     //
     // These three cases are handled in the callback function.
 
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
+    
 
   };
 
@@ -78,18 +109,56 @@ window.location.href = sessionStorage.role + ".html";
     FB.api('/me', {locale: 'en_US', fields: 'name, email'}, function(response) {
       console.log(response);
         
-        document.getElementById('email').value = response.email
-      
+        document.getElementById('fbemail').value = response.email
+       
+        fblogin()
     });
   }
 
+function loginButton() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+}
+
+function fblogin() {
+    
+    
+    const input = {
+        fbemail : document.getElementById('fbemail').value,
+    }
+    
+    
+    fetch('https://lisathomasapi.herokuapp.com/routes/users/fblogin', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        console.log(data)
+        if (data.message === 'Error') {
+            window.location.href = "loginError.html";
+        } else {
+        sessionStorage.id = data.id
+        sessionStorage.role = data.role
+        sessionStorage.images = data.images
+        
+        window.location.href = sessionStorage.role + ".html";
+        
+    }
+        })
+
+    }
+
 function login() {
+    
     
     const input = {
         email : document.getElementById('email').value,
+        password : document.getElementById('password').value
     }
     
-    console.log(input)
     
     fetch('https://lisathomasapi.herokuapp.com/routes/users/login', {
         method: 'POST',
@@ -112,8 +181,95 @@ function login() {
         })
 
     }
-    
-    
 
 
-document.getElementById('loginButton').onclick = login
+
+function sendCode() {
+    
+    const input = {
+        email : document.getElementById('forgotEmail').value
+    }
+    
+    
+    fetch('https://lisathomasapi.herokuapp.com/routes/users/forgotPassword', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        console.log(data)
+        if (data.message === 'Error') {
+            document.getElementById('serverMessage').style.color = '#fa755a'
+            document.getElementById('serverMessage').innerText = data.message
+        } else {
+        // Add Code Area to modal
+        document.getElementById('clear').innerHTML = '<p>We have emailed you a 5-digit code! Please enter it below:</p><br><input id="code" placeholder="Enter Code">'
+        
+        document.getElementById('forgotButton').setAttribute('onclick', 'verifyCode()')
+    }
+        })
+}
+    
+    function verifyCode() {
+        document.getElementById('userCode').value = document.getElementById('code').value
+        const input = {
+        code : document.getElementById('code').value
+    }
+        
+        fetch('https://lisathomasapi.herokuapp.com/routes/users/verifyCode', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        console.log(data)
+        if (data.message === 'Error') {
+            document.getElementById('serverMessage').style.color = '#fa755a'
+            document.getElementById('serverMessage').innerText = data.message
+        } else {
+        // Add Code Area to modal
+        document.getElementById('clear').innerHTML = '<p>You have been successfully verified! Please change your password below:</p><br><input id="password3" placeholder="Enter Password"><br><input id="password4" placeholder="Verify Password">'
+            
+        document.getElementById('forgotButton').setAttribute('onclick', 'changePassword()')
+            
+            
+    }
+        })
+        
+    }
+
+
+function changePassword() {
+    const input = {
+        password3 : document.getElementById('password3').value,
+        password4 : document.getElementById('password4').value,
+        code : document.getElementById('userCode').value
+    }
+    
+    fetch('https://lisathomasapi.herokuapp.com/routes/users/changePassword', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        console.log(data)
+        if (data.message === 'Error') {
+            document.getElementById('serverMessage').style.color = '#fa755a'
+            document.getElementById('serverMessage').innerText = data.message
+        } else {
+        // Add Code Area to modal
+        document.getElementById('myModal').style.display = 'none'
+        
+        document.getElementById('server-response').innerText = 'You have successfully changed your password! Please log in.'
+            
+            
+            
+    }
+        })
+    
+}
+
+

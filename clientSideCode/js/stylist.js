@@ -336,6 +336,11 @@ var logo2 = new fabric.IText('Salon', {
     logo1.setFontFamily('michroma')
     logo2.setFontFamily('pacifico')
     canvas.renderAll()
+    canvas._objects[0].on('selected', function() {
+    canvas.allowTouchScrolling = false
+    
+    console.log('selected')
+})
 }
 
 function selectImg(clicked_id) {
@@ -918,7 +923,7 @@ function saveChanges() {
    
     
     
-    console.log(canvas.toDataURL())
+  //  console.log(canvas.toDataURL())
     
    // canvas.renderAll()
     try {

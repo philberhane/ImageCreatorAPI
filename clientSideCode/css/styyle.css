@@ -373,12 +373,14 @@ background-size:contain;
 }
 
 
+
+
 #resizable {
     color: #EEEEF0;
 }
 
 #image {
-    width: 100%;
+    width: 50%;
     display: none;
 }
 
@@ -507,11 +509,37 @@ background-size:contain;
   }
 }
 
+@media (min-width: 515px) {
+    
+    #mainImg {
+        width: 50%;
+    }
+    
+    #canvas {
+    width: 50%;
+}
+    
+
+}
+
 @media screen and (max-width: 514px) {
     #header {
         background-color: #333333;
     }
     
+    #mainImg {
+        width: 100%;
+    }
+    #image {
+          width: 100%;
+      }
+    
+    #canvas {
+    width: 100%;
+}
+    
+  @media screen and (min-width: 515px) {
+      
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) { 
