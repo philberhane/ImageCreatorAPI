@@ -53,7 +53,7 @@ router.post('/changePassword', function (req, res) {
 	}
     
      User.update({code: req.body.code}, {
-    password: password3;
+    password: password3
     
 }, function(err, affected, resp) {
        return res.status(200).send({
