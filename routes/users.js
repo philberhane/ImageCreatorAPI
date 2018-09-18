@@ -19,109 +19,11 @@ router.get('/loginError', function (req, res) {
 	res.redirect('loginError.html');
 });
 
-router.post('/verifyCode', function (req, res) {
-    
-    User.findOne({code: req.body.code}, function (err, user)   {
-    // Generate a JSON response reflecting authentication status
-    if (!user) {
-      return res.status(500).send({message : 'Error: This code is incorrect!' });
-    } else {
-        return res.status(500).send({message : 'Success' });
-    }  
-        
-    })
-    
-})
-
-
-router.post('/changePassword', function (req, res) {
-    var code = req.body.code;
-    var password3 = req.body.password3;
-    var password4 = req.body.password4;
-    
-    req.checkBody('password3', 'Password is required!').notEmpty();
-	req.checkBody('password4', 'Passwords do not match!').equals(req.body.password);
-	
-
-	var errors = req.validationErrors();
-
-	if (errors) {
-        console.log(errors)
-		return res.status(500).send({
-			message: 'Error: ' + errors[0].msg
-		});
-	}
-    
-     User.update({code: req.body.code}, {
-    password: password3
-    
-}, function(err, affected, resp) {
-       return res.status(200).send({
-                message: 'Success'
-                })  
-}) 
-    
-    
-    
-})
-
-
-router.post('/forgotPassword', function (req, res) {
-    
-    User.findOne({email: req.body.email}, function (err, user)  {
-    // Generate a JSON response reflecting authentication status
-    if (!user) {
-      return res.status(500).send({message : 'Error: No user matches this email' });
-    }
-    if (user.accountStatus === 'inactive')
-        {
-      return res.status(500).send({message : 'Error: No user matches this email' });
-    }
-      
-    // Generate a random six digit code
-        var code = Math.floor(Math.random()*90000) + 10000;
-    // Store the code to the user object
-        User.update({email: req.body.email}, {
-    code: code
-    
-}, function(err, affected, resp) {
-}) 
-    // Email the user the code
-        var transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
-  auth: {
-    user: 'lisathomassalonemailer@gmail.com',
-    pass: 'LisaThomas1!'
-  }
-});
-        
-
-var mailOptions = {
-  from: 'lisathomassalonemailer@gmail.com',
-  to: req.body.email,
-  subject: "Here's your code",
-  text: "Forgot your password? Use this code to reset it: \n" + code
-};
-        transporter.sendMail(mailOptions, function(error, info){
-  if (error) {
-    console.log(error);
-  } else {
-      console.log('Emails Sent!')
-      return res.status(200).send({
-                message: 'Success'
-                })
-  }
-});
-    });
-  })
-    
-
 
 
 router.post('/testIGLogin', function (req, res) {
     
+    console.log('connected to server')
     var instaUser = req.body.instaUser;
     var instaPass = req.body.instaPass;
     
@@ -151,7 +53,7 @@ process.on('unhandledRejection', function(reason, p) {
     res.status(500).send({
                 message: 'Error'
                 })
-})
+});
     
     
           })
@@ -172,6 +74,8 @@ router.post('/register', function (req, res) {
 	// Validation
 	req.checkBody('name', 'Name is required!').notEmpty();
 	req.checkBody('email', 'Email is required!').notEmpty();
+    req.checkBody('instaUser', 'Instagram Username is required!').notEmpty();
+    req.checkBody('instaPass', 'Instagram Password is required!').notEmpty();
 	req.checkBody('email', 'Email is not valid!').isEmail();
     req.checkBody('password', 'Password is required!').notEmpty();
 	req.checkBody('password2', 'Passwords do not match!').equals(req.body.password);
@@ -196,7 +100,7 @@ router.post('/register', function (req, res) {
                     
                     if (mail) {
                         return res.status(500).send({
-			             message: 'Error: A user with the email ' + mail.email + ' already exists! Try another.'
+			             message: `Error: A user with the email ${mail.email} already exists! Try another.`
 		              });
                     }
 				
@@ -254,7 +158,7 @@ passport.use('local', new LocalStrategy({
                 // if no user is found, return the message
                 if (!user)
 return done(null, false, {message: 'this account does not exist'});
-                User.comparePassword(password, user.password, function (err, isMatch) {
+                User.comparePassword(password, user.password, (err, isMatch) => {
       if(err) throw err;
       if(isMatch) {
         return done(null, user);
@@ -268,7 +172,7 @@ return done(null, false, {message: 'this account does not exist'});
             });
         });
 
-    }))
+    }));
 
 
 
@@ -281,11 +185,12 @@ passport.deserializeUser(function (id, done) {
 	User.getUserById(id, function (err, user) {
 		done(err, user);
 	});
-})
+});
 
 
-router.post('/fblogin', function(req, res, next) {
-      User.findOne({email: req.body.fbemail},  function (err, user)  {
+router.post('/login', function(req, res, next) {
+    console.log(req.body)
+      User.findOne({email: req.body.email},  (err, user) =>  {
     console.log('find user')
     // Generate a JSON response reflecting authentication status
     if (!user) {
@@ -308,27 +213,12 @@ router.post('/fblogin', function(req, res, next) {
                 }) ;        
     });
   })
-})
-
-router.post('/login',
-	passport.authenticate('local', { failureRedirect: '/users/loginError' }), function (req, res) {
-          if (user.accountStatus === 'inactive')
-        {
-      return res.status(500).send({message : 'Error' });
-        }
-    
-    return res.status(200).send({
-                message: 'Success',
-                id: req.user.id,
-                role: req.user.role,
-                images: req.user.images
-                })     
-	})
+});
 
 
 router.post('/getUsers', function(req, res, next) {
   
-        User.find({}, function (err, arrayOfUsers) {
+        User.find({},  (err, arrayOfUsers) => {
           if (err) {
                 return handleError(err);
             }
@@ -338,7 +228,7 @@ router.post('/getUsers', function(req, res, next) {
         })
             
         })
-})
+});
 
 
 
@@ -389,7 +279,7 @@ router.post('/changeStatus', function(req, res, next) {
 
 
 router.post('/uploadIG', function (req, res) {
-    User.find({_id: req.body.id}, function (err, user) {
+    User.find({_id: req.body.id},  (err, user) => {
           if (err) {
                 return handleError(err);
             }
@@ -402,7 +292,7 @@ router.post('/uploadIG', function (req, res) {
             var rs = req.body.rs
             console.log(rs)
         
-        var imgConvert = require('image-convert');
+        let imgConvert = require('image-convert');
 imgConvert.fromURL({
     url: source,
     quality: 100,//default 100
