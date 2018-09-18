@@ -312,6 +312,7 @@ router.post('/fblogin', function(req, res, next) {
 
 router.post('/login',
 	passport.authenticate('local', { failureRedirect: '/users/loginError' }), function (req, res) {
+    console.log(user)
     if (!user) {
       return res.status(500).send({message : 'Error: not user' });
     }
