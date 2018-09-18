@@ -56,10 +56,11 @@ router.post('/changePassword', function (req, res) {
     password: password3
     
 }, function(err, affected, resp) {
-       return res.status(200).send({
+       
+}) 
+    return res.status(200).send({
                 message: 'Success'
                 })  
-}) 
     
     
     
