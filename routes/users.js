@@ -22,7 +22,6 @@ router.get('/loginError', function (req, res) {
 router.post('/verifyCode', function (req, res) {
     
     User.findOne({code: req.body.code}, function (err, user)   {
-        console.log(user)
     // Generate a JSON response reflecting authentication status
     if (!user) {
       return res.status(500).send({message : 'Error: This code is incorrect!' });
@@ -311,7 +310,7 @@ router.post('/fblogin', function(req, res, next) {
   })
 });
 
-router.post('/login',
+/*router.post('/login',
 	passport.authenticate('local', { failureRedirect: '/users/loginError' }), function (req, res) {
     console.log(req.user)
     if (!req.user) {
@@ -327,7 +326,7 @@ router.post('/login',
                 role: req.user.role,
                 images: req.user.images
                 })     
-	})
+	}) */
 
 
 router.post('/getUsers', function(req, res, next) {
@@ -349,8 +348,9 @@ router.post('/getUsers', function(req, res, next) {
 
 
 
-router.post('/adminLogin', function(req, res, next) {
+router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
+      console.log(user)
     if (err) {
       return next(err); // will generate a 500 error
     }
