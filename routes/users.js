@@ -242,6 +242,7 @@ passport.use('local', new LocalStrategy({
         passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
     },
     function(req, email, password, done) {
+    console.log(req)
         if (email)
             email = email.toLowerCase(); // Use lower-case e-mails to avoid case-sensitive e-mail matching
 
@@ -275,7 +276,7 @@ return done(null, false, {message: 'this account does not exist'});
 
 
 passport.serializeUser(function (user, done) {
-	done(null, user._id);
+	done(null, user.id);
 });
 
 passport.deserializeUser(function (id, done) {
