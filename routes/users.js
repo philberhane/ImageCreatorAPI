@@ -40,7 +40,7 @@ router.post('/changePassword', function (req, res) {
     var password4 = req.body.password4;
     
     req.checkBody('password3', 'Password is required!').notEmpty();
-	req.checkBody('password4', 'Passwords do not match!').equals(req.body.password);
+	req.checkBody('password4', 'Passwords do not match!').equals(req.body.password3);
 	
 
 	var errors = req.validationErrors();

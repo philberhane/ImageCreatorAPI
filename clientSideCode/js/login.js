@@ -137,7 +137,7 @@ function fblogin() {
         return response.json();
     }).then(function(data) {
         console.log(data)
-        if (data.message === 'Error') {
+        if (data.message.indexOf('Error') === 0) {
             window.location.href = "loginError.html";
         } else {
         sessionStorage.id = data.id
@@ -168,7 +168,7 @@ function login() {
         return response.json();
     }).then(function(data) {
         console.log(data)
-        if (data.message === 'Error') {
+        if (data.message.indexOf('Error') === 0) {
             window.location.href = "loginError.html";
         } else {
         sessionStorage.id = data.id
@@ -199,12 +199,12 @@ function sendCode() {
         return response.json();
     }).then(function(data) {
         console.log(data)
-        if (data.message === 'Error') {
+        if (data.message.indexOf('Error') === 0) {
             document.getElementById('serverMessage').style.color = '#fa755a'
             document.getElementById('serverMessage').innerText = data.message
         } else {
         // Add Code Area to modal
-        document.getElementById('clear').innerHTML = '<p>We have emailed you a 5-digit code! Please enter it below:</p><br><input id="code" placeholder="Enter Code">'
+        document.getElementById('clear').innerHTML = '<p>We have emailed you a 5-digit code! Please enter it below:</p><br><input style="background-color: transparent" id="code" placeholder="Enter Code">'
         
         document.getElementById('forgotButton').setAttribute('onclick', 'verifyCode()')
     }
@@ -225,12 +225,12 @@ function sendCode() {
         return response.json();
     }).then(function(data) {
         console.log(data)
-        if (data.message === 'Error') {
+        if (data.message.indexOf('Error') === 0) {
             document.getElementById('serverMessage').style.color = '#fa755a'
             document.getElementById('serverMessage').innerText = data.message
         } else {
         // Add Code Area to modal
-        document.getElementById('clear').innerHTML = '<p>You have been successfully verified! Please change your password below:</p><br><input id="password3" placeholder="Enter Password"><br><input id="password4" placeholder="Verify Password">'
+        document.getElementById('clear').innerHTML = '<p>You have been successfully verified! Please change your password below:</p><br><input id="password3" name="password3" style="background-color: transparent" placeholder="Enter Password" type="password"><br><input id="password4" name="password4" style="background-color: transparent" placeholder="Verify Password" type="password">'
             
         document.getElementById('forgotButton').setAttribute('onclick', 'changePassword()')
             
@@ -256,7 +256,7 @@ function changePassword() {
         return response.json();
     }).then(function(data) {
         console.log(data)
-        if (data.message === 'Error') {
+        if (data.message.indexOf('Error') === 0) {
             document.getElementById('serverMessage').style.color = '#fa755a'
             document.getElementById('serverMessage').innerText = data.message
         } else {
