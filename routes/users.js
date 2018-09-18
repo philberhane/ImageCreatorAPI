@@ -357,6 +357,7 @@ router.post('/login', function(req, res, next) {
     }
       
     if (req.body.password === user.password) {
+        console.log(user)
          return res.status(200).send({
                 message: 'Success',
                 id: req.user._id,
