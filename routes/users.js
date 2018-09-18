@@ -360,9 +360,9 @@ router.post('/login', function(req, res, next) {
         console.log(user)
          return res.status(200).send({
                 message: 'Success',
-                id: req.user._id,
-                role: req.user.role,
-                images: req.user.images
+                id: user._id,
+                role: user.role,
+                images: user.images
                 })     
     } else {
         return res.status(200).send({
