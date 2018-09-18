@@ -350,7 +350,7 @@ router.post('/getUsers', function(req, res, next) {
 
 
 router.post('/login', function(req, res, next) {
-  passport.authenticate('basic', {session: false}, function(err, user, info) {
+  passport.authenticate('local', {session: false}, function(err, user, info) {
     if (err) {
       return next(err); // will generate a 500 error
     }
