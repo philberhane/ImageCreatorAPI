@@ -80,7 +80,7 @@ function connect() {
     
 }
 
-const signUp = () => {
+function signUp() {
     
     const input = {
         name: document.getElementById('name').value,
@@ -123,4 +123,3 @@ const signUp = () => {
     
 }
 
-document.getElementById('signupButton').onclick = signUp

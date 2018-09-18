@@ -30,8 +30,7 @@
       testAPI();
     } else {
       // The person is not logged into your app or we are unable to tell.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
+    
     }
   }
 
@@ -168,7 +167,7 @@
   </div>
        
         <p>Check out our <a href="https://termsfeed.com/privacy-policy/ab379aab054cbef144758aced282c3d3">Privacy Policy</a></p>
-  <button id="signupButton" >REQUEST SIGN UP</button>
+  <button id="signupButton" onclick="signUp()">REQUEST SIGN UP</button>
         <!-- The Modal -->
 <div id="myModal" class="modal">
 
