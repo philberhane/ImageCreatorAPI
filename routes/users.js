@@ -243,12 +243,12 @@ passport.use('local', new LocalStrategy({
     },
     function(req, email, password, done) {
     console.log(req)
-        if (email)
-            email = email.toLowerCase(); // Use lower-case e-mails to avoid case-sensitive e-mail matching
+        if (req.body.email)
+            req.body.email = req.body.email.toLowerCase(); // Use lower-case e-mails to avoid case-sensitive e-mail matching
 
         // asynchronous
         process.nextTick(function() {
-            User.findOne({ 'email' :  email }, function(err, user) {
+            User.findOne({ 'email' :  req.body.email }, function(err, user) {
                 // if there are any errors, return the error
                 if (err)
                     return done(err);
