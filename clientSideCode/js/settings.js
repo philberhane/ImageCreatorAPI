@@ -264,10 +264,10 @@ function connect() {
         
               if (data.message.indexOf('Success') === 0) {
          
-    
+    updateInstagram()
     modal.style.display = "none";
             
-            document.getElementById('clear2').innerHTML = 'Connected!'
+            
         
         
         } 
@@ -299,7 +299,7 @@ function updateInstagram() {
     }).then(function(response) {
         return response.json();
     }).then(function(data) {
-        document.getElementById('clear2').innerHTML = '<p>Connected!</p><br><p>To connect a different Instagram Account instead, <button style="background-color:transparent; border: none; text-decoration: underline" onclick="modalPopup()">click here</button></p>'
+        document.getElementById('clear2').innerHTML = '<p>Connected!</p><p>To connect a different Instagram Account instead, <button style="background-color:transparent; border: none; text-decoration: underline" onclick="modalPopup()">click here</button></p>'
     })
 }
 
