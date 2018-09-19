@@ -14,6 +14,17 @@ router.get('/register', function (req, res) {
     
 })
 
+router.post('/updateFacebook', function(req, res, next) {
+    User.update({_id: req.body.id}, {
+    fbemail: req.body.fbemail
+    
+}, function(err, affected, resp) {
+       
+}) 
+    return res.status(200).send({message : 'Success'}); 
+    
+})
+
 
 router.post('/getSocial', function(req, res, next) {
     User.findOne({_id: req.body.id}, function (err, user)   {

@@ -130,4 +130,42 @@ fetch('https://lisathomasapi.herokuapp.com/routes/users/getSocial', {
         return response.json();
     }).then(function(data) {
     console.log(data)
+    
+    if (data.message1 !== 'none') {
+        document.getElementById('clear1').innerHTML = '<p>Connected!</p><br><p>To connect a different Facebook Account instead, <button>click here</button></p>'
+    }
+    
+    if (data.message2 !== 'none') {
+        document.getElementById('clear1').innerHTML = '<p>Connected!</p><br><p>To connect a different Instagram Account instead, <button>click here</button></p>'
+    }
+    
+    
 })
+
+
+
+
+
+
+
+function fbLogoutUser() {
+    FB.getLoginStatus(function(response) {
+        if (response && response.status === 'connected') {
+            FB.logout(function(response) {
+              //  fbLoginUser()
+            });
+        }
+    });
+}
+
+function fbLoginUser() {
+    FB.getLoginStatus(function(response) {
+        if (response && response.status !== 'connected') {
+            FB.login(function(response) {
+               // document.location.reload();
+            });
+        }
+    });
+}
+
+

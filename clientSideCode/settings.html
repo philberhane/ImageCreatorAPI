@@ -96,11 +96,27 @@
   function testAPI() {
   //  console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', {locale: 'en_US', fields: 'name, email'}, function(response) {
-      console.log(response);
         
-        document.getElementById('fbemail').value = response.email
+        var input = {
+        id:sessionStorage.id,
+        fbemail: response.email
+        }
         
-         document.getElementById('clear1').innerHTML = 'Connected!'
+fetch('https://lisathomasapi.herokuapp.com/routes/users/updateFacebook', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+    console.log(data)
+    
+        document.getElementById('clear1').innerHTML = '<p>Connected!</p><br><p>To connect a different Facebook Account instead, <button>click here</button></p>'
+   
+    
+    
+})
+       
       
     });
   }
