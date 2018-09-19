@@ -14,6 +14,18 @@ router.get('/register', function (req, res) {
     
 })
 
+
+router.post('/getSocial', function(req, res, next) {
+    User.findOne({_id: req.body.id}, function (err, user)   {
+    // Generate a JSON response reflecting authentication status
+    console.log(user.fbemail)
+        console.log(user.instaUser)
+        
+    })
+    
+})
+
+
 // Login Error
 router.get('/loginError', function (req, res) {
 	res.redirect('loginError.html');
@@ -357,7 +369,6 @@ router.post('/login', function(req, res, next) {
     }
       
     if (req.body.password === user.password) {
-        console.log(user)
          return res.status(200).send({
                 message: 'Success',
                 id: user._id,

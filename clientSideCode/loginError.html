@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html >
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
 <meta http-equiv="Content-Language" content="en">
+
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- Latest compiled and minified CSS -->
@@ -23,26 +24,55 @@
           </div>
        </div>
     </div>
+    <input id="userCode" style="display: none">
     
     <div id="login" style="background-color: #675B65;"><h1 style="font-family: michroma; color: white; font-weight: 1; font-size: 18px">ACCOUNT LOGIN</h1></div>
     
     <div class="container">
     
     <div style="padding-top: 25px" id="loginForm" >
+    <div class="form-group">
+    <label>Email <span style="color:#951e1f">*</span></label>
+    <input type="email" class="form-control"  id="email" name="email">
+  </div>
+  
+  <div class="form-group">
+    <label>Password <span style="color:#951e1f">*</span></label>
+    <input type="password" class="form-control" id="password" name="password">
+  </div>
     
    <div style="display: none" class="form-group">
     <label>Email</label>
-    <input type="email" class="form-control"  id="email" name="email">
+    <input type="email" class="form-control"  id="fbemail" name="email">
   </div>
-  <label>Please Login using Facebook</label><br>
+  
+  <button id="loginButton" onclick="login()">LOG IN</button><br>
+        <p>Forgot your password? <button id="forgotPopup" style="background-color: transparent; border: none; color: black; text-decoration: underline; font-family: Times New Roman; font-size: 16px">Click here</button></p>
+  
+  <div style="margin-top: 25px">
+  <label >Or Login using Facebook</label><br>
   <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
+        </div>
   
   
  
-  <br><button id="loginButton" type="submit">SUBMIT</button>
+  <div id="myModal" class="modal">
+     <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h4>Reset Password</h4>
+    <div id="clear">
+     <p>Please enter your email:</p>
+      <input style="background-color: transparent" placeholder="Email" id="forgotEmail">
+    </div>
+      <p id="serverMessage"></p>
+    <button id="forgotButton" class="signupButton" onclick="sendCode()">Submit</button> 
+    <button class="otherButton" id="cancelButton">Cancel</button>
+  </div>
+        </div>
+   
     <p id="loginError">Error: There was an error with your login! Please try again.</p>
-    
     <p id="server-response"></p>
     </div>
     </div>
@@ -52,7 +82,7 @@
     
 
     <script>
-     
+      
     
 
     </script>

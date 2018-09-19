@@ -1,20 +1,32 @@
 <!DOCTYPE html>
-<html >
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8">
 <meta name="google" content="notranslate">
 <meta http-equiv="Content-Language" content="en">
-<link rel="stylesheet" type="text/css" href="css/style.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.5.0/fabric.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/styyle.css">
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Pacifico">
+          <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- Latest compiled and minified CSS -->
 
+
+
+<link href="https://cdn.jsdelivr.net/foundation/5.5.0/css/foundation.css">
+<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+
+
+
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Michroma" />
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
   <script>
   // This is called with the results from from FB.getLoginStatus().
@@ -102,103 +114,68 @@
            
            
 </script>
-   <div id="header">
+ 
+  <script src="js/jquery-ui.min.js"></script>
+   <script src="js/jquery.ui.touch-punch.min.js"></script>
+ 
+   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+   
+     <div id="header">
       <div class="container">
        <a href="http://lisathomassalon.com"><img class="responsive" src="https://www.lisathomassalon.com/wp-content/uploads/2016/10/logo.png"></a>
        <div id="navbar">
        <div id="hide">
-       <a id="loginNav" href="login.html">Login</a>
+       <div class="" id="hideTho">
+           
+       </div>
           </div>
+          
           </div>
        </div>
     </div>
     
-    <div id="signUp" style="background-color: #675B65;"><h1 style="font-family: michroma; color: white; font-weight: 1; font-size: 18px">SIGN UP</h1></div>
-    <p></p>
+    
+    <div id="login" style="background-color: #675B65;"><h1 style="font-family: michroma; color: white; font-weight: 1;font-size: 18px">SETTINGS</h1></div>
     
     <div style="padding-top: 25px" id="signupForm">
     <div class="container">
-     
-    <div class="form-group">
-    <label>Name <span style="color:#951e1f">*</span></label><br>
-    <input type="text" class="form-control" id="name" name="name" >
-  </div>
-
-   <div class="form-group">
-    <label>Email <span style="color:#951e1f">*</span></label>
-    <input type="email" class="form-control"  id="email" name="email">
-  </div>
-  
-  <div class="form-group" style="display: none">
-    <label>Email <span style="color:#951e1f">*</span></label>
-    <input type="email" class="form-control"  id="fbemail" name="fbemail">
-  </div>
-  
-  <div class="form-group">
-    <label>Password <span style="color:#951e1f">*</span></label>
-    <input type="password" class="form-control" id="password" name="password">
-  </div>
-  <div class="form-group">
-    <label>Confirm Password <span style="color:#951e1f">*</span></label>
-    <input type="password" class="form-control" id="password2" name="password2">
-  </div>
-  
-  <div class="form-group" id="formGroupFB">
-     <label>Please Connect your Facebook Account (Optional)</label><br>
+    
+     <div class="form-group" id="formGroupFB">
+     <label>Please Connect your Facebook Account</label><br>
      <div id="clear1">
     <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
     </div>
         </div>
     <div class="form-group" id="formGroupIG">
-    <label>Please Connect your Instagram Account (Optional)</label><br>
+    <label>Please Connect your Instagram Account</label><br>
     <div id="clear2">
     <button id="IGPopUp" style="color: white; background-color: #D12798; border: none; font-size: 11px; font-weight: bold; padding-top: 2px; padding-bottom: 2px; padding-right: 6px; padding-left: -3px;"><i style="color: #D12798; background-color: white; font-weight: bold; padding: 2px 4px" class="fa fa-instagram"></i> Log In</button>
     </div>
         </div>
- 
-  <div class="form-group" style="display: none">
-    <label>Instagram Username <span style="color:#951e1f">*</span></label>
-    <input type="text" class="form-control" id="instaUser" name="instaUser">
-  </div>
-  <div class="form-group" style="display: none">
-    <label>Instagram Password <span style="color:#951e1f">*</span></label>
-    <input type="password" class="form-control" id="instaPass" name="instaPass">
-  </div>
-       
-        <p>Check out our <a href="https://termsfeed.com/privacy-policy/ab379aab054cbef144758aced282c3d3">Privacy Policy</a></p>
-  <button id="signupButton" onclick="signUp()">REQUEST SIGN UP</button>
-        <!-- The Modal -->
+   
+    <!-- The Modal -->
 <div id="myModal" class="modal">
 
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-    <h4>Connect your Instagram</h4>
-      <input style="background-color: transparent" placeholder="Username" id="inputUser">
-      
-      <input style="background-color: transparent" placeholder="Password" type="password" id="inputPass">
-      <p id="serverMessage"></p>
-    <button class="signupButton" onclick="connect()">Connect</button> 
+    <h4>Add a Caption</h4>
+      <textarea id="textArea"></textarea>
+      <img id="modalPic" style="width: 100%">
+    <button class="styledButton" onclick="sendToIG()">Upload</button> 
     <button class="otherButton" id="cancelDeletion">Cancel</button>
   </div>
 
 </div>
-    
-    <p id="server-response"></p>
+   
+        </div>
     </div>
-    </div>
-    <footer class="footer" style="display: none">
-        <p>COPYRIGHT 2018 LISA THOMAS SALON</p>
-    </footer>
-  <script>
-        
     
-
-    </script>  
-
-    
-<script src="js/signup.js"></script>
+<script src="js/settings.js"></script>
+  
     </body>
     
 </html>

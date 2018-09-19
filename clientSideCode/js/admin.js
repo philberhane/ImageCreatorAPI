@@ -1,4 +1,4 @@
-if (!sessionStorage.id) {
+/*if (!sessionStorage.id) {
 // similar behavior as clicking on a link
 window.location.href = "adminlogin.html";   
 }
@@ -8,14 +8,14 @@ if (sessionStorage.role !== 'admin') {
     } else {
         window.location.href = "adminlogin.html"; 
     }
-} 
+} */
 
 function redirect(t) {
     if (t === 'logout') {
         delete sessionStorage.id
     delete sessionStorage.images
     delete sessionStorage.role
-    window.location.href = "adminlogin.html";
+    window.location.href = "login.html";
     } else {
         window.location.href = t
     }

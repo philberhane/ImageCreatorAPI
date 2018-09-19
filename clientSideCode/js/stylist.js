@@ -1,4 +1,4 @@
-if (!sessionStorage.id) {
+/*if (!sessionStorage.id) {
 // similar behavior as clicking on a link
 window.location.href = "login.html";
 } 
@@ -10,6 +10,88 @@ if (sessionStorage.role !== 'stylist') {
         window.location.href = "login.html"; 
     }    
 }
+*/
+
+if ($(window).width() <= 616) {
+     var select = document.createElement('select')
+        select.id = 'navSelect'
+        var option1 = document.createElement('option')
+        option1.value = 'admin.html'
+        option1.innerText = 'DASHBOARD'
+            
+        var option2 = document.createElement('option')
+        option2.value = 'users.html'
+        option2.innerText = 'USERS'
+            
+        var option3 = document.createElement('option')
+        option3.value = 'logout'
+        option3.innerText = 'LOGOUT'
+        
+        select.appendChild(option1)
+        select.appendChild(option2)
+        select.appendChild(option3)
+        select.setAttribute('onchange', 'redirect(this.value)')
+        document.getElementById('hideTho').innerHTML = ''
+        document.getElementById('hideTho').appendChild(select)
+  }
+ else {
+    document.getElementById('hideTho').innerHTML = ''
+     var anchor1 = document.createElement('a')
+     anchor1.id = 'loginNav'
+     anchor1.setAttribute('href', 'stylist.html')
+     anchor1.innerText = 'Dashboard'
+     var anchor2 = document.createElement('a')
+     anchor2.id = 'signupNav'
+     anchor2.setAttribute('href', 'settings.html')
+     anchor2.innerText = 'Settings'
+     var anchor3 = document.createElement('a')
+     anchor3.id = 'logoutNav'
+     anchor3.setAttribute('onclick', 'logout()')
+     anchor3.innerText = 'Logout'
+     document.getElementById('hideTho').appendChild(anchor1)
+     document.getElementById('hideTho').appendChild(anchor2)
+     document.getElementById('hideTho').appendChild(anchor3)
+ }
+        
+        $(window).resize(function() {
+  if ($(window).width() <= 616) {
+     var select = document.createElement('select')
+        select.id = 'navSelect'
+        var option1 = document.createElement('option')
+        option1.value = 'stylist.html'
+        option1.innerText = 'DASHBOARD'
+        var option2 = document.createElement('option')
+        option2.value = 'settings.html'
+        option2.innerText = 'SETTINGS'
+      var option3 = document.createElement('option')
+        option3.value = 'logout'
+        option3.innerText = 'LOGOUT'
+        select.appendChild(option1)
+        select.appendChild(option2)
+      select.appendChild(option3)
+        select.setAttribute('onchange', 'redirect(this.value)')
+        document.getElementById('hideTho').innerHTML = ''
+        document.getElementById('hideTho').appendChild(select)
+  }
+ else {
+    document.getElementById('hideTho').innerHTML = ''
+     var anchor1 = document.createElement('a')
+     anchor1.id = 'loginNav'
+     anchor1.setAttribute('href', 'stylist.html')
+     anchor1.innerText = 'Dashboard'
+     var anchor2 = document.createElement('a')
+     anchor2.id = 'signupNav'
+     anchor2.setAttribute('href', 'settings.html')
+     anchor2.innerText = 'Settings'
+     var anchor3 = document.createElement('a')
+     anchor3.id = 'logoutNav'
+     anchor3.setAttribute('onclick', 'logout()')
+     anchor3.innerText = 'Logout'
+     document.getElementById('hideTho').appendChild(anchor1)
+     document.getElementById('hideTho').appendChild(anchor2)
+     document.getElementById('hideTho').appendChild(anchor3)
+ }
+});
 
 
 
@@ -19,6 +101,17 @@ function dope() {
 }
 
 
+
+function redirect(t) {
+    if (t === 'logout') {
+        delete sessionStorage.id
+    delete sessionStorage.images
+    delete sessionStorage.role
+    window.location.href = "login.html";
+    } else {
+        window.location.href = t
+    }
+} 
 
 
 // Basically create images for each number, and make the big image the first image's src

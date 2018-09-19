@@ -7,6 +7,26 @@ window.location.href = sessionStorage.role + ".html";
     
 }
 
+function fbLogoutUser() {
+    FB.getLoginStatus(function(response) {
+        if (response && response.status === 'connected') {
+            FB.logout(function(response) {
+              //  fbLoginUser()
+            });
+        }
+    });
+}
+
+function fbLoginUser() {
+    FB.getLoginStatus(function(response) {
+        if (response && response.status !== 'connected') {
+            FB.login(function(response) {
+               // document.location.reload();
+            });
+        }
+    });
+}
+
 // Get the modal
 var modal = document.getElementById('myModal');
 
@@ -53,8 +73,7 @@ window.onclick = function(event) {
       testAPI();
     } else {
       // The person is not logged into your app or we are unable to tell.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
+      
     }
   }
 
@@ -106,7 +125,7 @@ window.onclick = function(event) {
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
   //  console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', {locale: 'en_US', fields: 'name, email'}, function(response) {
+    FB.api('/me', {locale: 'en_US', fields: 'email'}, function(response) {
       console.log(response);
         
         document.getElementById('fbemail').value = response.email
@@ -138,6 +157,7 @@ function fblogin() {
     }).then(function(data) {
         console.log(data)
         if (data.message.indexOf('Error') === 0) {
+            fbLogoutUser()
             window.location.href = "loginError.html";
         } else {
         sessionStorage.id = data.id
