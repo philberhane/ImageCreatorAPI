@@ -18,13 +18,25 @@ router.get('/register', function (req, res) {
 router.post('/getSocial', function(req, res, next) {
     User.findOne({_id: req.body.id}, function (err, user)   {
     // Generate a JSON response reflecting authentication status
+    var fbStatus;
+    var igStatus;
+        
     if (!user.fbemail) {
-        console.log('no facebook attached')
+        fbStatus = 'none'
+    } else {
+        fbStatus = 'exists'
     }
         
     if (!user.instaUser) {
-        console.log('no insta')
+        igStatus = 'none'
+    } else {
+        igStatus = 'exists'
     }
+        
+       return res.status(200).send({message1 : fbStatus, message2: igStatus }); 
+        
+        
+        
     })
     
 })
