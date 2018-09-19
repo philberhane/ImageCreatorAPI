@@ -26,6 +26,19 @@ router.post('/updateFacebook', function(req, res, next) {
 })
 
 
+router.post('/updateInstagram', function(req, res, next) {
+    User.update({_id: req.body.id}, {
+    instaUser: req.body.fbemail,
+    instaPass: req.body.instaPass
+    
+}, function(err, affected, resp) {
+       
+}) 
+    return res.status(200).send({message : 'Success'}); 
+    
+})
+
+
 router.post('/getSocial', function(req, res, next) {
     User.findOne({_id: req.body.id}, function (err, user)   {
     // Generate a JSON response reflecting authentication status

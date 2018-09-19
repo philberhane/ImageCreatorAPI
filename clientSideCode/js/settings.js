@@ -132,11 +132,11 @@ fetch('https://lisathomasapi.herokuapp.com/routes/users/getSocial', {
     console.log(data)
     
     if (data.message1 !== 'none') {
-        document.getElementById('clear1').innerHTML = '<p>Connected!</p><br><p>To connect a different Facebook Account instead, <button>click here</button></p>'
+        document.getElementById('clear1').innerHTML = '<p>Connected!</p><p>To connect a different Facebook Account instead, <button style="background-color:transparent; border: none; text-decoration: underline" onclick="fbLogoutUser()">click here</button></p>'
     }
     
     if (data.message2 !== 'none') {
-        document.getElementById('clear1').innerHTML = '<p>Connected!</p><br><p>To connect a different Instagram Account instead, <button>click here</button></p>'
+        document.getElementById('clear2').innerHTML = '<p>Connected!</p><br><p>To connect a different Instagram Account instead, <button style="background-color:transparent; border: none; text-decoration: underline" onclick="modalPopup()">click here</button></p>'
     }
     
     
@@ -152,7 +152,23 @@ function fbLogoutUser() {
     FB.getLoginStatus(function(response) {
         if (response && response.status === 'connected') {
             FB.logout(function(response) {
-              //  fbLoginUser()
+                var input = {
+        id:sessionStorage.id,
+        fbemail: null
+        }
+        
+fetch('https://lisathomasapi.herokuapp.com/routes/users/updateFacebook', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+   
+   fbLoginUser()
+    
+    
+})
             });
         }
     });
@@ -162,10 +178,129 @@ function fbLoginUser() {
     FB.getLoginStatus(function(response) {
         if (response && response.status !== 'connected') {
             FB.login(function(response) {
-               // document.location.reload();
+               var input = {
+        id:sessionStorage.id,
+        fbemail: response.email
+        }
+        
+fetch('https://lisathomasapi.herokuapp.com/routes/users/updateFacebook', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+    console.log(data)
+    
+        document.getElementById('clear1').innerHTML = '<p>Connected!</p><p>To connect a different Facebook Account instead, <button style="background-color:transparent; text-decoration: underline" onclick="fbLogoutUser()">click here</button></p>'
+   
+    
+    
+})
             });
         }
     });
+}
+
+
+
+
+
+
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("IGPopUp");
+
+var cancel = document.getElementById("cancelDeletion");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+function modalPopup() {
+    modal.style.display = "block";
+}
+
+// When the user clicks the button, open the modal 
+btn.onclick =  modalPopup
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+cancel.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+function connect() {
+   // document.getElementById('instaUser').value = document.getElementById('inputUser').value
+    
+  //  document.getElementById('instaPass').value = document.getElementById('inputPass').value
+    
+ //   modal.style.display = "none";
+    var input = {
+        instaUser: document.getElementById('inputUser').value,
+        instaPass: document.getElementById('inputPass').value
+    }
+    
+    fetch('https://lisathomasapi.herokuapp.com/routes/users/testIGLogin', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        document.getElementById('serverMessage').innerText = data.message
+    
+        
+              if (data.message.indexOf('Success') === 0) {
+         
+    
+    modal.style.display = "none";
+            
+            document.getElementById('clear2').innerHTML = 'Connected!'
+        
+        
+        } 
+        
+         if (data.message.indexOf('Error') === 0) {
+            document.getElementById('serverMessage').innerText = 'Error: Instagram Username/Password is invalid! Please Try again.'
+            document.getElementById('serverMessage').style.color = '#fa755a'
+        }
+    })
+    
+    
+    
+}
+
+
+
+function updateInstagram() {
+    
+    var input = {
+        id: sessionStorage.id,
+        instaUser: document.getElementById('inputUser').value,
+        instaPass: document.getElementById('inputPass').value
+    }
+    
+    fetch('https://lisathomasapi.herokuapp.com/routes/users/updateInstagram', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        document.getElementById('clear2').innerHTML = '<p>Connected!</p><br><p>To connect a different Instagram Account instead, <button style="background-color:transparent; border: none; text-decoration: underline" onclick="modalPopup()">click here</button></p>'
+    })
 }
 
 
