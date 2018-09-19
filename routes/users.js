@@ -28,7 +28,7 @@ router.post('/updateFacebook', function(req, res, next) {
 
 router.post('/updateInstagram', function(req, res, next) {
     User.update({_id: req.body.id}, {
-    instaUser: req.body.fbemail,
+    instaUser: req.body.instaUser,
     instaPass: req.body.instaPass
     
 }, function(err, affected, resp) {
