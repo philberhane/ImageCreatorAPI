@@ -15,6 +15,13 @@ router.get('/register', function (req, res) {
 })
 
 router.post('/updateFacebook', function(req, res, next) {
+    
+    User.findOne({fbemail: req.body.fbemail}, function (err, user)   {
+        if (user) {
+            return res.status(500).send({message : 'Error: A user with this Facebook Account already exists!'}); 
+        }
+    })
+    
     User.update({_id: req.body.id}, {
     fbemail: req.body.fbemail
     
@@ -27,6 +34,14 @@ router.post('/updateFacebook', function(req, res, next) {
 
 
 router.post('/updateInstagram', function(req, res, next) {
+    
+    User.findOne({instaUser: req.body.instaUser}, function (err, user)   {
+        if (user) {
+            return res.status(500).send({message : 'Error: A user with this Instagram Account already exists!'}); 
+        }
+    })
+    
+    
     User.update({_id: req.body.id}, {
     instaUser: req.body.instaUser,
     instaPass: req.body.instaPass

@@ -1,4 +1,4 @@
-/*if (!sessionStorage.id) {
+if (!sessionStorage.id) {
 // similar behavior as clicking on a link
 window.location.href = "adminlogin.html";   
 }
@@ -8,7 +8,7 @@ if (sessionStorage.role !== 'admin') {
     } else {
         window.location.href = "adminlogin.html"; 
     }
-} */
+} 
 
 function redirect(t) {
     if (t === 'logout') {

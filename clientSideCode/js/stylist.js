@@ -1,4 +1,4 @@
-/*if (!sessionStorage.id) {
+if (!sessionStorage.id) {
 // similar behavior as clicking on a link
 window.location.href = "login.html";
 } 
@@ -10,7 +10,7 @@ if (sessionStorage.role !== 'stylist') {
         window.location.href = "login.html"; 
     }    
 }
-*/
+
 
 if ($(window).width() <= 616) {
      var select = document.createElement('select')
@@ -20,8 +20,8 @@ if ($(window).width() <= 616) {
         option1.innerText = 'DASHBOARD'
             
         var option2 = document.createElement('option')
-        option2.value = 'users.html'
-        option2.innerText = 'USERS'
+        option2.value = 'settings.html'
+        option2.innerText = 'SETTINGS'
             
         var option3 = document.createElement('option')
         option3.value = 'logout'
@@ -966,6 +966,31 @@ window.location.href = 'adminmessage.html'
 }
 
 
+
+function getSocial() {
+    var input = {id:sessionStorage.id}
+fetch('https://lisathomasapi.herokuapp.com/routes/users/getSocial', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+    
+
+    
+    if (data.message2 === 'none') {
+        document.getElementById('stylistMessage').innerText = 'Error: your Instagram account is not connected!'
+    } else {
+        IGPopup()
+    }
+    
+    
+})
+}
+
+
+
 // Get the modal
 var modal = document.getElementById('myModal');
 
@@ -978,8 +1003,10 @@ var cancel = document.getElementById("cancelDeletion");
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
+
+
+function IGPopup() {
+     modal.style.display = "block";
     document.getElementById('modalPic').src = document.getElementById('finalImage').src
 }
 
