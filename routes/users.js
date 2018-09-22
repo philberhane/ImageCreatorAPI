@@ -378,7 +378,7 @@ router.post('/fblogin', function(req, res, next) {
   })
 });
 
-/*router.post('/login',
+router.post('/adminLogin',
 	passport.authenticate('local', { failureRedirect: '/users/loginError' }), function (req, res) {
     console.log(req.user)
     if (!req.user) {
@@ -394,7 +394,7 @@ router.post('/fblogin', function(req, res, next) {
                 role: req.user.role,
                 images: req.user.images
                 })     
-	}) */
+	}) 
 
 
 router.post('/getUsers', function(req, res, next) {
@@ -417,7 +417,7 @@ router.post('/getUsers', function(req, res, next) {
 
 
 router.post('/login', function(req, res, next) {
-  User.findOne({email: req.body.email}, function (err, user)   {
+  User.findOne({email: req.body.email.toLowerCase()}, function (err, user)   {
     // Generate a JSON response reflecting authentication status
     if (!user) {
       return res.status(500).send({message : 'Error' });

@@ -19,11 +19,11 @@ function fbLogoutUser() {
 
 function fbLoginUser() {
     FB.getLoginStatus(function(response) {
-        if (response && response.status !== 'connected') {
+   //     if (response && response.status !== 'connected') {
             FB.login(function(response) {
                // document.location.reload();
             });
-        }
+    //   }
     });
 }
 
