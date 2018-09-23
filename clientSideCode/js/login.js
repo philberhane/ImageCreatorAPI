@@ -7,25 +7,7 @@ window.location.href = sessionStorage.role + ".html";
     
 }
 
-function fbLogoutUser() {
-    FB.getLoginStatus(function(response) {
-        if (response && response.status === 'connected') {
-            FB.logout(function(response) {
-              //  fbLoginUser()
-            });
-        }
-    });
-}
 
-function fbLoginUser() {
-    FB.getLoginStatus(function(response) {
-   //     if (response && response.status !== 'connected') {
-            FB.login(function(response) {
-               // document.location.reload();
-            });
-    //   }
-    });
-}
 
 // Get the modal
 var modal = document.getElementById('myModal');
@@ -137,6 +119,30 @@ window.onclick = function(event) {
 function loginButton() {
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
+    });
+}
+
+
+function fbLogoutUser() {
+    FB.getLoginStatus(function(response) {
+        if (response && response.status === 'connected') {
+            FB.logout(function(response) {
+                fbLoginUser()
+            });
+        } else {
+            fbLoginUser()
+        }
+    });
+}
+
+function fbLoginUser() {
+    FB.getLoginStatus(function(response) {
+   //     if (response && response.status !== 'connected') {
+            FB.login(function(response) {
+                testAPI()
+               // document.location.reload();
+            });
+    //   }
     });
 }
 

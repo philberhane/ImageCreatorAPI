@@ -126,19 +126,23 @@ fetch('https://lisathomasapi.herokuapp.com/routes/users/getUsers', {
                 div.style.marginTop = '25px'
                 
                 var div2 = document.createElement('div')
-                div2.className = 'col-md-3 col-xs-6'
+                div2.className = 'col-md-3 col-xs-4'
                 var h4 = document.createElement('h4')
                 h4.innerText = data.message[i].name
                 div2.appendChild(h4)
                 
                 
                 var div3 = document.createElement('div')
-                div3.className = 'col-md-3 col-xs-6'
+                div3.className = 'col-md-3 col-xs-4'
                 var input = document.createElement('input')
                 input.setAttribute('type', 'checkbox')
                 input.setAttribute('data-toggle', 'toggle')
                 input.value = data.message[i]._id
                 input.id = 'toggle' + i
+                
+                var div4 = document.createElement('div')
+                div4.className = 'col-md-3 col-xs-4'
+                div4.innerHTML = '<span id="'+data.message[i]._id+'" onclick="modalPopup(this.id)" class="close1">&times;</span>'
                 
                 
             
@@ -147,6 +151,7 @@ fetch('https://lisathomasapi.herokuapp.com/routes/users/getUsers', {
                 
                 div.appendChild(div2)
                 div.appendChild(div3)
+                div.appendChild(div4)
                 
                 document.getElementById('main').appendChild(div)
                 
@@ -198,6 +203,57 @@ fetch('https://lisathomasapi.herokuapp.com/routes/users/changeStatus', {
  
         })
     
+}
+
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+
+
+var cancel = document.getElementById("cancelButton");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+function modalPopup() {
+    modal.style.display = "block";
+    
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+cancel.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+function deleteUser(clicked_id) {
+    var clickedUser = document.getElementById(clicked_id)
+    
+    var input = {
+        id: clickedUser.id
+    }
+    
+    fetch('https://lisathomasapi.herokuapp.com/routes/users/deleteUser', {
+        method: 'POST',
+        body: JSON.stringify(inputData),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        location.reload();
+        })
 }
 
 
