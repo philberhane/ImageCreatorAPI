@@ -239,15 +239,14 @@ window.onclick = function(event) {
 }
 
 function deleteUser(clicked_id) {
-    var clickedUser = document.getElementById(clicked_id)
     
     var input = {
-        id: clickedUser.id
+        id: clicked_id
     }
     
     fetch('https://lisathomasapi.herokuapp.com/routes/users/deleteUser', {
         method: 'POST',
-        body: JSON.stringify(inputData),
+        body: JSON.stringify(input),
         headers: { "Content-Type": "application/json"}
     }).then(function(response) {
         return response.json();
