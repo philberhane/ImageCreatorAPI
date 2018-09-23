@@ -24,15 +24,17 @@ router.post('/updateFacebook', function(req, res, next) {
         if (user) {
             return res.status(500).send({message : 'Error: A user with this Facebook Account already exists!'}); 
         }
-    })
-    
-    User.update({_id: req.body.id}, {
+        
+        User.update({_id: req.body.id}, {
     fbemail: req.body.fbemail
     
 }, function(err, affected, resp) {
        
 }) 
     return res.status(200).send({message : 'Success'}); 
+    })
+    
+    
     
 })
 
