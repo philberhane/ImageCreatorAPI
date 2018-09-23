@@ -17,6 +17,10 @@ router.get('/register', function (req, res) {
 router.post('/updateFacebook', function(req, res, next) {
     
     User.findOne({fbemail: req.body.fbemail}, function (err, user)   {
+        if (err) {
+            throw err;
+        }
+        
         if (user) {
             return res.status(500).send({message : 'Error: A user with this Facebook Account already exists!'}); 
         }
