@@ -394,7 +394,7 @@ router.post('/adminLogin',
                 role: req.user.role,
                 images: req.user.images
                 })     
-	}) 
+	}); 
 
 
 router.post('/getUsers', function(req, res, next) {
@@ -409,8 +409,21 @@ router.post('/getUsers', function(req, res, next) {
         })
             
         })
-})
+});
 
+router.post('/deleteUser', function(req, res, next) {
+    User.findByIdAndRemove(req.body.id, function (err, user) {
+    console.log('deleting user', user);
+    if (err) {
+        throw err;
+    }
+        res.status(200).send({
+            message: 'Success'
+        })
+
+})
+} );
+            
 
 
 
@@ -449,7 +462,7 @@ router.post('/changeStatus', function(req, res, next) {
    res.status(200)
 })   
     
-})
+});
 
 
 
