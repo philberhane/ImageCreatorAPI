@@ -21,7 +21,7 @@ router.post('/updateFacebook', function(req, res, next) {
             throw err;
         }
         
-        if (user) {
+        if (user && user._id !== req.body.id) {
             return res.status(500).send({message : 'Error: A user with this Facebook Account already exists!'}); 
         }
         
@@ -42,7 +42,7 @@ router.post('/updateFacebook', function(req, res, next) {
 router.post('/updateInstagram', function(req, res, next) {
     
     User.findOne({instaUser: req.body.instaUser}, function (err, user)   {
-        if (user) {
+        if (user && user._id !== req.body.id) {
             return res.status(500).send({message : 'Error: A user with this Instagram Account already exists!'}); 
         }
     })

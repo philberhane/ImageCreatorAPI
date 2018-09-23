@@ -105,7 +105,7 @@ fetch('https://lisathomasapi.herokuapp.com/routes/users/updateFacebook', {
          
          } else {
     
-        document.getElementById('clear1').innerHTML = '<p>Connected!</p><p>To connect a different Facebook Account instead <button style="background-color:transparent; text-decoration: underline; border: none" onclick="fbLogoutUser()">click here</button></p>'
+        document.getElementById('clear1').innerHTML = '<p>Connected!</p><p>To reconnect your Facebook account <button style="background-color:transparent; text-decoration: underline; border: none" onclick="fbLogoutUser()">click here</button></p>'
    
          }
     
@@ -248,11 +248,11 @@ fetch('https://lisathomasapi.herokuapp.com/routes/users/getSocial', {
     console.log(data)
     
     if (data.message1 !== 'none') {
-        document.getElementById('clear1').innerHTML = '<p>Connected!</p><p>To connect a different Facebook Account instead <button style="background-color:transparent; border: none; text-decoration: underline" onclick="fbLogoutUser()">click here</button></p>'
+        document.getElementById('clear1').innerHTML = '<p>Connected!</p><p>To reconnect your Facebook account <button style="background-color:transparent; border: none; text-decoration: underline" onclick="fbLogoutUser()">click here</button></p>'
     }
     
     if (data.message2 !== 'none') {
-        document.getElementById('clear2').innerHTML = '<p>Connected!</p><p>To connect a different Instagram Account instead <button style="background-color:transparent; border: none; text-decoration: underline" onclick="modalPopup()">click here</button></p>'
+        document.getElementById('clear2').innerHTML = '<p>Connected!</p><p>To reconnect your Instagram account <button style="background-color:transparent; border: none; text-decoration: underline" onclick="modalPopup()">click here</button></p>'
     }
     
     
@@ -317,12 +317,12 @@ fetch('https://lisathomasapi.herokuapp.com/routes/users/updateFacebook', {
              
          
          } else {
-        document.getElementById('clear1').innerHTML = '<p>Connected!</p><p>To connect a different Facebook Account instead <button style="background-color:transparent; text-decoration: underline; border:none" onclick="fbLogoutUser()">click here</button></p>'
+        document.getElementById('clear1').innerHTML = '<p>Connected!</p><p>To reconnect your Facebook account <button style="background-color:transparent; text-decoration: underline; border:none" onclick="fbLogoutUser()">click here</button></p>'
    
          }
     
 })
-            }) });
+            }) },{auth_type: 'rerequest' });
         }
     });
 }
@@ -432,7 +432,7 @@ function updateInstagram() {
              
          
          } else {
-        document.getElementById('clear2').innerHTML = '<p>Connected!</p><p>To connect a different Instagram Account instead <button style="background-color:transparent; border: none; text-decoration: underline" onclick="modalPopup()">click here</button></p>'
+        document.getElementById('clear2').innerHTML = '<p>Connected!</p><p>To reconnect your Instagram account <button style="background-color:transparent; border: none; text-decoration: underline" onclick="modalPopup()">click here</button></p>'
              
          }
     })
