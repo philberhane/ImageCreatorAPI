@@ -217,8 +217,9 @@ var cancel = document.getElementById("cancelButton");
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
-function modalPopup() {
+function modalPopup(clicked_id) {
     modal.style.display = "block";
+    document.getElementById('deleteUser').value = clicked_id
     
 }
 
@@ -238,10 +239,10 @@ window.onclick = function(event) {
     }
 }
 
-function deleteUser(clicked_id) {
-    
+function deleteUser() {
+    var clickedUser = document.getElementById('deleteUser').value
     var input = {
-        id: clicked_id
+        id: clickedUser
     }
     
     fetch('https://lisathomasapi.herokuapp.com/routes/users/deleteUser', {
