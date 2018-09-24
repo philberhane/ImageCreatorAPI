@@ -91,7 +91,7 @@ router.post('/getSocial', function(req, res, next) {
 router.get('/loginError', function (req, res) {
 
                 
-                res.redirect('https://www.lisathomassalon.com/stylist/loginError.html')
+                res.send({message: 'Error'})
 
 });
 
