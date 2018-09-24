@@ -362,7 +362,7 @@ passport.deserializeUser(function (id, done) {
 
 
 router.post('/fblogin', function(req, res, next) {
-      User.findOne({email: req.body.fbemail},  function (err, user)  {
+      User.findOne({fbemail: req.body.fbemail},  function (err, user)  {
     console.log('find user')
     // Generate a JSON response reflecting authentication status
     if (!user) {
