@@ -88,7 +88,7 @@ router.post('/getSocial', function(req, res, next) {
 
 
 // Login Error
-router.get('/loginError', function (req, res) {
+router.get('/users/loginError', function (req, res) {
     try{
                 
                 res.redirect('https://lisathomassalon.com/stylist/loginError.html')
@@ -391,7 +391,7 @@ router.post('/fblogin', function(req, res, next) {
 });
 
 router.post('/adminLogin',
-	passport.authenticate('local', { failureRedirect: '/loginError' }), function (req, res) {
+	passport.authenticate('local', { failureRedirect: '/users/loginError' }), function (req, res) {
     console.log(req.user)
     if (!req.user) {
       return res.status(500).send({message : 'Error: not user' });
