@@ -89,7 +89,7 @@ router.post('/getSocial', function(req, res, next) {
 
 // Login Error
 router.get('/loginError', function (req, res) {
-	res.redirect('loginError.html');
+	res.redirect('https://lisathomassalon.com/stylist/loginError.html');
 });
 
 router.post('/verifyCode', function (req, res) {

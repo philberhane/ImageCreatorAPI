@@ -185,8 +185,7 @@ function login() {
         password : document.getElementById('password').value
     }
     
-    
-    fetch('https://lisathomasapi.herokuapp.com/routes/users/login', {
+    fetch('https://lisathomasapi.herokuapp.com/routes/users/adminLogin', {
         method: 'POST',
         body: JSON.stringify(input),
         headers: { "Content-Type": "application/json"}
@@ -195,7 +194,8 @@ function login() {
     }).then(function(data) {
         console.log(data)
         if (data.message.indexOf('Error') === 0) {
-            window.location.href = "loginError.html";
+            console.log('error')
+        //    window.location.href = "loginError.html";
         } else {
         sessionStorage.id = data.id
         sessionStorage.role = data.role
@@ -298,4 +298,6 @@ function changePassword() {
     
 }
 
+
+document.getElementById('loginButton').onclick = login
 
