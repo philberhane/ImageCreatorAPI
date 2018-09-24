@@ -88,14 +88,11 @@ router.post('/getSocial', function(req, res, next) {
 
 
 // Login Error
-router.get('/users/loginError', function (req, res) {
-    try{
+router.get('/routes/users/loginError', function (req, res) {
+
                 
                 res.redirect('https://lisathomassalon.com/stylist/loginError.html')
-                res.end()
-            } catch(e) {
-                console.error(e)
-            }
+
 });
 
 router.post('/verifyCode', function (req, res) {
