@@ -14,7 +14,7 @@ router.get('/register', function (req, res) {
     
 })
 
-router.post('/updateFacebookNull', function(req, res, next) {
+router.post('/updateFacebookNull', function(req, res) {
 
         
         User.update({_id: req.body.id}, {
@@ -32,7 +32,7 @@ router.post('/updateFacebookNull', function(req, res, next) {
     
     
 
-router.post('/updateFacebook', function(req, res, next) {
+router.post('/updateFacebook', function(req, res) {
     
     User.findOne({fbemail: req.body.fbemail}, function (err, user)   {
         if (err) {
