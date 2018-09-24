@@ -88,7 +88,7 @@ router.post('/getSocial', function(req, res, next) {
 
 
 // Login Error
-router.get('/routes/users/loginError', function (req, res) {
+router.get('/loginError', function (req, res) {
 
                 
                 res.redirect('https://lisathomassalon.com/stylist/loginError.html')
