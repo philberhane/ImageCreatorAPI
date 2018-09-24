@@ -190,7 +190,12 @@ function login() {
         body: JSON.stringify(input),
         headers: { "Content-Type": "application/json"}
     }).then(function(response) {
-        return response.json();
+        if (!response.json()) {
+         console.log('error')
+        } else {
+           
+            return response.json();
+        }
     }).then(function(data) {
         console.log(data)
         if (data.message.indexOf('Error') === 0) {
