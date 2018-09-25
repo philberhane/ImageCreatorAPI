@@ -274,7 +274,7 @@ function fbLogoutUser() {
         }
                 console.log('Line 268: '+ input.fbemail)
         
-fetch('https://lisathomasapi.herokuapp.com/routes/users/updateFacebook', {
+fetch('https://lisathomasapi.herokuapp.com/routes/users/updateFacebookNull', {
         method: 'POST',
         body: JSON.stringify(input),
         headers: { "Content-Type": "application/json"}
@@ -292,16 +292,17 @@ fetch('https://lisathomasapi.herokuapp.com/routes/users/updateFacebook', {
 }
 
 function fbLoginUser() {
+    console.log('test')
     FB.getLoginStatus(function(response) {
         if (response && response.status !== 'connected') {
             FB.login(function(response) {
            FB.api('/me', {locale: 'en_US', fields: 'name, email'}, function(response) {     
-                console.log(response)
+         //       console.log(response)
                var input = {
         id:sessionStorage.id,
         fbemail: response.email
         }
-                        console.log('Line 295: '+ input.fbemail)
+                        console.log('Line 295: '+ input.id)
 fetch('https://lisathomasapi.herokuapp.com/routes/users/updateFacebook', {
         method: 'POST',
         body: JSON.stringify(input),

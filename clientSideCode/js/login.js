@@ -128,9 +128,11 @@ function fbLogoutUser() {
         if (response && response.status === 'connected') {
             FB.logout(function(response) {
                 fbLoginUser()
+                return
             });
         } else {
             fbLoginUser()
+            return;
         }
     });
 }
@@ -190,17 +192,46 @@ function login() {
         body: JSON.stringify(input),
         headers: { "Content-Type": "application/json"}
     }).then(function(response) {
-        if (!response.json()) {
-         console.log('error')
-        } else {
-           
-            return response.json();
-        }
-    }).then(function(data) {
+ return response.json();
+    }
+    ).then(function(data) {
         console.log(data)
         if (data.message.indexOf('Error') === 0) {
             console.log('error')
-        //    window.location.href = "loginError.html";
+            window.location.href = "loginError.html";
+        } else {
+        sessionStorage.id = data.id
+        sessionStorage.role = data.role
+        sessionStorage.images = data.images
+        
+        window.location.href = sessionStorage.role + ".html";
+        
+    }
+        })
+
+    }
+
+
+function login2() {
+    
+    
+    const input = {
+        email : document.getElementById('email').value,
+        password : document.getElementById('password').value
+    }
+    
+    fetch('https://lisathomasapi.herokuapp.com/routes/users/login', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+ return response.json();
+    }
+    ).then(function(data) {
+        console.log(data)
+        if (data.message.indexOf('Error') === 0) {
+            console.log('error')
+            window.location.href = "loginError.html";
         } else {
         sessionStorage.id = data.id
         sessionStorage.role = data.role
