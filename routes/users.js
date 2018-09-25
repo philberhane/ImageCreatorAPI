@@ -369,8 +369,7 @@ passport.use('local', new LocalStrategy({
                 console.log(user)
                 console.log('user')
                 // if there are any errors, return the error
-                if (err)
-                    return done(err);
+               
 
                 // if no user is found, return the message
                 if (!user)
