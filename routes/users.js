@@ -364,16 +364,18 @@ passport.use('local', new LocalStrategy({
             email = email.toLowerCase(); // Use lower-case e-mails to avoid case-sensitive e-mail matching
 
         // asynchronous
-        process.nextTick(function() {
             User.findOne({ 'email' :  email }, function(err, user) {
                 console.log(user)
                 console.log('user')
                 // if there are any errors, return the error
-               
+               if (err) throw err;
 
                 // if no user is found, return the message
-                if (!user)
+                if (!user) {
                     console.log(user)
+                }
+                
+                
                     console.log('user')
                     return done(null, false, {message: 'this account does not exist'});
                 User.comparePassword(password, user.password, function (err, isMatch) {
@@ -388,7 +390,6 @@ passport.use('local', new LocalStrategy({
                 // all is well, return user
               
             });
-        });
 
     }));
 
