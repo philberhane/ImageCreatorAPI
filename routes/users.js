@@ -370,15 +370,15 @@ passport.use('local', new LocalStrategy({
 
                 // if no user is found, return the message
                 if (!user)
-return done(null, false, {message: 'this account does not exist'});
+                    return done(null, false, {message: 'this account does not exist'});
                 User.comparePassword(password, user.password, function (err, isMatch) {
-      if(err) throw err;
-      if(isMatch) {
-        return done(null, user);
-      } else {
-        return done(null, false, {message: 'oops! wrong password! try again'});
-      }
-    });
+                        if(err) throw err;
+                        if(isMatch) {
+                                return done(null, user);
+                            } else {
+                                return done(null, false, {message: 'oops! wrong password! try again'});
+                            }
+                    });
 
                 // all is well, return user
               
