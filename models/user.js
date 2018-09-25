@@ -52,7 +52,13 @@ module.exports.updatePass = function(userUpdate, callback){
 	        userUpdate.password = hash;
             console.log('dope')
             console.log(userUpdate)
-	       // newUser.save(callback);
+	      //  userUpdate.save(callback);
+            User.update({_id: userUpdate._id}, {
+    password: userUpdate.password
+    
+}, function(err, affected, resp) {
+         
+})
 	    });
 	});
 }
