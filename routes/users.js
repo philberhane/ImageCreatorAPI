@@ -249,7 +249,7 @@ Client.Session.create(device, storage, instaUser, instaPass)
     
     process.on('unhandledRejection', function(reason, p) {
   console.log("Unhandled Rejection:", reason.stack);
-    res.status(500).send({
+    return res.status(500).send({
                 message: 'Error'
                 })
     
