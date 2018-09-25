@@ -51,6 +51,7 @@ module.exports.updatePass = function(userUpdate, callback){
 	    bcrypt.hash(userUpdate.password, salt, function(err, hash) {
 	        userUpdate.password = hash;
             console.log('dope')
+            console.log(userUpdate)
 	       // newUser.save(callback);
 	    });
 	});
