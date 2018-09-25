@@ -373,6 +373,8 @@ passport.use('local', new LocalStrategy({
 
                 // if no user is found, return the message
                 if (!user)
+                    console.log(user)
+                    console.log('user')
                     return done(null, false, {message: 'this account does not exist'});
                 User.comparePassword(password, user.password, function (err, isMatch) {
                         if(err) throw err;
