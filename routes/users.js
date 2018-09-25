@@ -123,7 +123,7 @@ router.post('/verifyCode', function (req, res) {
     if (!user) {
       return res.status(500).send({message : 'Error: This code is incorrect!' });
     } else {
-        return res.status(500).send({message : 'Success' });
+        return res.status(200).send({message : 'Success' });
     }  
         
     })
@@ -149,15 +149,20 @@ router.post('/changePassword', function (req, res) {
 		});
 	}
     
-     User.update({code: req.body.code}, {
-    password: password3
+     User.findOne({code: req.body.code}, function (err, user)  {
+        
+         User.updatePass(userUpdate, function (err, user) {
+						if (err) throw err;
+						console.log(user);
+					});
+         	res.status(200).send({
+                message: 'Thank you for signing up, your account is pending approval!'
+                })
+         
+     })
     
-}, function(err, affected, resp) {
-       
-         return res.status(200).send({
-                message: 'Success'
-                })  
-}) 
+    
+    
     
     
     
