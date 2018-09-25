@@ -383,6 +383,7 @@ passport.use('local', new LocalStrategy({
                         if(isMatch) {
                                 return done(null, user);
                             } else {
+                                console.log('no match')
                                 return done(null, false, {message: 'oops! wrong password! try again'});
                             }
                     });
