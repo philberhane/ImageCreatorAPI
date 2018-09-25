@@ -254,15 +254,17 @@ Client.Session.create(device, storage, instaUser, instaPass)
    return res.status(200).send({
                 message: 'Success'
                 })
-	})
-
-	
-process.on('unhandledRejection', function(reason, p) {
+    
+    process.on('unhandledRejection', function(reason, p) {
   console.log("Unhandled Rejection:", reason.stack);
     res.status(500).send({
                 message: 'Error'
                 })
 })
+	})
+
+	
+
     
     
           });
