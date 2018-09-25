@@ -354,8 +354,7 @@ router.post('/register', function (req, res) {
 passport.use('local', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
         usernameField : 'email',
-        passwordField : 'password',
-        passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
+
     },
     function(req, email, password, done) {
         if (email)
