@@ -50,6 +50,7 @@ module.exports.updatePass = function(userUpdate, callback){
 	bcrypt.genSalt(10, function(err, salt) {
 	    bcrypt.hash(userUpdate.password, salt, function(err, hash) {
 	        userUpdate.password = hash;
+            console.log('dope')
 	       // newUser.save(callback);
 	    });
 	});

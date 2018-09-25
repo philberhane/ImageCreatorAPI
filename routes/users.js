@@ -149,6 +149,8 @@ router.post('/changePassword', function (req, res) {
 		});
 	}
     
+    console.log('dope1')
+    
     User.update({code: req.body.code}, {
     password: password3
     
@@ -156,8 +158,11 @@ router.post('/changePassword', function (req, res) {
          
 })
     
+     console.log('dope2')
+    
     
      User.findOne({code: req.body.code}, function (err, user)  {
+          console.log('dope3')
         
          User.updatePass(userUpdate, function (err, user) {
 						if (err) throw err;
