@@ -358,6 +358,7 @@ passport.use('local', new LocalStrategy({
     },
     function(req, email, password, done) {
     console.log(email)
+    console.log('email')
         if (email)
             email = email.toLowerCase(); // Use lower-case e-mails to avoid case-sensitive e-mail matching
 
@@ -365,6 +366,7 @@ passport.use('local', new LocalStrategy({
         process.nextTick(function() {
             User.findOne({ 'email' :  email }, function(err, user) {
                 console.log(user)
+                console.log('user')
                 // if there are any errors, return the error
                 if (err)
                     return done(err);
