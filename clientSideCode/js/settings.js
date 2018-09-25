@@ -388,19 +388,12 @@ function connect() {
         document.getElementById('serverMessage').innerText = data.message
     
         
-              if (data.message.indexOf('Success') === 0) {
-         
-    updateInstagram()
-    modal.style.display = "none";
-            
-            
-        
-        
-        } 
-        
          if (data.message.indexOf('Error') === 0) {
             document.getElementById('serverMessage').innerText = 'Error: Instagram Username/Password is invalid! Please Try again.'
             document.getElementById('serverMessage').style.color = '#fa755a'
+        } else {
+             updateInstagram()
+    modal.style.display = "none";
         }
     })
     
