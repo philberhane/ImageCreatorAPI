@@ -351,48 +351,33 @@ router.post('/register', function (req, res) {
 });
 			
 
-passport.use('local', new LocalStrategy({
+
+
+
+
+passport.use(new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
         usernameField : 'email',
         passwordField : 'password',
         passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
     },
-    function(req, email, password, done) {
-    console.log(email)
-    console.log('email')
+	function (username, password, done) {
+		User.findOne({ 'email' :  email }, function (err, user) {
+			if (err) throw err;
+			if (!user) {
+				return done(null, false, { message: 'Error: Unknown User' });
+			}
 
-        email = email.toLowerCase(); // Use lower-case e-mails to avoid case-sensitive e-mail matching
-
-        // asynchronous
-            User.findOne({ 'email' :  email }, function(err, user) {
-                console.log(user)
-                console.log('user')
-                // if there are any errors, return the error
-               if (err) throw err;
-
-                // if no user is found, return the message
-                if (!user) {
-                    console.log(user)
-                }
-                
-                
-                    console.log('user')
-                    return done(null, false, {message: 'this account does not exist'});
-                User.comparePassword(password, user.password, function (err, isMatch) {
-                        if(err) throw err;
-                        if(isMatch) {
-                                return done(null, user);
-                            } else {
-                                console.log('no match')
-                                return done(null, false, {message: 'oops! wrong password! try again'});
-                            }
-                    });
-
-                // all is well, return user
-              
-            });
-
-    }));
+			User.comparePassword(password, user.password, function (err, isMatch) {
+				if (err) throw err;
+				if (isMatch) {
+					return done(null, user);
+				} else {
+					return done(null, false, { message: 'Error: Invalid password' });
+				}
+			});
+		});
+	}));
 
 
 
