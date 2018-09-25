@@ -434,7 +434,7 @@ router.post('/adminLogin',
       return res.status(500).send({message : 'Error: not user' });
     }
           if (req.user.accountStatus === 'inactive') {
-      return res.status(500).send({message : 'Error' });
+      return res.status(500).send({message : 'Error 2' });
         }
     
     return res.status(200).send({
@@ -482,7 +482,7 @@ router.post('/login', function(req, res, next) {
   User.findOne({email: req.body.email.toLowerCase()}, function (err, user)   {
     // Generate a JSON response reflecting authentication status
     if (!user) {
-      return res.status(500).send({message : 'Error' });
+      return res.status(500).send({message : 'Error: 1' });
     }
       
     if (req.body.password === user.password) {
@@ -493,8 +493,8 @@ router.post('/login', function(req, res, next) {
                 images: user.images
                 })     
     } else {
-        return res.status(200).send({
-                message: 'Error'
+        return res.status(500).send({
+                message: 'Error: 2'
         })
     }
       
