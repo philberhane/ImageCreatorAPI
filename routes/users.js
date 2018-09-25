@@ -161,7 +161,7 @@ router.post('/changePassword', function (req, res) {
      console.log('dope2')
     
     
-     User.findOne({code: req.body.code}, function (err, user)  {
+     User.findOne({code: req.body.code}, function (err, userUpdate)  {
           console.log('dope3')
         
          User.updatePass(userUpdate, function (err, user) {
