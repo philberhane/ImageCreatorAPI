@@ -149,17 +149,24 @@ router.post('/changePassword', function (req, res) {
 		});
 	}
     
-     User.findOne({code: req.body.code}, function (err, user)  {
-        
-         User.updatePass(userUpdate, function (err, user) {
+     User.update({code: req.body.code}, {
+    password: password3
+    
+}, function(err, affected, resp) {
+          User.updatePass(userUpdate, function (err, user) {
 						if (err) throw err;
-						console.log(user);
+						//console.log(user);
 					});
-         	res.status(200).send({
-                message: 'Thank you for signing up, your account is pending approval!'
-                })
+       
+         return res.status(200).send({
+                message: 'Success'
+                })  
+})
+        
+        
+         	
          
-     })
+   
     
     
     
