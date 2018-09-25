@@ -112,7 +112,7 @@ router.post('/getSocial', function(req, res, next) {
 router.get('/loginError', function (req, res) {
 
                 
-                res.send({message: 'Error'})
+                res.send({message: 'Error: 3'})
 
 });
 
