@@ -248,22 +248,17 @@ Client.Session.create(device, storage, instaUser, instaPass)
     
    		// Now you have a session, we can follow / unfollow, anything...
 		// And we want to follow Instagram official profile
-		dope = 'Success'
+		dope = 'dope'
     console.log(dope)
    return res.status(200).send({
                 message: 'Success'
                 })
-	})
-
-	
-process.on('unhandledRejection', function(reason, p) {
-  console.log("Unhandled Rejection:", reason);
-    dope = 'Error'
-    console.log('There is an error')
- 
+	}).on('unhandledRejection', function(reason, p) {
+  console.log("Unhandled Rejection:", reason.stack);
+   return res.status(500).send({
+                message: 'Error'
+                })
 })
-    
-    console.log(dope)
     
     
           });
