@@ -37,6 +37,8 @@ window.onclick = function(event) {
     }
 }
 
+var errArray = []
+
 function connect() {
    // document.getElementById('instaUser').value = document.getElementById('inputUser').value
     
@@ -63,6 +65,13 @@ function connect() {
          if (data.message.indexOf('Error') === 0) {
             document.getElementById('serverMessage').innerText = 'Error: Instagram Username/Password is invalid! Please Try again.'
             document.getElementById('serverMessage').style.color = '#fa755a'
+             
+             errArray.push('error')
+             
+             if (errArray.length === 2) {
+                  location.reload();
+             }
+             
         } else {
             document.getElementById('instaUser').value = document.getElementById('inputUser').value
     
