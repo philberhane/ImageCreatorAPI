@@ -257,7 +257,7 @@ Client.Session.create(device, storage, instaUser, instaPass)
 
 	
 process.on('unhandledRejection', function(reason, p) {
-  console.log("Unhandled Rejection:", reason.stack);
+  console.log("Unhandled Rejection:", reason);
     dope = 'Error'
     console.log('There is an error')
  
