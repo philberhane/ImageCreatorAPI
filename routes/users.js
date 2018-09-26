@@ -242,17 +242,8 @@ var device = new Client.Device(instaUser);
 var storage = new Client.CookieFileStorage(__dirname + '/cookies/' + instaUser + '.json');
     var dope = '';
         // And go for login
-Client.Session.create(device, storage, instaUser, instaPass)
-    
-	.then(function(session) {
+Client.Session.create(device, storage, instaUser, instaPass).then(function(session) {
     console.log('test')
-    
-    process.on('unhandledRejection', function(reason, p) {
-  console.log("Unhandled Rejection:", reason.stack);
-   return res.status(500).send({
-                message: 'Error'
-                })
-})
     
    		// Now you have a session, we can follow / unfollow, anything...
 		// And we want to follow Instagram official profile
@@ -264,6 +255,12 @@ Client.Session.create(device, storage, instaUser, instaPass)
 	})
 
 	
+process.on('unhandledRejection', function(reason, p) {
+  console.log("Unhandled Rejection:", reason.stack);
+   return res.status(500).send({
+                message: 'Error'
+                })
+})
     
     
           });
