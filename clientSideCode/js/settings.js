@@ -388,17 +388,52 @@ function connect() {
         document.getElementById('serverMessage').innerText = data.message
     
         
+              if (data.message.indexOf('Success') === 0) {
+         
+    updateInstagram()
+    modal.style.display = "none";
+            
+            
+        
+        
+        } 
+        
          if (data.message.indexOf('Error') === 0) {
             document.getElementById('serverMessage').innerText = 'Error: Instagram Username/Password is invalid! Please Try again.'
             document.getElementById('serverMessage').style.color = '#fa755a'
-        } else {
-             updateInstagram()
-    modal.style.display = "none";
         }
     })
     
     
     
+}
+
+function testUpdateInstagram() {
+var input = {
+        id: sessionStorage.id,
+        instaUser: document.getElementById('inputUser').value,
+        instaPass: document.getElementById('inputPass').value
+    }
+    
+    fetch('https://lisathomasapi.herokuapp.com/routes/users/testUpdateInstagram', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        
+        
+        if (data.message.indexOf('Error') === 0) {
+            document.getElementById('serverMessage').innerText = 'Error: Instagram Username/Password is invalid! Please Try again.'
+            document.getElementById('serverMessage').style.color = '#fa755a'
+        } else {
+              document.getElementById('clear2').innerHTML = '<p>Connected!</p><p>To reconnect your Instagram account <button style="background-color:transparent; border: none; text-decoration: underline" onclick="modalPopup()">click here</button></p>'
+    modal.style.display = "none";
+        }
+        
+        
+    })
 }
 
 

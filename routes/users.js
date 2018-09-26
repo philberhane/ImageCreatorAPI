@@ -266,6 +266,54 @@ process.on('unhandledRejection', error => {
           });
 
 
+
+router.post('/testUpdateInstagram', function (req, res) {
+    
+    var instaUser = req.body.instaUser;
+    var instaPass = req.body.instaPass;
+    
+    
+    var Client = require('instagram-private-api').V1;
+var device = new Client.Device(instaUser);
+var storage = new Client.CookieFileStorage(__dirname + '/cookies/' + instaUser + '.json');
+    var dope = '';
+        // And go for login
+Client.Session.create(device, storage, instaUser, instaPass).then(function(session) {
+    console.log('test')
+    
+   		// Now you have a session, we can follow / unfollow, anything...
+		// And we want to follow Instagram official profile
+		dope = 'dope'
+    console.log(dope)
+   User.findOne({instaUser: req.body.instaUser}, function (err, user)   {
+        if (user && user._id !== req.body.id) {
+            return res.status(500).send({message : 'Error: A user with this Instagram Account already exists!'}); 
+        }
+    })
+    
+    
+    User.update({_id: req.body.id}, {
+    instaUser: req.body.instaUser,
+    instaPass: req.body.instaPass
+    
+}, function(err, affected, resp) {
+       
+}) 
+    return res.status(200).send({message : 'Success'}); 
+	})
+    
+
+	
+process.on('unhandledRejection', error => {
+   return res.status(500).send({
+                message: 'Error'
+                })
+})
+    
+    
+          });
+
+
 // Register User
 router.post('/register', function (req, res) {
 	var name = req.body.name;
