@@ -256,11 +256,10 @@ Client.Session.create(device, storage, instaUser, instaPass).then(function(sessi
     
 
 	
-process.on('unhandledRejection', error => {
-   return res.status(500).send({
+        res.status(500).send({
                 message: 'Error'
                 })
-})
+
     
     
           });
