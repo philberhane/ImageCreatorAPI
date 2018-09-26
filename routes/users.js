@@ -255,7 +255,9 @@ Client.Session.create(device, storage, instaUser, instaPass).then(function(sessi
 	})
     
     if ('unhandledRejection') {
-        console.log('errorDoe')
+        return res.status(500).send({
+                message: 'Error'
+                })
     }
 
 
