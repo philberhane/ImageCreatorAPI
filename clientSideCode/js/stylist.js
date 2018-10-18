@@ -578,7 +578,7 @@ function canvasFunction() {
         
                               
         imgObj.onload = function () {
-            document.getElementById('loading').innerText = ''
+            document.getElementById('loading').innerHTML = ''
             canvas.setHeight(document.getElementById('image').height);
             canvas.setWidth(document.getElementById('image').width);
             // start fabricJS stuff
@@ -651,7 +651,7 @@ function canvasFunction1() {
         
                               
         imgObj.onload = function () {
-            document.getElementById('loading').innerText = ''
+            document.getElementById('loading').innerHTML = ''
             canvas.setHeight(document.getElementById('image').height);
             canvas.setWidth(document.getElementById('image').width);
             console.log('2')
@@ -779,7 +779,7 @@ function finishEdit() {
 $("document").ready(function() {
     
   $('input[type=file]').on("click", function() {
-      document.getElementById('loading').innerText = "Uploading file.." 
+      document.getElementById('loading').innerHTML = '<div class="loader"></div>'
   })
     
 })
@@ -927,8 +927,14 @@ function emailImage() {
     }).then(function(response) {
         return response.json();
     }).then(function(data) {
+       
+        document.getElementById('myModal').style.display = 'none'
+        if (data.message === 'Success') {
+        document.getElementById('myModal').style.display = 'none'
         document.getElementById('stylistMessage').style.display = 'block'
         document.getElementById('stylistMessage').innerText = 'Your email has been sent!'
+        }
+       
         
         })
     
@@ -1088,6 +1094,9 @@ function saveChanges() {
 }
 
 function saveToDevice() {
+   
+   if ($(window).width() <= 616) { document.getElementById('stylistMessage').innerText = 'Tap and hold to save image'
+                                 }
     window.open(document.getElementById('finalImage').src); 
 }
 

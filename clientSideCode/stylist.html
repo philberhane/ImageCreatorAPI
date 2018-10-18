@@ -95,7 +95,7 @@
         </div>
         
         <div id="hidden" style="font-size: 16px">
-        <p>Color:
+        <p>Text Color:
     <input class="jscolor" onchange="update(this.jscolor)" value="000000">
     </p>
     <p>Font: <select id="fontSelect" onchange="changeFont()">
@@ -161,7 +161,6 @@
            
           <img  id="imageLocation"> 
            
-  <div class="loader" id="loader1"></div> 
        
     <img id="finalImage">
 <button class="styledButton" id="submit" onclick="saveChanges()" style="display: none">Finish</button>
@@ -185,9 +184,10 @@
     <span class="close">&times;</span>
     <h4>Add a Caption</h4>
       <textarea id="textArea"></textarea>
-      <img id="modalPic" style="width: 100%">
-    <button class="styledButton" onclick="sendToIG()">Upload</button> 
+      <button class="styledButton" onclick="sendToIG()">Upload</button> 
     <button class="otherButton" id="cancelDeletion">Cancel</button>
+      <img id="modalPic" style="width: 100%; margin-top: 5px">
+    
   </div>
 
 </div>
@@ -201,9 +201,10 @@
     <span class="close2">&times;</span>
     <h4>Please enter an Email to send to:</h4>
       <input id="emailValue" placeholder="example@gmail.com">
-      <img id="modalPic2" style="width: 100%">
-    <button class="styledButton" onclick="emailImage()">Send Email</button> 
+      <button class="styledButton" onclick="emailImage()">Send Email</button> 
     <button class="otherButton" id="cancelEmail">Cancel</button>
+      <img id="modalPic2" style="width: 100%; margin-top: 5px;">
+    
   </div>
 
 </div>

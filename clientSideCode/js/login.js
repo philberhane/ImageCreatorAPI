@@ -203,6 +203,11 @@ function login() {
         sessionStorage.id = data.id
         sessionStorage.role = data.role
         sessionStorage.images = data.images
+            
+            if(sessionStorage.role === 'admin') {
+                 window.location.href = "users.html";
+                return
+            }
         
         window.location.href = sessionStorage.role + ".html";
         
@@ -236,6 +241,8 @@ function login2() {
         sessionStorage.id = data.id
         sessionStorage.role = data.role
         sessionStorage.images = data.images
+            
+            
         
         window.location.href = sessionStorage.role + ".html";
         

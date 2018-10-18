@@ -116,13 +116,7 @@ function signUp() {
             document.getElementById('server-response').style.color = '#fa755a'
         } else {
             
-        document.getElementById('server-response').style.color = 'black'
-        document.getElementById('name').value = ''
-            document.getElementById('password').value = ''
-            document.getElementById('password2').value = ''
-        document.getElementById('instaPass').value = ''
-        document.getElementById('email').value = ''
-        document.getElementById('instaUser').value = ''
+        window.location.href = "loginaftersignup.html";
         
         
         }

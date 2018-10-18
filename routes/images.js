@@ -115,13 +115,15 @@ var mailOptions = {
             {path: source}
  ],
   subject: "Lisa Thomas Salon Image",
-  html: 'Attached to this email is the image that was created! /n' + '<img src ="' + source + '" />'
+  html: 'Attached to this email is the image that was created!'
 };
         transporter.sendMail(mailOptions, function(error, info){
   if (error) {
     console.log(error);
   } else {
       console.log('Emails Sent!')
+      return res.status(200).send({message : 'Success: Your image has been successfully emailed!'})
+      
   }
 });
 })

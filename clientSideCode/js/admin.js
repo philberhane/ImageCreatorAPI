@@ -561,7 +561,7 @@ function canvasFunction() {
         
                               
         imgObj.onload = function () {
-            document.getElementById('loading').innerText = ''
+            document.getElementById('loading').innerHTML = ''
             canvas.setHeight(document.getElementById('image').height);
             canvas.setWidth(document.getElementById('image').width);
             console.log('2')
@@ -689,7 +689,7 @@ function finishEdit() {
 $("document").ready(function() {
     
   $('input[type=file]').on("click", function() {
-      document.getElementById('loading').innerText = "Uploading file.." 
+      document.getElementById('loading').innerHTML = '<div class="loader"></div>'
   })
     
 })
