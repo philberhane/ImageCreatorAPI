@@ -122,7 +122,7 @@ var mailOptions = {
     console.log(error);
   } else {
       console.log('Emails Sent!')
-      return res.status(200).send({message : 'Success: Your image has been successfully emailed!'})
+      return res.status(200).send({message : 'Success'})
       
   }
 });
