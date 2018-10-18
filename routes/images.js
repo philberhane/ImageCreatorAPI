@@ -29,7 +29,7 @@ router.post('/addImage', function (req, res) {
 });
     }
     
-     res.status(200).send({message : 'Your image has been successfully created!'})
+     res.status(200).send({message : 'Success'})
 })
 
 
@@ -87,7 +87,7 @@ router.post('/updateImage', function (req, res) {
    
 })
     }
-    res.status(200).send({message : 'Your image has been successfully updated!'})
+    res.status(200).send({message : 'Success'})
     
 })
 
