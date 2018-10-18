@@ -15,7 +15,10 @@ html {
 
 
 
+button {
 
+     cursor: pointer;
+}
 
 
 .js .slider-single > div:nth-child(1n+2) { display: none }

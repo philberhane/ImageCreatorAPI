@@ -14,7 +14,7 @@ router.post('/addCopy', function (req, res) {
     
     copy.save( (err, model) => {
             
-            res.status(201).send({message : 'Your copy has been successfully created!'})
+            res.status(201).send({message : 'Success'})
                 console.log(model, 'saved!!!')
                 
         })
@@ -92,7 +92,7 @@ router.post('/updateCopyStatus', function (req, res) {
    
 })
     }
-    res.status(200).send({message : 'Your copy has been successfully updated!'})
+    res.status(200).send({message : 'Success'})
     
 })
 
@@ -108,7 +108,7 @@ router.post('/saveCopy', function (req, res) {
 }, function(err, affected, resp) {
    
 })
-    res.status(200).send({message : 'Your copy has been successfully updated!'})
+    res.status(200).send({message : 'Success'})
     
 })
 

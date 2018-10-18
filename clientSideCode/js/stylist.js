@@ -928,7 +928,7 @@ function emailImage() {
         return response.json();
     }).then(function(data) {
        
-        document.getElementById('myModal').style.display = 'none'
+        document.getElementById('myModal2').style.display = 'none'
         if (data.message === 'Success') {
         document.getElementById('myModal').style.display = 'none'
         document.getElementById('stylistMessage').style.display = 'block'
@@ -1131,6 +1131,7 @@ function sendToIG() {
         return response.json();
     }).then(function(data) {
         document.getElementById('myModal').style.display = 'none'
+        
         if (data.message === 'Success') {
         document.getElementById('myModal').style.display = 'none'
         document.getElementById('stylistMessage').style.display = 'block'

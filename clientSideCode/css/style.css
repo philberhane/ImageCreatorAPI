@@ -13,6 +13,11 @@ html {
     background-color: #EEEEF0;
 }
 
+button {
+
+     cursor: pointer;
+}
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
