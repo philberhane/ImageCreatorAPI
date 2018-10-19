@@ -98,6 +98,11 @@ app.get('/', function (req, res) {
 // Set Port
 app.set('port', (process.env.PORT || 3000));
 
+var http = require("http");
+setInterval(function() {
+    http.get("http://lisathomasapi.herokuapp.com");
+}, 300000); // every 5 minutes (300000)
+
 app.listen(app.get('port'), function(){
 	console.log('Server started on port '+app.get('port'));
 });
