@@ -62,7 +62,7 @@ router.post('/updateFacebook', function(req, res) {
 
 router.post('/updateInstagram', function(req, res, next) {
     
-    User.findOne({instaUser: req.body.instaUser}, function (err, user)   {
+    User.findOne({instaUser: req.body.instaUser.toLowerCase()}, function (err, user)   {
         if (user && user._id !== req.body.id) {
             return res.status(500).send({message : 'Error: A user with this Instagram Account already exists!'}); 
         }
@@ -70,7 +70,7 @@ router.post('/updateInstagram', function(req, res, next) {
     
     
     User.update({_id: req.body.id}, {
-    instaUser: req.body.instaUser,
+    instaUser: req.body.instaUser.toLowerCase(),
     instaPass: req.body.instaPass
     
 }, function(err, affected, resp) {
@@ -233,7 +233,7 @@ var mailOptions = {
 
 router.post('/testIGLogin', function (req, res) {
     
-    var instaUser = req.body.instaUser;
+    var instaUser = req.body.instaUser.toLowerCase();
     var instaPass = req.body.instaPass;
     
     
@@ -269,7 +269,7 @@ process.on('unhandledRejection', error => {
 
 router.post('/testUpdateInstagram', function (req, res) {
     
-    var instaUser = req.body.instaUser;
+    var instaUser = req.body.instaUser.toLowerCase();
     var instaPass = req.body.instaPass;
     
     
@@ -320,7 +320,7 @@ router.post('/register', function (req, res) {
 	var email = req.body.email.toLowerCase();
     var password = req.body.password;
 	var password2 = req.body.password2;
-    var instaUser = req.body.instaUser;
+    var instaUser = req.body.instaUser.toLowerCase();
     var instaPass = req.body.instaPass;
     var role = req.body.role;
     var accountStatus = req.body.accountStatus;
