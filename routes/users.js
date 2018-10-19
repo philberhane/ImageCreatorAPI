@@ -241,6 +241,12 @@ router.post('/testIGLogin', function (req, res) {
 var device = new Client.Device(instaUser);
 var storage = new Client.CookieFileStorage(__dirname + '/cookies/' + instaUser + '.json');
     var dope = '';
+    
+    process.on('unhandledRejection', error => {
+   return res.status(500).send({
+                message: 'Error'
+                })
+})
         // And go for login
 Client.Session.create(device, storage, instaUser, instaPass).then(function(session) {
     console.log('test')
@@ -256,11 +262,7 @@ Client.Session.create(device, storage, instaUser, instaPass).then(function(sessi
     
 
 	
-process.on('unhandledRejection', error => {
-   return res.status(500).send({
-                message: 'Error'
-                })
-})
+
     
     
           });
