@@ -243,7 +243,8 @@ var storage = new Client.CookieFileStorage(__dirname + '/cookies/' + instaUser +
     var dope = '';
     
     process.on('unhandledRejection', error => {
-   return res.send({
+        console.log(error)
+   return res.status(500).send({
                 message: 'Error'
                 })
 })

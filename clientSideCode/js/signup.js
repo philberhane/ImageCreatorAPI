@@ -58,6 +58,7 @@ function connect() {
         return response.json();
     }).then(function(data) {
         document.getElementById('serverMessage').innerText = data.message
+        location.reload(true)
     
         
              
