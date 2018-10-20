@@ -244,9 +244,9 @@ var storage = new Client.CookieFileStorage(__dirname + '/cookies/' + instaUser +
     
     process.on('unhandledRejection', error => {
         console.log(error)
-   return res.status(500).end({
-                message: 'Error'
-                })
+   return res.status(500).end(
+                'Error'
+                )
 })
         // And go for login
 Client.Session.create(device, storage, instaUser, instaPass).then(function(session) {
