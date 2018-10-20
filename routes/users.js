@@ -245,7 +245,7 @@ var storage = new Client.CookieFileStorage(__dirname + '/cookies/' + instaUser +
     process.on('unhandledRejection', error => {
         console.log(error)
    return res.status(500).end(
-                'Error'
+                '<b>Error</b>'
                 )
 })
         // And go for login
