@@ -14,8 +14,8 @@ router.post('/uploadWordpress', function (req, res) {
     
     console.log('test1')
     var imgConvert = require('image-convert');
-imgConvert.fromBuffer({
-    buffer: req.body.source,
+imgConvert.fromURL({
+    url: req.body.source,
     quality: 100,//default 100
     output_format:"jpg",//default jpg
     size: "original"//default original
@@ -35,13 +35,10 @@ var client = wordpress.createClient({
 // "Aurora Borealis" by Frederic Edwin Church
 // Licensed under Public Domain via Wikimedia Commons
 //console.log(desfile)
-var filename = desfile;
-var fille = fs.readFileSync( filename );
+//var filename = desfile;
+//var fille = fs.readFileSync( filename );
 client.uploadFile({
-	name: filename.name,
-	type: "image/jpg",
-	bits: fille
-}, function( error, data ) {
+	desfile, function( error, data ) {
 	console.log( arguments );
 });
         

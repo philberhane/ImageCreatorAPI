@@ -799,37 +799,18 @@ $("document").ready(function() {
         console.log("Please select a smaller file");
         return false;
       }
-        var reader  = new FileReader();
         
-        reader.onload = function (e) {
 
-            const input = {
-        source : e.target.result
-    }
-    
-    fetch('https://lisathomasapi.herokuapp.com/routes/images/uploadWordpress', {
-        method: 'POST',
-        body: JSON.stringify(input),
-        headers: { "Content-Type": "application/json"}
-    }).then(function(response) {
-        return response.json();
-    }).then(function(data) {
-       
-        console.log('success')
-       
-        
-        })
             
             
-                };
+            
         
         
-        reader.readAsDataURL($files[0])
         
         
 
       // Begin file upload
-     /*
+     
 
       // Replace ctrlq with your own API key
       var apiUrl = 'https://api.imgur.com/3/image';
@@ -860,10 +841,26 @@ $("document").ready(function() {
           var link = JSON.parse(response).data.link
         document.getElementById('imageLink').value = link
           
-          
-           nextt()
+          const input = {
+        source : JSON.parse(response).data.link
+    }
+    
+    fetch('https://lisathomasapi.herokuapp.com/routes/images/uploadWordpress', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
        
-      }); */
+        console.log('success')
+       nextt()
+        
+        })
+          
+           
+       
+      }); 
     }
   });
     
