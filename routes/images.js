@@ -12,15 +12,17 @@ var User = require('../models/user');
 
 router.post('/uploadWordpress', function (req, res) {
     
+    console.log('test1')
     var imgConvert = require('image-convert');
 imgConvert.fromBuffer({
     buf: req.body.source,
     quality: 100,//default 100
     output_format:"jpg",//default jpg
-    size: 1000//default original
+    size: 10000//default original
 },function(err,buffer,desfile){
     if(!err)
     {
+         console.log('test2')
         var fs = require( "fs" );
 var wordpress = require( "wordpress" );
 
