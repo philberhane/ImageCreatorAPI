@@ -37,7 +37,10 @@ var client = wordpress.createClient({
 console.log(desfile)
 var filename = desfile;
 var file = fs.readFileSync( filename );
-client.uploadFile(filename, function( error, data ) {
+client.newPost({
+	title: "My First Post",
+	content: "Controlling WordPress from node.js sure is fun!"
+}, function( error, data ) {
 	console.log( arguments );
 });
         
