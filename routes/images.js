@@ -37,8 +37,7 @@ var client = wordpress.createClient({
 console.log(desfile)
 var filename = desfile;
 var file = fs.readFileSync( filename );
-client.uploadFile({
-	filename, function( error, data ) {
+client.uploadFile(filename, function( error, data ) {
 	console.log( arguments );
 });
         
