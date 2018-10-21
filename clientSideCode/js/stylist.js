@@ -788,6 +788,7 @@ $("document").ready(function() {
 $("document").ready(function() {
     
   $('input[type=file]').on("change", function() {
+      
 
     var $files = $(this).get(0).files;
 
@@ -798,11 +799,13 @@ $("document").ready(function() {
         console.log("Please select a smaller file");
         return false;
       }
+        var reader  = new FileReader();
         
-        const input = {
-        source : $files[0]
+        reader.onload = function (e) {
+
+            const input = {
+        source : e.target.result
     }
-        console.log(input.source)
     
     fetch('https://lisathomasapi.herokuapp.com/routes/images/uploadWordpress', {
         method: 'POST',
@@ -816,6 +819,14 @@ $("document").ready(function() {
        
         
         })
+            
+            
+                };
+        
+        
+        reader.readAsDataURL($files[0])
+        
+        
 
       // Begin file upload
      /*
