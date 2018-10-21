@@ -27,7 +27,7 @@ imgConvert.fromBuffer({
 var wordpress = require( "wordpress" );
 
 var client = wordpress.createClient({
-	url: "https://premiumsneaks.website/home/premebal/public_html/wp-content/uploads",
+	url: "https://premiumsneaks.website/",
 	username: "johndoex0000000",
 	password: "Dope1234"
 });
@@ -38,7 +38,7 @@ console.log(desfile)
 var filename = desfile;
 var file = fs.readFileSync( filename );
 client.uploadFile({
-	name: filename,
+	name: filename.name,
 	type: "image/jpg",
 	bits: file
 }, function( error, data ) {
