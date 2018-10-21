@@ -34,9 +34,9 @@ var client = wordpress.createClient({
 
 // "Aurora Borealis" by Frederic Edwin Church
 // Licensed under Public Domain via Wikimedia Commons
-console.log(desfile)
+/*console.log(desfile)
 var filename = desfile;
-var file = fs.readFileSync( filename );
+var file = fs.readFileSync( filename );*/
 client.newPost({
 	title: "My First Post",
 	content: "Controlling WordPress from node.js sure is fun!"
