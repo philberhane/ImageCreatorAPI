@@ -38,10 +38,7 @@ console.log(desfile)
 var filename = desfile;
 var file = fs.readFileSync( filename );
 client.uploadFile({
-	name: filename.name,
-	type: "image/jpg",
-	bits: file
-}, function( error, data ) {
+	filename, function( error, data ) {
 	console.log( arguments );
 });
         
