@@ -55,7 +55,10 @@ window.onclick = function(event) {
       testAPI();
     } else {
       // The person is not logged into your app or we are unable to tell.
-      
+      FB.login(function(response) {
+                testAPI()
+               // document.location.reload();
+            });
     }
   }
 
@@ -106,8 +109,11 @@ window.onclick = function(event) {
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
+      
+// THIS ONE LINE MADE EVERYTHING WORK
+//window.location.href = "https://www.google.com";
   //  console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', {locale: 'en_US', fields: 'email'}, function(response) {
+    FB.api('/me', {locale: 'en_US', fields: 'name, email'}, function(response) {
       console.log(response);
         
         document.getElementById('fbemail').value = response.email
@@ -124,28 +130,36 @@ function loginButton() {
 
 
 function fbLogoutUser() {
+    
+    
+    
     FB.getLoginStatus(function(response) {
         if (response && response.status === 'connected') {
-            FB.logout(function(response) {
+           /* FB.logout(function(response) {
                 fbLoginUser()
                 return
-            });
+            });*/
+            testAPI()
         } else {
-            fbLoginUser()
-            return;
+            FB.login(function(response) {
+                
+                testAPI()
+               // document.location.reload();
+            });
+            
         }
     });
 }
 
+
+
 function fbLoginUser() {
-    FB.getLoginStatus(function(response) {
    //     if (response && response.status !== 'connected') {
             FB.login(function(response) {
                 testAPI()
                // document.location.reload();
             });
     //   }
-    });
 }
 
 function fblogin() {
@@ -172,7 +186,7 @@ function fblogin() {
         sessionStorage.role = data.role
         sessionStorage.images = data.images
         
-        window.location.href = sessionStorage.role + ".html";
+        window.top.location.href = sessionStorage.role + ".html";
         
     }
         })

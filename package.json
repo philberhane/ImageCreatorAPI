@@ -59,7 +59,8 @@
     "tough-cookie": "^2.3.1",
     "tough-cookie-filestore": "0.0.1",
     "underscore.string": "^3.3.4",
-    "valid-url": "^1.0.9"
+    "valid-url": "^1.0.9",
+    "wordpress": "^1.4.1"
   },
   "devDependencies": {
     "faker": "^3.1.0",

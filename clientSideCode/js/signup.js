@@ -55,14 +55,19 @@ function connect() {
         body: JSON.stringify(input),
         headers: { "Content-Type": "application/json"}
     }).then(function(response) {
+        console.log(response)
+        if (response.status === 500) {
+            document.getElementById('serverMessage').innerText = 'Error: Instagram Username/Password is invalid! Please Try again.'
+            document.getElementById('serverMessage').style.color = '#fa755a'
+            return
+        } else {
         return response.json();
+        }
     }).then(function(data) {
         document.getElementById('serverMessage').innerText = data.message
     
         
-             console.log(data)
-        
-         if (data.indexOf('Error') === 0) {
+        if (!data) {
             document.getElementById('serverMessage').innerText = 'Error: Instagram Username/Password is invalid! Please Try again.'
             document.getElementById('serverMessage').style.color = '#fa755a'
              
@@ -71,17 +76,28 @@ function connect() {
              if (errArray.length === 2) {
                   location.reload();
              }*/
+        }
+        
              
-        } else {
-            document.getElementById('instaUser').value = document.getElementById('inputUser').value
+        
+         if (data.message.indexOf('Success') === 0) {
+             document.getElementById('instaUser').value = document.getElementById('inputUser').value
     
     document.getElementById('instaPass').value = document.getElementById('inputPass').value
     
     modal.style.display = "none";
             
             document.getElementById('clear2').innerHTML = 'Connected!'
+            
+             
         }
-    })
+            
+            
+            
+            
+            
+        
+    }) 
     
     
     

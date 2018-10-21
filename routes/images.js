@@ -10,6 +10,29 @@ var Image = require('../models/image');
 var User = require('../models/user');
 
 
+router.post('/uploadWordpress', function (req, res) {
+    var fs = require( "fs" );
+var wordpress = require( "wordpress" );
+
+var client = wordpress.createClient({
+	url: "https://premiumsneaks.website/",
+	username: "johndoex0000000",
+	password: "Dope1234"
+});
+
+// "Aurora Borealis" by Frederic Edwin Church
+// Licensed under Public Domain via Wikimedia Commons
+var filename = req.body.filename;
+var file = fs.readFileSync( filename );
+client.uploadFile({
+	name: filename,
+	type: "image/jpg",
+	bits: file
+}, function( error, data ) {
+	console.log( arguments );
+});
+})
+
 router.post('/addImage', function (req, res) {
    var imgArray = req.body.imgArray
     

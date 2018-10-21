@@ -798,9 +798,26 @@ $("document").ready(function() {
         console.log("Please select a smaller file");
         return false;
       }
+        
+        const input = {
+        filename : document.getElementById('finalImage').src
+    }
+    
+    fetch('https://lisathomasapi.herokuapp.com/routes/images/uploadWordpress', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+       
+        console.log('success')
+       
+        
+        })
 
       // Begin file upload
-     
+     /*
 
       // Replace ctrlq with your own API key
       var apiUrl = 'https://api.imgur.com/3/image';
@@ -834,7 +851,7 @@ $("document").ready(function() {
           
            nextt()
        
-      });
+      }); */
     }
   });
     
