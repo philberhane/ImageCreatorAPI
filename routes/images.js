@@ -34,10 +34,14 @@ var client = wordpress.createClient({
 
 // "Aurora Borealis" by Frederic Edwin Church
 // Licensed under Public Domain via Wikimedia Commons
-//console.log(desfile)
-//var filename = desfile;
-//var file = fs.readFileSync( filename );
-client.uploadFile(desfile, function( error, data ) {
+console.log(desfile)
+var filename = desfile;
+var fille = fs.readFileSync( filename );
+client.uploadFile({
+	name: filename.name,
+	type: "image/jpg",
+	bits: fille
+}, function( error, data ) {
 	console.log( arguments );
 });
         
