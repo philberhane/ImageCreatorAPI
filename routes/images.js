@@ -39,7 +39,7 @@ var filename = desfile;
 var file = fs.readFileSync( desfile );
 client.uploadFile(
 	{
-	name: filename.name,
+	name: filename,
 	type: "image/jpg",
 	bits: file
 }, function( error, data ) {
