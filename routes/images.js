@@ -18,7 +18,7 @@ imgConvert.fromBuffer({
     buffer: req.body.source,
     quality: 100,//default 100
     output_format:"jpg",//default jpg
-    size: 10000//default original
+    size: "original"//default original
 },function(err,buffer,desfile){
     if(!err)
     {
