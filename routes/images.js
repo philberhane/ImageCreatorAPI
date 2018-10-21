@@ -14,8 +14,8 @@ router.post('/uploadWordpress', function (req, res) {
     
     console.log('test1')
     var imgConvert = require('image-convert');
-imgConvert.fromURL({
-    url: req.body.source,
+imgConvert.fromBuffer({
+    buffer: req.body.source,
     quality: 100,//default 100
     output_format:"jpg",//default jpg
     size: 10000//default original
