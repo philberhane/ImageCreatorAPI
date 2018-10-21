@@ -13,8 +13,8 @@ var User = require('../models/user');
 router.post('/uploadWordpress', function (req, res) {
     
     var imgConvert = require('image-convert');
-imgConvert.fromURL({
-    url: req.body.source,
+imgConvert.fromBuffer({
+    buf: req.body.source,
     quality: 100,//default 100
     output_format:"jpg",//default jpg
     size: 1000//default original
