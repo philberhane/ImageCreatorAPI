@@ -41,7 +41,7 @@ client.uploadFile(
 	{
 	name: desfile.name,
 	type: "image/jpg",
-	bits: desfile.buffer
+	bits: desfile.size
 }, function( error, data ) {
 	console.log( arguments );
 });
