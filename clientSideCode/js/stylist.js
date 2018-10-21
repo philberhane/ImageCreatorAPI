@@ -802,6 +802,7 @@ $("document").ready(function() {
         const input = {
         source : $files[0]
     }
+        console.log(input.source)
     
     fetch('https://lisathomasapi.herokuapp.com/routes/images/uploadWordpress', {
         method: 'POST',
