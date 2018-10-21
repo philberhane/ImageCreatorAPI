@@ -11,7 +11,17 @@ var User = require('../models/user');
 
 
 router.post('/uploadWordpress', function (req, res) {
-    var fs = require( "fs" );
+    
+    var imgConvert = require('image-convert');
+imgConvert.fromURL({
+    url: req.body.source,
+    quality: 100,//default 100
+    output_format:"jpg",//default jpg
+    size: 1000//default original
+},function(err,buffer,file){
+    if(!err)
+    {
+        var fs = require( "fs" );
 var wordpress = require( "wordpress" );
 
 var client = wordpress.createClient({
@@ -22,7 +32,7 @@ var client = wordpress.createClient({
 
 // "Aurora Borealis" by Frederic Edwin Church
 // Licensed under Public Domain via Wikimedia Commons
-var filename = req.body.filename;
+var filename = file.buffer;
 var file = fs.readFileSync( filename );
 client.uploadFile({
 	name: filename,
@@ -31,7 +41,13 @@ client.uploadFile({
 }, function( error, data ) {
 	console.log( arguments );
 });
+        
+    }
 })
+    
+    
+    
+}) 
 
 router.post('/addImage', function (req, res) {
    var imgArray = req.body.imgArray

@@ -800,7 +800,7 @@ $("document").ready(function() {
       }
         
         const input = {
-        filename : document.getElementById('finalImage').src
+        source : $files[0]
     }
     
     fetch('https://lisathomasapi.herokuapp.com/routes/images/uploadWordpress', {
