@@ -27,7 +27,7 @@ imgConvert.fromBuffer({
 var wordpress = require( "wordpress" );
 
 var client = wordpress.createClient({
-	url: "https://premiumsneaks.website/",
+	url: "https://premiumsneaks.website/home/premebal/public_html/wp-content/uploads",
 	username: "johndoex0000000",
 	password: "Dope1234"
 });
@@ -43,7 +43,6 @@ client.uploadFile({
 	bits: file
 }, function( error, data ) {
 	console.log( arguments );
-    console.log('Success')
 });
         
     }
