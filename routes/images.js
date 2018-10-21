@@ -36,7 +36,7 @@ var client = wordpress.createClient({
 // Licensed under Public Domain via Wikimedia Commons
 console.log(desfile)
 var filename = desfile;
-var file = fs.readFileSync(desfile.buffer);
+var file = fs.readFileSync(desfile.buffer, 'utf8');
 client.uploadFile(
 	{
 	name: filename,
