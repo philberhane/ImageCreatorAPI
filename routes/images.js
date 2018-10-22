@@ -19,7 +19,7 @@ imgConvert.fromURL({
     quality: 100,//default 100
     output_format:"jpg",//default jpg
     size: "original"//default original
-},function(err,buffer,desfile){
+},function(err,buffer,file){
     if(!err)
     {
          console.log('test2')
@@ -34,14 +34,13 @@ var client = wordpress.createClient({
 
 // "Aurora Borealis" by Frederic Edwin Church
 // Licensed under Public Domain via Wikimedia Commons
-console.log(desfile)
-var filename = "nunz.jpg";
-var file = fs.readFileSync(filename);
+var filename = file.buffer;
+var file2 = fs.readFileSync(filename);
 client.uploadFile(
 	{
 	name: filename,
 	type: "image/jpg",
-	bits: file
+	bits: file2
 }, function( error, data ) {
 	console.log( arguments );
 });
