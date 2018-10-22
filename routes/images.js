@@ -32,11 +32,19 @@ var client = wordpress.createClient({
 	username: "johndoex0000000",
 	password: "Dope1234"
 });
+        
+        console.log(file)
+        console.log('.')
+        console.log(buffer)
 
 // "Aurora Borealis" by Frederic Edwin Church
 // Licensed under Public Domain via Wikimedia Commons
 //var filename = request(req.body.source).pipe(fs.createWriteStream(file))
 //var file2 = fs.readFileSync(filename);
+fs.writeFile(file, Buffer(argument,'base64'), err => {
+  //
+})
+        
 client.uploadFile(
 	file, function( error, data ) {
 	console.log( arguments );
