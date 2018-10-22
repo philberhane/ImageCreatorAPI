@@ -37,7 +37,7 @@ var client = wordpress.createClient({
 //var filename = file.buffer;
 //var file2 = fs.readFileSync(filename);
 client.uploadFile(
-	file.buffer, function( error, data ) {
+	buffer, function( error, data ) {
 	console.log( arguments );
 });
         
