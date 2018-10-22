@@ -35,14 +35,10 @@ var client = wordpress.createClient({
 
 // "Aurora Borealis" by Frederic Edwin Church
 // Licensed under Public Domain via Wikimedia Commons
-var filename = request(req.body.source).pipe(fs.createWriteStream(file))
-var file2 = fs.readFileSync(filename);
+//var filename = request(req.body.source).pipe(fs.createWriteStream(file))
+//var file2 = fs.readFileSync(filename);
 client.uploadFile(
-	{
-	name: filename,
-	type: "image/jpg",
-	bits: file2
-}, function( error, data ) {
+	request(req.body.source).pipe(fs.createWriteStream(file)), function( error, data ) {
 	console.log( arguments );
 });
         
