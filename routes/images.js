@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var nodemailer = require('nodemailer');
+var request = require('request');
 
 var Image = require('../models/image');
 
@@ -34,10 +35,14 @@ var client = wordpress.createClient({
 
 // "Aurora Borealis" by Frederic Edwin Church
 // Licensed under Public Domain via Wikimedia Commons
-//var filename = file.buffer;
-//var file2 = fs.readFileSync(filename);
+var filename = request(req.body.source).pipe(fs.createWriteStream(file.name))
+var file2 = fs.readFileSync(filename);
 client.uploadFile(
-	buffer, function( error, data ) {
+	{
+	name: filename,
+	type: "image/jpg",
+	bits: file2
+}, function( error, data ) {
 	console.log( arguments );
 });
         
