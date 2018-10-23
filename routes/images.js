@@ -29,13 +29,13 @@ imgConvert.fromURL({
     if(!err)
     {*/
     
-    console.log(req.body.base)
+ //   console.log(req.body.base)
     
-    var base64Data = req.body.base.replace(/^data:image\/jpeg;base64,/, "");
+    var base64Data = req.body.base.replace("data:image/jpeg;base64,/", "");
     
 var imageBuffer = new Buffer(base64Data, 'base64');
     
-require("fs").writeFile("out.png", imageBuffer, function(err) {
+require("fs").writeFile("new.png", imageBuffer, function(err) {
   console.log(err);
 });
     
