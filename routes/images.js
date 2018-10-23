@@ -10,7 +10,8 @@ var Image = require('../models/image');
 // To see whether a user is checked in or not
 var User = require('../models/user');
 
-var multer = require('multer')
+var multer = require('multer');
+
 var uploading = multer({
   dest: __dirname + '../temp/',
 })
