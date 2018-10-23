@@ -10,11 +10,14 @@ var Image = require('../models/image');
 // To see whether a user is checked in or not
 var User = require('../models/user');
 
+var multer = require('multer')
+    var uploading = multer({
+  dest: __dirname + '../temp/',
+})
 
-router.post('/uploadWordpress', function (req, res) {
+router.post('/uploadWordpress', uploading, function (req, res) {
     
-    console.log('test1')
-    var imgConvert = require('image-convert');
+   /* var imgConvert = require('image-convert');
 imgConvert.fromURL({
     url: req.body.source,
     quality: 100,//default 100
@@ -22,8 +25,9 @@ imgConvert.fromURL({
     size: "original"//default original
 },function(err,buffer,file){
     if(!err)
-    {
-         console.log('test2')
+    {*/
+    
+    
         var fs = require( "fs" );
 var wordpress = require( "wordpress" );
 
@@ -33,28 +37,27 @@ var client = wordpress.createClient({
 	password: "Dope1234"
 });
         
-        console.log(file)
-        console.log('.')
-        console.log(buffer)
+        
 
 // "Aurora Borealis" by Frederic Edwin Church
 // Licensed under Public Domain via Wikimedia Commons
 //var filename = request(req.body.source).pipe(fs.createWriteStream(file))
 //var file2 = fs.readFileSync(filename);
-fs.writeFile(file, Buffer(argument,'base64'), err => {
-  //
-})
-        
-client.uploadFile(
-	file, function( error, data ) {
+var filename = "../temp/" + req.file;
+var file = fs.readFileSync( filename );
+client.uploadFile({
+	name: filename,
+	type: "image/jpg",
+	bits: file
+}, function( error, data ) {
 	console.log( arguments );
 });
         
-    }
+   /* }
 })
     
     
-    
+ */   
 }) 
 
 router.post('/addImage', function (req, res) {

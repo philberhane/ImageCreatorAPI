@@ -800,10 +800,24 @@ $("document").ready(function() {
         return false;
       }
         
+       
 
+            console.log($files[0])
+        
+        fetch('https://lisathomasapi.herokuapp.com/routes/images/uploadWordpress', {
+        method: 'POST',
+        body: {$files[0]},
+        headers: { "Content-Type": "multipart/form-data"}
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+       
+        console.log('success')
+       //nextt()
+        
+        })
             
-            
-            
+          return  
         
         
         
@@ -841,7 +855,7 @@ $("document").ready(function() {
           var link = JSON.parse(response).data.link
         document.getElementById('imageLink').value = link
           
-          const input = {
+          var input = {
         source : JSON.parse(response).data.link
     }
     
