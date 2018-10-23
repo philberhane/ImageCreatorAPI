@@ -29,6 +29,12 @@ imgConvert.fromURL({
     if(!err)
     {*/
     
+    var base64Data = req.body.base.replace(/^data:image\/png;base64,/, "");
+
+require("fs").writeFile("out.png", base64Data, 'base64', function(err) {
+  console.log(err);
+});
+    
     
         var fs = require( "fs" );
 var wordpress = require( "wordpress" );
@@ -45,7 +51,7 @@ var client = wordpress.createClient({
 // Licensed under Public Domain via Wikimedia Commons
 //var filename = request(req.body.source).pipe(fs.createWriteStream(file))
 //var file2 = fs.readFileSync(filename);
-var filename = "../temp/" + req.file;
+var filename = "out.png"
 var file = fs.readFileSync( filename );
 client.uploadFile({
 	name: filename,

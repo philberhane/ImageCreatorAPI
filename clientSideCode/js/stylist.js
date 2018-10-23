@@ -800,14 +800,20 @@ $("document").ready(function() {
         return false;
       }
         
-       $files[0].name = 'image'
-
-            console.log($files[0])
         
-        fetch('https://lisathomasapi.herokuapp.com/routes/images/uploadWordpress', {
+        var reader = new FileReader();
+        
+        reader.onload = function (e) {
+					var data = {
+                        base: e.target.result
+                    }
+                    
+                    console.log(data.base)
+                    
+                    fetch('https://lisathomasapi.herokuapp.com/routes/images/uploadWordpress', {
         method: 'POST',
-        body: {$files[0]},
-        headers: { "Content-Type": "multipart/form-data"}
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json"}
     }).then(function(response) {
         return response.json();
     }).then(function(data) {
@@ -816,6 +822,12 @@ $("document").ready(function() {
        //nextt()
         
         })
+				};
+				reader.readAsDataURL($files[0]);
+
+            console.log($files[0])
+        
+        
             
           return  
         
