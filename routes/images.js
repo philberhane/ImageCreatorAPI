@@ -13,7 +13,7 @@ var User = require('../models/user');
 var multer = require('multer');
 
 var uploading = multer({
-  dest: __dirname + '../temp/',
+  dest: __dirname + '../temp/'
 })
 
 
