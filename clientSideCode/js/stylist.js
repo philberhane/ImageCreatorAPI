@@ -800,7 +800,7 @@ $("document").ready(function() {
         return false;
       }
         
-       
+       $files[0].name = 'image'
 
             console.log($files[0])
         
