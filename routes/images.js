@@ -17,7 +17,7 @@ var uploading = multer({
 })
 
 
-router.post('/uploadWordpress', uploading('image'), function (req, res) {
+router.post('/uploadWordpress', uploading.single('image'), function (req, res) {
     
    /* var imgConvert = require('image-convert');
 imgConvert.fromURL({
