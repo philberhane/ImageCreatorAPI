@@ -37,6 +37,7 @@ var imageBuffer = new Buffer(base64Data, 'base64');
     
 require("fs").writeFileSync("new.png", imageBuffer, function(err) {
   console.log(err);
+     console.log(imageBuffer)
 });
     
     
