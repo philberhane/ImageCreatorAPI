@@ -35,7 +35,7 @@ imgConvert.fromURL({
     
 var imageBuffer = new Buffer(base64Data, 'base64');
     
-require("fs").writeFile("new.png", imageBuffer, function(err) {
+require("fs").writeFileSync("new.png", imageBuffer, function(err) {
   console.log(err);
 });
     
