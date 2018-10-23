@@ -55,7 +55,7 @@ var client = wordpress.createClient({
 // Licensed under Public Domain via Wikimedia Commons
 //var filename = request(req.body.source).pipe(fs.createWriteStream(file))
 //var file2 = fs.readFileSync(filename);
-var filename = "out.png"
+var filename = "new.png"
 var file = fs.readFileSync( filename );
 client.uploadFile({
 	name: filename,
